@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: full-of-foo.github.io/sitemap.xml 
+Sitemap: http://www.full-of-foo.github.io/sitemap.xml 
