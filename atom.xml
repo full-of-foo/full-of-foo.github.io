@@ -4,7 +4,7 @@
   <title><![CDATA[toeknee land]]></title>
   <link href="http:///atom.xml" rel="self"/>
   <link href="http:///"/>
-  <updated>2015-05-14T21:32:16+01:00</updated>
+  <updated>2015-05-14T21:44:27+01:00</updated>
   <id>http:///</id>
   <author>
     <name><![CDATA[Anthony Troy]]></name>
@@ -32,7 +32,7 @@ incredibly useful, original, cutting-edge and technically challenging to develop
 What else could it be but a <strong>TODO list</strong> of course.</p>
 
 <p><img src="http:///images/bizcat.png" alt="bizcat" />
-From scratch we are going develop a TODO list API with <a href="http://www.sinatrarb.com/">Sinatra</a>. If you unfamiliar with Sinatra it is simply a small web framework for Ruby, somewhat like Ruby on Rails. As Sinatra is built ontop of <a href="http://rack.github.io/">Rack</a> we can then easily deploy our completed app to <a href="https://www.heroku.com/">Heroku</a>.</p>
+From scratch we are going develop a TODO list API with <a href="http://www.sinatrarb.com/">Sinatra</a>. If you are unfamiliar with Sinatra it is simply a small web framework for Ruby, somewhat like Ruby on Rails. As Sinatra is built ontop of <a href="http://rack.github.io/">Rack</a> we can then easily deploy our completed app to <a href="https://www.heroku.com/">Heroku</a>.</p>
 
 <p>This tutorial expects that you have some grounding in Ruby and understand basic <a href="http://www.ibm.com/developerworks/library/ws-restful/">RESTful API</a> design. We will be using Ruby 2.1.2 but any Ruby version post-2.0 should be fine.</p>
 
@@ -150,7 +150,7 @@ passing a flag argument to the script.</p>
 
 <p>Using <code>Bundler.require</code> we tell Bundler to load those modules in the gem groups named development and default, where the latter is all of those gems not contained in the development or production groups.</p>
 
-<p>Remember our dependency <a href="http://www.sinatrarb.com/contrib">sinatra-contrib</a>? It just contains lots of nice extensions for Sinatra. One of which no one should live with out is <a href="http://www.sinatrarb.com/contrib/reloader.html">Sinatra::Reloader</a>. It automatically reloads all files required by your application which of course we need during development.</p>
+<p>Remember our dependency <a href="http://www.sinatrarb.com/contrib">sinatra-contrib</a>? It just contains lots of nice extensions for Sinatra. One of which no one should live without is <a href="http://www.sinatrarb.com/contrib/reloader.html">Sinatra::Reloader</a>. It automatically reloads all files required by your application which of course we need during development.</p>
 
 <h2>Models, Models Everywhere</h2>
 
@@ -320,7 +320,7 @@ off your defined <code>DataMapper::Resource</code> models, removing the need to 
 
 <h2>Ship First, Test Later</h2>
 
-<p>Lets puts this thing of beauty out there! The usual tweeks are required for our Heroku deploy. We need to parameterize
+<p>Lets put this thing of beauty out there! The usual tweeks are required for our Heroku deploy. We need to parameterize
 what gems are required and what DataMapper connection we wish to use per environment.</p>
 
 <figure class='code'><figcaption><span>app.rb</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
