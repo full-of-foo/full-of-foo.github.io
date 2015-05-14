@@ -4,7 +4,7 @@
   <title><![CDATA[toeknee land]]></title>
   <link href="http:///atom.xml" rel="self"/>
   <link href="http:///"/>
-  <updated>2015-05-14T13:51:29+01:00</updated>
+  <updated>2015-05-14T21:28:58+01:00</updated>
   <id>http:///</id>
   <author>
     <name><![CDATA[Anthony Troy]]></name>
@@ -12,6 +12,357 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Baby's First Sinatra App]]></title>
+    <link href="http:///blog/2015/05/13/babys-first-sinatra-app/"/>
+    <updated>2015-05-13T20:50:05+01:00</updated>
+    <id>http:///blog/2015/05/13/babys-first-sinatra-app</id>
+    <content type="html"><![CDATA[<p><img src="http:///images/sorry.png" alt="sorry" /></p>
+
+<h2>I&rsquo;m Totally Sorry</h2>
+
+<p>Oops, seems I haven&rsquo;t actually followed through on my commitment to
+write a blog post every month, shame on me!</p>
+
+<h2>Down to Bizness</h2>
+
+<p>Lets start off by creating something difficult. An application that is
+incredibly useful, original, cutting-edge and technically challenging to develop.
+What else could it be but a <strong>TODO list</strong> of course.</p>
+
+<p><img src="http:///images/bizcat.png" alt="bizcat" />
+From scratch we are going develop a TODO list API with <a href="http://www.sinatrarb.com/">Sinatra</a>. If you unfamiliar with Sinatra it is simply a small web framework for Ruby, somewhat like Ruby on Rails. As Sinatra is built ontop of <a href="http://rack.github.io/">Rack</a> we can then easily deploy our completed app to <a href="https://www.heroku.com/">Heroku</a>.</p>
+
+<p>This tutorial expects that you have some grounding in Ruby and understand basic <a href="http://www.ibm.com/developerworks/library/ws-restful/">RESTful API</a> design. We will be using Ruby 2.1.2 but any Ruby version post-2.0 should be fine.</p>
+
+<h2>Setting up your dependencies</h2>
+
+<p>Even in a small project nobody likes managing their own dependencies, it really can be terrible so lets reach for <a href="http://bundler.io/">Bundler</a>, which essentially frees you from dependency hell by making sure your application runs the same code on every machine.</p>
+
+<p>First we need to install the Bundler gem.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>gem install bundler
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We then must define our according <a href="http://bundler.io/man/gemfile.5.html">Gemfile</a>, a Ruby file placed at the root of your directory for describing your gem (package) dependencies.</p>
+
+<figure class='code'><figcaption><span>Gemfile</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/Gemfile'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+</span><span class='line'><span class="c1"># ruby &#39;2.1.2&#39; # tested with 2.1.2 but other versions should be fine</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;sinatra&#39;</span><span class="p">,</span> <span class="s1">&#39;1.4.2&#39;</span> <span class="c1"># web framework</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;sinatra-contrib&#39;</span><span class="p">,</span> <span class="s1">&#39;1.4.2&#39;</span> <span class="c1"># web framework extensions</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;data_mapper&#39;</span> <span class="c1"># lightweight ORM</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;dm-sqlite-adapter&#39;</span> <span class="c1"># local DB ORM adapter</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span> <span class="c1"># local DB</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
+</span><span class='line'> <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span> <span class="c1"># prod DB</span>
+</span><span class='line'> <span class="n">gem</span> <span class="s1">&#39;dm-postgres-adapter&#39;</span> <span class="c1"># prod DB ORM adapter</span>
+</span><span class='line'> <span class="n">gem</span> <span class="s1">&#39;unicorn&#39;</span> <span class="c1"># prod application server</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finally we must install our required gems with Bundler.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle install --without production
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Say Harro World!</h2>
+
+<p>Great, we have our dependencies in place so we better verify that everything is
+working as expected. Any Ruby file which requires or loads the Sinatra library, with at least
+one endpoint defined, can be conveniently executed as a <a href="http://en.wikipedia.org/wiki/WEBrick">WEBrick</a> server.</p>
+
+<p>Lets simply define one route or endpoint and test it out.</p>
+
+<figure class='code'><figcaption><span>proof.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;sinatra&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="s2">&quot;LOLOLOL! You rock!&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Like any other Ruby script, we can execute it with the <code>ruby</code> command.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>ruby proof.rb
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As you would expect <code>proof.rb</code> begins to run on a default port and we see the desired response on
+<a href="http://localhost:4567/.">http://localhost:4567/.</a> Among other things, we can easily change this target port number by
+passing a flag argument to the script.</p>
+
+<p>A list of the available flags can be outputted by passing <code>-h</code> as an argument.</p>
+
+<h2>App Environment Cruft</h2>
+
+<p>Lets now create our cleverly named main application file, <code>app.rb</code>. We need to then first require our library modules.</p>
+
+<figure class='code'><figcaption><span>app.rb</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Require the bundler gem and then call Bundler.require to load in all gems</span>
+</span><span class='line'><span class="c1"># listed in Gemfile.</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;bundler&#39;</span>
+</span><span class='line'><span class="no">Bundler</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="ss">:development</span><span class="p">)</span> <span class="k">if</span> <span class="n">defined?</span><span class="p">(</span><span class="no">Bundler</span><span class="p">)</span>
+</span><span class='line'><span class="c1"># Reload app.js when changed</span>
+</span><span class='line'><span class="nb">require</span> <span class="s2">&quot;sinatra/reloader&quot;</span> <span class="k">if</span> <span class="n">development?</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Using <code>Bundler.require</code> we tell Bundler to load those modules in the gem groups named development and default, where the latter is all of those gems not contained in the development or production groups.</p>
+
+<p>Remember our dependency <a href="http://www.sinatrarb.com/contrib">sinatra-contrib</a>? It just contains lots of nice extensions for Sinatra. One of which no one should live with out is <a href="http://www.sinatrarb.com/contrib/reloader.html">Sinatra::Reloader</a>. It automatically reloads all files required by your application which of course we need during development.</p>
+
+<h2>Models, Models Everywhere</h2>
+
+<p>We are using <a href="http://datamapper.org/why.html">DataMapper</a> as our ORM. In terms of our requirements its main appeal
+is the ever useful <code>auto_migrate!</code> feature which creates your datastore schema based
+off your defined <code>DataMapper::Resource</code> models, removing the need to write and manage migrations.</p>
+
+<p>Now we must create our local <a href="https://www.sqlite.org/">SQLite</a> DB and establish a connection.</p>
+
+<figure class='code'><figcaption><span>app.rb</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># DB init</span>
+</span><span class='line'><span class="no">DataMapper</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="s2">&quot;sqlite3://</span><span class="si">#{</span><span class="no">Dir</span><span class="o">.</span><span class="n">pwd</span><span class="si">}</span><span class="s2">/development.db&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">development?</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>With such in place we can now define our naive <code>Task</code> which models a TODO list item. Similar to <a href="http://guides.rubyonrails.org/active_record_basics.html">ActiveRecord</a>, in DataMapper the convention with model names is to use the singular version of the name. Though unlike ActiveRecord, DataMapper does not enforce this.</p>
+
+<figure class='code'><figcaption><span>app.rb</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Models</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Task</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">DataMapper</span><span class="o">::</span><span class="no">Resource</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">property</span> <span class="ss">:id</span><span class="p">,</span> <span class="no">Serial</span><span class="p">,</span> <span class="ss">key</span><span class="p">:</span> <span class="kp">true</span>
+</span><span class='line'>  <span class="n">property</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">String</span><span class="p">,</span> <span class="ss">required</span><span class="p">:</span> <span class="kp">true</span>
+</span><span class='line'>  <span class="n">property</span> <span class="ss">:completed_at</span><span class="p">,</span> <span class="no">DateTime</span>
+</span><span class='line'>  <span class="n">property</span> <span class="ss">:created_at</span><span class="p">,</span> <span class="no">DateTime</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="c1"># Finalize and migrate</span>
+</span><span class='line'><span class="no">DataMapper</span><span class="o">.</span><span class="n">finalize</span><span class="o">.</span><span class="n">auto_upgrade!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Before using our model we must first <code>finalize</code>. This checks the validity of all of our DataMapper model definitions and initializes all properties associated with relationships. This nicely returns its caller, <code>DataMapper</code>, so we can chain a call to <code>auto_upgrade!</code> which issues the necessary CREATE statement for our task table if it does not already exist.</p>
+
+<p>Now lets verify that our model is in fact persisent and working as expected. We can simply execute script and our DB will be in place. Lets query the current amount of task rows.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>ruby -r ./app.rb -e <span class="s2">&quot;puts Task.all.size&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Gimme Them Endpoints</h2>
+
+<p>In Sinatra we can define endpoints that are a combination of a HTTP verb and the according request path. Which as you can see results in succinct and pretty code ♥</p>
+
+<figure class='code'><figcaption><span>app.rb</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Api</span>
+</span><span class='line'><span class="n">get</span> <span class="s1">&#39;/task/&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">content_type</span> <span class="ss">:json</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="vi">@tasks</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="ss">order</span><span class="p">:</span> <span class="ss">:created_at</span><span class="o">.</span><span class="n">desc</span><span class="p">)</span>
+</span><span class='line'>  <span class="vi">@tasks</span><span class="o">.</span><span class="n">to_json</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Upon a defined endpoint being accessed, a <code>before</code> code block is ran if defined. This is a simple before-request hook, we do not avail of it for our endpoints. Upon its successful termination, the user-defined block on that endpoint will be executed.</p>
+
+<p>Above we simply return a JSON list of all the task rows. We can verify this endpoint by simply executing <code>curl http://localhost:4567/task/</code>. As expected the body of our response is an empty array.</p>
+
+<p>Now we can define our remaining endpoints for POST, GET,PUT and DELETE.</p>
+
+<figure class='code'><figcaption><span>app.rb</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">post</span> <span class="s1">&#39;/task/&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">content_type</span> <span class="ss">:json</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">permit_params</span><span class="p">)</span>
+</span><span class='line'>  <span class="vi">@task</span><span class="o">.</span><span class="n">save</span> <span class="p">?</span> <span class="vi">@task</span><span class="o">.</span><span class="n">to_json</span> <span class="p">:</span> <span class="n">halt</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">put</span> <span class="s1">&#39;/task/:id&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">content_type</span> <span class="ss">:json</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">].</span><span class="n">to_i</span><span class="p">)</span>
+</span><span class='line'>  <span class="vi">@task</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">permit_params</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="vi">@task</span> <span class="o">&amp;&amp;</span> <span class="vi">@task</span><span class="o">.</span><span class="n">save</span> <span class="p">?</span> <span class="vi">@task</span><span class="o">.</span><span class="n">to_json</span> <span class="p">:</span> <span class="n">halt</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">get</span> <span class="s1">&#39;/task/:id&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">content_type</span> <span class="ss">:json</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">].</span><span class="n">to_i</span><span class="p">)</span>
+</span><span class='line'>  <span class="vi">@task</span> <span class="p">?</span> <span class="vi">@task</span><span class="o">.</span><span class="n">to_json</span> <span class="p">:</span> <span class="n">halt</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">delete</span> <span class="s1">&#39;/task/:id&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">content_type</span> <span class="ss">:json</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">].</span><span class="n">to_i</span><span class="p">)</span>
+</span><span class='line'>  <span class="vi">@task</span> <span class="o">&amp;&amp;</span> <span class="vi">@task</span><span class="o">.</span><span class="n">destroy</span> <span class="p">?</span> <span class="p">{</span> <span class="ss">success</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span> <span class="p">}</span><span class="o">.</span><span class="n">to_json</span> <span class="p">:</span> <span class="n">halt</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">permit_params</span>
+</span><span class='line'>  <span class="n">params</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="o">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;completed_at&quot;</span><span class="o">].</span><span class="n">include?</span> <span class="n">k</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Data, Not Enough Data</h2>
+
+<p>Before our deploy to Heroku it would be nice to have a prepopulated API in place, so lets just seed two tasks.</p>
+
+<figure class='code'><figcaption><span>app.rb</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Seed</span>
+</span><span class='line'><span class="k">if</span> <span class="no">Task</span><span class="o">.</span><span class="n">count</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Test Task One&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Test Task Two&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Again, we can verify this by executing <code>curl http://localhost:4567/task/</code> and see our listed tasks.</p>
+
+<h2>Ship First, Test Later</h2>
+
+<p>Lets puts this thing of beauty out there! The usual tweeks are required for our Heroku deploy. We need to parameterize
+what gems are required and what DataMapper connection we wish to use per environment.</p>
+
+<figure class='code'><figcaption><span>app.rb</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Bundler</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;RACK_ENV&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="ss">:development</span><span class="p">)</span> <span class="k">if</span> <span class="n">defined?</span><span class="p">(</span><span class="no">Bundler</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">development?</span>
+</span><span class='line'>  <span class="no">DataMapper</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;DATABASE_URL&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="s2">&quot;sqlite3://</span><span class="si">#{</span><span class="no">Dir</span><span class="o">.</span><span class="n">pwd</span><span class="si">}</span><span class="s2">/development.db&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="k">elsif</span> <span class="n">production?</span>
+</span><span class='line'>  <span class="no">DataMapper</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;DATABASE_URL&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="s1">&#39;postgres://localhost/sinatra-todos&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We then need to create a <a href="https://devcenter.heroku.com/articles/rack">rakeup file</a> named <code>config.ru</code> to instruct Heroku how to run our Rack app.</p>
+
+<figure class='code'><figcaption><span>config.ru</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/config.ru'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;./app&#39;</span>
+</span><span class='line'><span class="n">run</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Application</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finally, we must setup a repository, add a <a href="https://devcenter.heroku.com/articles/git">Heroku remote</a> and push our work to deploy the app.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git init <span class="o">&amp;&amp;</span> git add --all <span class="o">&amp;&amp;</span> git commit -m <span class="s2">&quot;initial&quot;</span>
+</span><span class='line'>heroku create
+</span><span class='line'>git push heroku master
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[It-has-begun]]></title>

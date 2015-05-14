@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | toeknee land]]></title>
+  <link href="http:///blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http:///"/>
+  <updated>2015-05-14T21:28:58+01:00</updated>
+  <id>http:///</id>
+  <author>
+    <name><![CDATA[Anthony Troy]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Baby's First Sinatra App]]></title>
+    <link href="http:///blog/2015/05/13/babys-first-sinatra-app/"/>
+    <updated>2015-05-13T20:50:05+01:00</updated>
+    <id>http:///blog/2015/05/13/babys-first-sinatra-app</id>
+    <content type="html"><![CDATA[<p><img src="/images/sorry.png" alt="sorry" /></p>
+
+<h2>I&rsquo;m Totally Sorry</h2>
+
+<p>Oops, seems I haven&rsquo;t actually followed through on my commitment to
+write a blog post every month, shame on me!</p>
+
+<h2>Down to Bizness</h2>
+
+<p>Lets start off by creating something difficult. An application that is
+incredibly useful, original, cutting-edge and technically challenging to develop.
+What else could it be but a <strong>TODO list</strong> of course.</p>
+
+<p><img src="/images/bizcat.png" alt="bizcat" />
+From scratch we are going develop a TODO list API with <a href="http://www.sinatrarb.com/">Sinatra</a>. If you unfamiliar with Sinatra it is simply a small web framework for Ruby, somewhat like Ruby on Rails. As Sinatra is built ontop of <a href="http://rack.github.io/">Rack</a> we can then easily deploy our completed app to <a href="https://www.heroku.com/">Heroku</a>.</p>
+
+<p>This tutorial expects that you have some grounding in Ruby and understand basic <a href="http://www.ibm.com/developerworks/library/ws-restful/">RESTful API</a> design. We will be using Ruby 2.1.2 but any Ruby version post-2.0 should be fine.</p>
+
+<h2>Setting up your dependencies</h2>
+
+<p>Even in a small project nobody likes managing their own dependencies, it really can be terrible so lets reach for <a href="http://bundler.io/">Bundler</a>, which essentially frees you from dependency hell by making sure your application runs the same code on every machine.</p>
+
+<p>First we need to install the Bundler gem.
+<code>sh
+$ gem install bundler
+</code></p>
+
+<p>We then must define our according <a href="http://bundler.io/man/gemfile.5.html">Gemfile</a>, a Ruby file placed at the root of your directory for describing your gem (package) dependencies.</p>
+
+<pre><code class="ruby Gemfile https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/Gemfile Source Code">source 'https://rubygems.org'
+# ruby '2.1.2' # tested with 2.1.2 but other versions should be fine
+
+gem 'sinatra', '1.4.2' # web framework
+gem 'sinatra-contrib', '1.4.2' # web framework extensions
+
+gem 'data_mapper' # lightweight ORM
+
+group :development do
+  gem 'dm-sqlite-adapter' # local DB ORM adapter
+  gem 'sqlite3' # local DB
+end
+
+group :production do
+ gem 'pg' # prod DB
+ gem 'dm-postgres-adapter' # prod DB ORM adapter
+ gem 'unicorn' # prod application server
+end
+</code></pre>
+
+<p>Finally we must install our required gems with Bundler.
+<code>sh
+$ bundle install --without production
+</code></p>
+
+<h2>Say Harro World!</h2>
+
+<p>Great, we have our dependencies in place so we better verify that everything is
+working as expected. Any Ruby file which requires or loads the Sinatra library, with at least
+one endpoint defined, can be conveniently executed as a <a href="http://en.wikipedia.org/wiki/WEBrick">WEBrick</a> server.</p>
+
+<p>Lets simply define one route or endpoint and test it out.</p>
+
+<pre><code class="ruby proof.rb">require 'sinatra'
+
+get '/' do
+  "LOLOLOL! You rock!"
+end
+</code></pre>
+
+<p>Like any other Ruby script, we can execute it with the <code>ruby</code> command.
+<code>sh
+$ ruby proof.rb
+</code>
+As you would expect <code>proof.rb</code> begins to run on a default port and we see the desired response on
+<a href="http://localhost:4567/.">http://localhost:4567/.</a> Among other things, we can easily change this target port number by
+passing a flag argument to the script.</p>
+
+<p>A list of the available flags can be outputted by passing <code>-h</code> as an argument.</p>
+
+<h2>App Environment Cruft</h2>
+
+<p>Lets now create our cleverly named main application file, <code>app.rb</code>. We need to then first require our library modules.
+&#8220;` ruby app.rb <a href="https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb">https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb</a> Source Code</p>
+
+<h1>Require the bundler gem and then call Bundler.require to load in all gems</h1>
+
+<h1>listed in Gemfile.</h1>
+
+<p>require &lsquo;bundler&rsquo;
+Bundler.require(:default, :development) if defined?(Bundler)</p>
+
+<h1>Reload app.js when changed</h1>
+
+<p>require &ldquo;sinatra/reloader&rdquo; if development?
+<code>``
+Using</code>Bundler.require` we tell Bundler to load those modules in the gem groups named development and default, where the latter is all of those gems not contained in the development or production groups.</p>
+
+<p>Remember our dependency <a href="http://www.sinatrarb.com/contrib">sinatra-contrib</a>? It just contains lots of nice extensions for Sinatra. One of which no one should live with out is <a href="http://www.sinatrarb.com/contrib/reloader.html">Sinatra::Reloader</a>. It automatically reloads all files required by your application which of course we need during development.</p>
+
+<h2>Models, Models Everywhere</h2>
+
+<p>We are using <a href="http://datamapper.org/why.html">DataMapper</a> as our ORM. In terms of our requirements its main appeal
+is the ever useful <code>auto_migrate!</code> feature which creates your datastore schema based
+off your defined <code>DataMapper::Resource</code> models, removing the need to write and manage migrations.</p>
+
+<p>Now we must create our local <a href="https://www.sqlite.org/">SQLite</a> DB and establish a connection.
+&#8220;` ruby app.rb <a href="https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb">https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb</a> Source Code</p>
+
+<h1>DB init</h1>
+
+<p>DataMapper.setup(:default, &ldquo;sqlite3://#{Dir.pwd}/development.db&rdquo;) if development?
+&#8220;`</p>
+
+<p>With such in place we can now define our naive <code>Task</code> which models a TODO list item. Similar to <a href="http://guides.rubyonrails.org/active_record_basics.html">ActiveRecord</a>, in DataMapper the convention with model names is to use the singular version of the name. Though unlike ActiveRecord, DataMapper does not enforce this.</p>
+
+<pre><code class="ruby app.rb https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb Source Code"># Models
+class Task
+  include DataMapper::Resource
+
+  property :id, Serial, key: true
+  property :name, String, required: true
+  property :completed_at, DateTime
+  property :created_at, DateTime
+end
+# Finalize and migrate
+DataMapper.finalize.auto_upgrade!
+</code></pre>
+
+<p>Before using our model we must first <code>finalize</code>. This checks the validity of all of our DataMapper model definitions and initializes all properties associated with relationships. This nicely returns its caller, <code>DataMapper</code>, so we can chain a call to <code>auto_upgrade!</code> which issues the necessary CREATE statement for our task table if it does not already exist.</p>
+
+<p>Now lets verify that our model is in fact persisent and working as expected. We can simply execute script and our DB will be in place. Lets query the current amount of task rows.
+<code>sh
+$ ruby -r ./app.rb -e "puts Task.all.size"
+</code></p>
+
+<h2>Gimme Them Endpoints</h2>
+
+<p>In Sinatra we can define endpoints that are a combination of a HTTP verb and the according request path. Which as you can see results in succinct and pretty code ♥</p>
+
+<pre><code class="ruby app.rb https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb Source Code"># Api
+get '/task/' do
+  content_type :json
+
+  @tasks = Task.all(order: :created_at.desc)
+  @tasks.to_json
+end
+</code></pre>
+
+<p>Upon a defined endpoint being accessed, a <code>before</code> code block is ran if defined. This is a simple before-request hook, we do not avail of it for our endpoints. Upon its successful termination, the user-defined block on that endpoint will be executed.</p>
+
+<p>Above we simply return a JSON list of all the task rows. We can verify this endpoint by simply executing <code>curl http://localhost:4567/task/</code>. As expected the body of our response is an empty array.</p>
+
+<p>Now we can define our remaining endpoints for POST, GET,PUT and DELETE.
+&#8220;` ruby app.rb <a href="https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb">https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb</a> Source Code</p>
+
+<p>post &lsquo;/task/&rsquo; do
+  content_type :json</p>
+
+<p>  @task = Task.new(permit_params)
+  @task.save ? @task.to_json : halt(500)
+end</p>
+
+<p>put &lsquo;/task/:id&rsquo; do
+  content_type :json</p>
+
+<p>  @task = Task.get(params[:id].to_i)
+  @task.update(permit_params)</p>
+
+<p>  @task &amp;&amp; @task.save ? @task.to_json : halt(500)
+end</p>
+
+<p>get &lsquo;/task/:id&rsquo; do
+  content_type :json</p>
+
+<p>  @task = Task.get(params[:id].to_i)
+  @task ? @task.to_json : halt(404)
+end</p>
+
+<p>delete &lsquo;/task/:id&rsquo; do
+  content_type :json</p>
+
+<p>  @task = Task.get(params[:id].to_i)
+  @task &amp;&amp; @task.destroy ? { success: &ldquo;ok&rdquo; }.to_json : halt(400)
+end</p>
+
+<p>def permit_params
+  params.select { |k, v| [&ldquo;name&rdquo;, &ldquo;completed_at&rdquo;].include? k }
+end
+&#8220;`</p>
+
+<h2>Data, Not Enough Data</h2>
+
+<p>Before our deploy to Heroku it would be nice to have a prepopulated API in place, so lets just seed two tasks.
+&#8220;` ruby app.rb <a href="https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb">https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb</a> Source Code</p>
+
+<h1>Seed</h1>
+
+<p>if Task.count == 0
+  Task.create(name: &ldquo;Test Task One&rdquo;)
+  Task.create(name: &ldquo;Test Task Two&rdquo;)
+end
+<code>``
+Again, we can verify this by executing</code>curl <a href="http://localhost:4567/task/">http://localhost:4567/task/</a>` and see our listed tasks.</p>
+
+<h2>Ship First, Test Later</h2>
+
+<p>Lets puts this thing of beauty out there! The usual tweeks are required for our Heroku deploy. We need to parameterize
+what gems are required and what DataMapper connection we wish to use per environment.</p>
+
+<pre><code class="ruby app.rb https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb Source Code">Bundler.require(:default, ENV['RACK_ENV'] || :development) if defined?(Bundler)
+
+if development?
+  DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/development.db")
+elsif production?
+  DataMapper.setup(:default, ENV['DATABASE_URL'] || 'postgres://localhost/sinatra-todos')
+end
+</code></pre>
+
+<p>We then need to create a <a href="https://devcenter.heroku.com/articles/rack">rakeup file</a> named <code>config.ru</code> to instruct Heroku how to run our Rack app.</p>
+
+<pre><code class="ruby config.ru https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/config.ru Source Code">require './app'
+run Sinatra::Application
+</code></pre>
+
+<p>Finally, we must setup a repository, add a <a href="https://devcenter.heroku.com/articles/git">Heroku remote</a> and push our work to deploy the app.</p>
+
+<pre><code class="sh">git init &amp;&amp; git add --all &amp;&amp; git commit -m "initial"
+heroku create
+git push heroku master
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
