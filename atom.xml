@@ -4,7 +4,7 @@
   <title><![CDATA[toeknee land]]></title>
   <link href="http:///atom.xml" rel="self"/>
   <link href="http:///"/>
-  <updated>2015-05-14T21:28:58+01:00</updated>
+  <updated>2015-05-14T21:32:16+01:00</updated>
   <id>http:///</id>
   <author>
     <name><![CDATA[Anthony Troy]]></name>
@@ -301,7 +301,7 @@ off your defined <code>DataMapper::Resource</code> models, removing the need to 
 
 <h2>Data, Not Enough Data</h2>
 
-<p>Before our deploy to Heroku it would be nice to have a prepopulated API in place, so lets just seed two tasks.</p>
+<p>Before we deploy to Heroku it would be nice to have a prepopulated API in place, so lets just seed two tasks.</p>
 
 <figure class='code'><figcaption><span>app.rb</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>

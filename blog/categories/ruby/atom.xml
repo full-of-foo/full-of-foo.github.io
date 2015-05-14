@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | toeknee land]]></title>
   <link href="http:///blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http:///"/>
-  <updated>2015-05-14T21:28:58+01:00</updated>
+  <updated>2015-05-14T21:32:16+01:00</updated>
   <id>http:///</id>
   <author>
     <name><![CDATA[Anthony Troy]]></name>
@@ -210,7 +210,7 @@ end
 
 <h2>Data, Not Enough Data</h2>
 
-<p>Before our deploy to Heroku it would be nice to have a prepopulated API in place, so lets just seed two tasks.
+<p>Before we deploy to Heroku it would be nice to have a prepopulated API in place, so lets just seed two tasks.
 &#8220;` ruby app.rb <a href="https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb">https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb</a> Source Code</p>
 
 <h1>Seed</h1>
