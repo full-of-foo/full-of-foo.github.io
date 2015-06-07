@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | toeknee land]]></title>
   <link href="http:///blog/categories/java/atom.xml" rel="self"/>
   <link href="http:///"/>
-  <updated>2015-06-07T19:58:54+01:00</updated>
+  <updated>2015-06-07T20:37:13+01:00</updated>
   <id>http:///</id>
   <author>
     <name><![CDATA[Anthony Troy]]></name>
@@ -20,14 +20,14 @@
     <id>http:///blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1</id>
     <content type="html"><![CDATA[<h2>Why, Why, Why?</h2>
 
-<p>Before undertaking my postgraduate studies I led a quite joyous and sheltered life. Living the high life in the worlds of Ruby, Javascript, Python, Java and all of those sorts. My life got flipped-turned upside down when I began studying subjects like Secure Programming, Concurrent Programming and Formal Methods. For me the biggest take-aways from these learnings were <a href="http://en.wikipedia.org/wiki/Parallel_algorithm">parallel algorithm design</a> and the <a href="http://en.wikipedia.org/wiki/Locality_of_reference">principle of locality</a>.
+<p>Before undertaking my postgraduate studies I led a quite joyous and sheltered life. Living the high life in the worlds of Ruby, Javascript, Python, Java and all of those sorts. My life got flipped-turned upside down when I began studying subjects like Secure Programming, Concurrent Programming and Formal Methods. For me, the biggest take-aways from these learnings were <a href="http://en.wikipedia.org/wiki/Parallel_algorithm">parallel algorithm design</a> and the <a href="http://en.wikipedia.org/wiki/Locality_of_reference">principle of locality</a>.
 <img src="/images/fresh.png" alt="fresh" /></p>
 
 <p>Most dense linear algebraic computations rely on the consideration of both spatial and temporal locality. If you are unfamiliar with locality, the former describes the tendency of applications to reference memory addresses that are near other recently accessed addresses and the latter describes the amount of reuse of the same memory locations.</p>
 
 <p>One such linear algebra problem subject to this is dense <a href="http://en.wikipedia.org/wiki/Matrix_multiplication">Matrix-Matrix multiplication (MMM)</a>. Coincidentally MMM is also highly highly parallelisable so it is a perfect to demonstrate <a href="http://en.wikipedia.org/wiki/Parallel_algorithm">parallel algorithm design</a> and the <a href="http://en.wikipedia.org/wiki/Locality_of_reference">principle of locality</a>.</p>
 
-<h2>Matrix Multiply, Ain&rsquo;t Nobdy Got Time For That</h2>
+<h2>Matrix Multiply, Ain&rsquo;t Nobody Got Time For That</h2>
 
 <p>Matrix multiplication is important, it is actually central to many scientific computations. For instance, solving a linear system or least-square fits of coefficients to data rely on MMM implementations for good performance.</p>
 
@@ -76,7 +76,7 @@ for (interval = numTasks, end = rowAmount1,
 
 <p>We must manually divide the work up into tasks and provide each task with its from/to bounds. Each task will run the entire outer loop but for only specific non-overlapping values. Thus there is no synchronisation in this implementation as no mutable data is shared across threads. The input arrays A and B are not mutated. While the contents of output array C are altered, each thread works on different slices.</p>
 
-<h2>What&rsquo;s The Actualy Damage Tho?</h2>
+<h2>What&rsquo;s The Actual Damage Tho?</h2>
 
 <p>When working with most matrix sizes this approach sees significant improvements in execution time against its sequential counterpart. However as you may expect these improvements are not linear against different matrix sizes.</p>
 
