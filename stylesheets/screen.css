@@ -9,3 +9,26 @@ img[alt=bizcat] {
 	float: left;
 	margin-right: 0.8pc;
 }
+
+img[alt=neck] {
+	float: right;
+}
+
+img[alt=fresh] {
+	float: right;
+}
+
+img[alt=m] {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+img[alt=rvm] {
+	float: left;
+}
+
+img[alt=will] {
+	float: left;
+	padding-right: 0.8pc;
+}

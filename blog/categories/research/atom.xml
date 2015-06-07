@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Research | toeknee land]]></title>
+  <link href="http:///blog/categories/research/atom.xml" rel="self"/>
+  <link href="http:///"/>
+  <updated>2015-06-07T19:52:55+01:00</updated>
+  <id>http:///</id>
+  <author>
+    <name><![CDATA[Anthony Troy]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Matrix Multiply: Naive vs Cache-Aware Approaches (Part 1)]]></title>
+    <link href="http:///blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/"/>
+    <updated>2015-06-07T17:12:21+01:00</updated>
+    <id>http:///blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1</id>
+    <content type="html"><![CDATA[<h2>Why, Why, Why?</h2>
+
+<p>Before undertaking my postgraduate studies I led a quite joyous and sheltered life. Living the high life in the worlds of Ruby, Javascript, Python, Java and all of those sorts. My life got flipped-turned upside down when I began studying subjects like Secure Programming, Concurrent Programming and Formal Methods. For me the biggest take-aways from these learnings were <a href="http://en.wikipedia.org/wiki/Parallel_algorithm">parallel algorithm design</a> and the <a href="http://en.wikipedia.org/wiki/Locality_of_reference">principle of locality</a>.
+<img src="/images/fresh.png" alt="fresh" /></p>
+
+<p>Dense linear algebraic computations rely on the consideration of both spatial and temporal locality. The former describes the tendency of applications to reference memory addresses that are near other recently accessed addresses and the latter outlines the amount of reuse of the same memory locations.</p>
+
+<p>One such linear algebra problem subject to this is dense <a href="http://en.wikipedia.org/wiki/Matrix_multiplication">Matrix-Matrix multiplication (MMM)</a>. Coincidentally MMM is also highly highly parallelisable so it is a perfect to demonstrate <a href="http://en.wikipedia.org/wiki/Parallel_algorithm">parallel algorithm design</a> and the <a href="http://en.wikipedia.org/wiki/Locality_of_reference">principle of locality</a>.</p>
+
+<h2>Matrix Multiply, Ain&rsquo;t Nobdy Got Time For That</h2>
+
+<p>Matrix multiplication is important, it is actually central to many scientific computations. For instance, solving a linear system or least-square fits of coefficients to data rely on MMM implementations for good performance.</p>
+
+<p>As you would expect, the performance of an MMM implementation is intimately related to the memory layout of the arrays. On modern shared-memory multiprocessors with multi-level memory hierarchies, naive access patterns in the memory hierarchy can incur cache capacity misses.</p>
+
+<h2>Matrix Multiply, How Tho?</h2>
+
+<p>MMM for square matrices has the following mathematical definition (which is independent of any implementation). Given two n x n matrices A and B, the sum and product</p>
+
+<p style="text-align:center;">C + A ·B</p>
+
+<p>For non-square matrices MMM differs in that the amount of columns in
+matrix A must equal equal the amount of rows in B.</p>
+
+<h2>Naive Matrix-Matrix Multiply</h2>
+
+<p>The most naive algorithm for MMM comes straight from the above definition and mimics computing the product by hand. Assuming the arrays are stored such that rows of the arrays are in consecutive memory locations, i.e. row-major order, then we derive C as follows
+<code>java
+for (int i = 0; i &lt; rowAmount1; i++)
+    for (int j = 0; j &lt; colAmount1; j++)
+        for (int k = 0; k &lt; rowAmount2; k++)
+            C[i][j] += (A[i][k] ∗ B[k][j]);
+</code>
+This algorithm is said to be naive because it suffers from poor locality. Elements of B are accessed column-wise, and therefore not in sequential order in memory. While each iteration in j reuses row i of A, that row may have been evicted from the cache by the time the inner-most loop completes. As a result, the algorithm is bandwidth limited and displays poor performance and low efficiency.</p>
+
+<p>As we highlighted before, matrix multiplications have abundant parallel computation. While maintaining the less favourable design of this naive approach, let us introduce a parallelised implementation
+<code>java
+executor = Executors.newFixedThreadPool(10) ;
+for (interval = numTasks, end = rowAmount1,
+        size = (int) Math.ceil(rowAmount1 ∗ 1.0 / 10);
+        interval &gt; 0 &amp;&amp; end &gt; 0; interval−−, end −= size){
+    final int to = end;
+    final int from = Math.max(0, end − size);
+    Runnable runnable = new Runnable(){
+        @Override
+        public void run(){
+            for (i = from; i &lt; to; i++)
+                for (j = 0; j &lt; colAmount1; j++)
+                    for (k = 0; k &lt; rowAmount2; k++)
+                        C[i][j] += (A[i][k] ∗ B[k][j]);
+        }
+    };
+    executor.execute(runnable);
+}
+</code></p>
+
+<p>We must manually divide the work up into tasks and provide each task with its from/to bounds. Each task will run the entire outer loop but for only specific non-overlapping values. Thus there is no synchronisation in this implementation as no mutable data is shared across threads. The input arrays A and B are not mutated. While the contents of output array C are altered, each thread works on different slices.</p>
+
+<h2>What&rsquo;s The Actualy Damage Tho?</h2>
+
+<p>When working with most matrix sizes this approach sees significant improvements in execution time against its sequential counterpart. However as you may expect these improvements are not linear against different matrix sizes.</p>
+
+<p>The basic flaw of the naive triple-for-loop implementation is that the size of its per-loop working set prevents bandwidth amplification from the closest levels of the memory hierarchy, i.e. even with this parallelised horizontal-slicing approach the alogrithm <strong>still suffers from poor locality</strong>.</p>
+
+<h2>Until Next Time</h2>
+
+<p><img src="/images/will.png" alt="will" />
+Later on we shall investigate some fun stuff like Cache-Awareness and the Tall-Cache Assumption. Of course we&rsquo;ll then develop a cache-aware MMM algorithm using a &ldquo;tiling&rdquo; approach. Finally we will see some pretty benchmark graphs that demonstrate how our alogrithms fared across different matrix sizes over a different number of cores.</p>
+]]></content>
+  </entry>
+  
+</feed>
