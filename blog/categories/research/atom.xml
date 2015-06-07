@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Research | toeknee land]]></title>
   <link href="http:///blog/categories/research/atom.xml" rel="self"/>
   <link href="http:///"/>
-  <updated>2015-06-07T19:52:55+01:00</updated>
+  <updated>2015-06-07T19:58:54+01:00</updated>
   <id>http:///</id>
   <author>
     <name><![CDATA[Anthony Troy]]></name>
@@ -23,7 +23,7 @@
 <p>Before undertaking my postgraduate studies I led a quite joyous and sheltered life. Living the high life in the worlds of Ruby, Javascript, Python, Java and all of those sorts. My life got flipped-turned upside down when I began studying subjects like Secure Programming, Concurrent Programming and Formal Methods. For me the biggest take-aways from these learnings were <a href="http://en.wikipedia.org/wiki/Parallel_algorithm">parallel algorithm design</a> and the <a href="http://en.wikipedia.org/wiki/Locality_of_reference">principle of locality</a>.
 <img src="/images/fresh.png" alt="fresh" /></p>
 
-<p>Dense linear algebraic computations rely on the consideration of both spatial and temporal locality. The former describes the tendency of applications to reference memory addresses that are near other recently accessed addresses and the latter outlines the amount of reuse of the same memory locations.</p>
+<p>Most dense linear algebraic computations rely on the consideration of both spatial and temporal locality. If you are unfamiliar with locality, the former describes the tendency of applications to reference memory addresses that are near other recently accessed addresses and the latter describes the amount of reuse of the same memory locations.</p>
 
 <p>One such linear algebra problem subject to this is dense <a href="http://en.wikipedia.org/wiki/Matrix_multiplication">Matrix-Matrix multiplication (MMM)</a>. Coincidentally MMM is also highly highly parallelisable so it is a perfect to demonstrate <a href="http://en.wikipedia.org/wiki/Parallel_algorithm">parallel algorithm design</a> and the <a href="http://en.wikipedia.org/wiki/Locality_of_reference">principle of locality</a>.</p>
 
