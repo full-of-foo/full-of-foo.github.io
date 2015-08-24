@@ -4,7 +4,7 @@
   <title><![CDATA[toeknee land]]></title>
   <link href="http:///atom.xml" rel="self"/>
   <link href="http:///"/>
-  <updated>2015-08-24T23:04:05+01:00</updated>
+  <updated>2015-08-24T23:19:22+01:00</updated>
   <id>http:///</id>
   <author>
     <name><![CDATA[Anthony Troy]]></name>
@@ -25,10 +25,10 @@ we taked about the implications of both sequential and parallel naive <a href="h
 <strong><a href="http://en.wikipedia.org/wiki/Locality_of_reference">poor locality</a></strong>.</p>
 
 <p><img src="http:///images/pepe.png" alt="psad" />
-OMG, who would of known? Our alogrithms actually sometimes need to be cache-aware.</p>
+OMG, who would have known? Our alogrithms actually sometimes need to be cache-aware.</p>
 
 <p>This time around we will look at the tall cache
-assumption along with a <a href="https://en.wikipedia.org/wiki/Loop_tiling">loop-tiling</a> applied to parallel and
+assumption along with <a href="https://en.wikipedia.org/wiki/Loop_tiling">loop-tiling</a> applied to parallel and
 sequential MMM. As you would expect there are also some pretty
 benchmarks involved.</p>
 
@@ -42,17 +42,17 @@ benchmarks involved.</p>
 
 <p style="text-align:center;">n > M/B</p>
 
-<p>Bellow we see the row-major layout of matrices <strong>A</strong> and <strong>B</strong>. We depict the red rectangles in matrix <strong>B</strong> as our blocks of cache. For all rows of matrix <strong>A</strong> we traverse over each column of B. Upon traversing <strong>B</strong> the accessing of each element is cached. Given that <strong>n = colAmountOfA</strong> and <strong>n > M/B</strong> then before the traversal of a column <strong>B</strong> completes the first, and possibly several subsequent, cached blocks of <strong>B</strong> will be evicted. So upon the next and remaining traversals of <strong>B</strong> we incur cache-misses on each block</p>
+<p>Bellow we see the row-major layout of matrices <strong>A</strong> and <strong>B</strong>. We depict the red rectangles in matrix <strong>B</strong> as our blocks of cache. For all rows of matrix <strong>A</strong> we traverse over each column of <strong>B</strong>. Upon traversing <strong>B</strong> the accessing of each element is cached. Given that <strong>n = colAmountOfA</strong> and <strong>n > M/B</strong> then before the traversal of a column <strong>B</strong> completes the first, and possibly several subsequent, cached blocks of <strong>B</strong> will be evicted. So upon the next and remaining traversals of <strong>B</strong> we incur cache-misses on each block</p>
 
 <p><img src="http:///images/naive.png" alt="m" /></p>
 
 <p>From this we can be quite clever and infer that a naive algorithm with <strong>n > M/B</strong> results gets the following work done</p>
 
-<p style="text-align:center;">Q(n) = Θ(n3)</p>
+<p style="text-align:center;">Q(n) = Θ(n<sup>3</sup>)</p>
 
 <p>Which implies that a naive algorithm with <strong>n &#8804; M/B</strong> will get the following work done since the second matrix can now exploit spatial locality</p>
 
-<p style="text-align:center;">Q(n) = Θ(n3)/B</p>
+<p style="text-align:center;">Q(n) = Θ(n<sup>3</sup>)/B</p>
 
 <h2>Loop-Tiling, Feels Good</h2>
 
@@ -61,7 +61,7 @@ benchmarks involved.</p>
 
 <p>Pro tip: <em>loop-tiling is a type of loop transformation on which many cache blocking algorithms are built.</em></p>
 
-<p>It involves a combination of strip-mining and interchange in multiply-nested loops, in turn strip-mining nested loops and performing interchanges to bring the strip-loops inward.</p>
+<p>It involves a combination of strip-mining and interchange in multiply-nested loops, in turn strip-mines several nested loops and performs interchanges to bring the strip-loops inward.</p>
 
 <p>This following tiling solution ensures greater spatial locality for accesses across matrix <strong>B</strong>. Simple but effective, our implementation partitions the matrices’ iteration space though such strip mining and loop interchange</p>
 
@@ -121,7 +121,7 @@ benchmarks involved.</p>
 </span><span class='line'>    <span class="n">interval</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">end</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="n">interval</span><span class="err">−−</span><span class="o">,</span> <span class="n">end</span> <span class="err">−</span><span class="o">=</span> <span class="n">size</span><span class="o">){</span>
 </span><span class='line'>  <span class="n">to</span> <span class="o">=</span> <span class="n">end</span><span class="o">;</span>
 </span><span class='line'>  <span class="n">from</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">end</span> <span class="err">−</span> <span class="n">size</span><span class="o">);</span>
-</span><span class='line'>  <span class="n">Runnable</span> <span class="n">runnable</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Runnable</span> <span class="o">(){</span>
+</span><span class='line'>  <span class="n">Runnable</span> <span class="n">runnable</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Runnable</span><span class="o">(){</span>
 </span><span class='line'>    <span class="nd">@Override</span>
 </span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
 </span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">from</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">to</span> <span class="o">/</span> <span class="n">s</span><span class="o">;</span> <span class="n">i</span><span class="o">+=</span><span class="n">s</span><span class="o">)</span> <span class="o">{</span>
@@ -149,7 +149,7 @@ benchmarks involved.</p>
 
 <p><img src="http:///images/tiled.png" alt="m" /></p>
 
-<p>As you would expect the tiling optimisation still results in <strong>Θ(n<sup>3</sup>)</strong> computations. With an optimal <strong>s</strong> value, <strong>Θ(M<sup>&frac12;</sup>)</strong>, we see an improvement in the amount work done to that of our naive approach. The tall-cache assumption implies that each submatrix and its data will fit in cache, meaning only cold caches misses should occur per submatrix (<strong>Θ(s<sup>2</sup>/B)</strong>).</p>
+<p>As you would expect the tiling optimisation still results in <strong>Θ(n<sup>3</sup>)</strong> computations. With an optimal <strong>s</strong> value, <strong>Θ(M<sup>&frac12;</sup>)</strong>, we see an improvement in the amount of work done to that of our naive approach. The tall-cache assumption implies that each submatrix and its data will fit in cache, meaning only cold caches misses should occur per submatrix (<strong>Θ(s<sup>2</sup>/B)</strong>).</p>
 
 <p style="text-align:center;">Θ(n) = Θ((n/s)<sup>3</sup>(s<sup>3</sup>)) = Θ(n<sup>3</sup>)</p>
 
