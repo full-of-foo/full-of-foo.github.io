@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Concurrency | toeknee land]]></title>
   <link href="http:///blog/categories/concurrency/atom.xml" rel="self"/>
   <link href="http:///"/>
-  <updated>2015-06-07T20:37:13+01:00</updated>
+  <updated>2015-08-24T23:04:05+01:00</updated>
   <id>http:///</id>
   <author>
     <name><![CDATA[Anthony Troy]]></name>
@@ -12,6 +12,146 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Matrix Multiply: Naive vs Cache-Aware Approaches (Part 2)]]></title>
+    <link href="http:///blog/2015/08/24/matrix-multiply-naive-vs-cache-aware-approaches-part-2/"/>
+    <updated>2015-08-24T19:56:46+01:00</updated>
+    <id>http:///blog/2015/08/24/matrix-multiply-naive-vs-cache-aware-approaches-part-2</id>
+    <content type="html"><![CDATA[<h2>Matrix Multiplication Feels Bad</h2>
+
+<p>In our <a href="/blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/">last post</a>
+we taked about the implications of both sequential and parallel naive <a href="http://en.wikipedia.org/wiki/Matrix_multiplication">Matrix-Matrix multiplication (MMM)</a>. Sadly we found that this classic triple for-loop approach suffers from
+<strong><a href="http://en.wikipedia.org/wiki/Locality_of_reference">poor locality</a></strong>.</p>
+
+<p><img src="/images/pepe.png" alt="psad" />
+OMG, who would of known? Our alogrithms actually sometimes need to be cache-aware.</p>
+
+<p>This time around we will look at the tall cache
+assumption along with a <a href="https://en.wikipedia.org/wiki/Loop_tiling">loop-tiling</a> applied to parallel and
+sequential MMM. As you would expect there are also some pretty
+benchmarks involved.</p>
+
+<h2>Cache-Awareness, So Confuse</h2>
+
+<p>In easy terms, most of the transfers between cache and disk simply involve blocks of data. Whereby the disk is partitioned into blocks of <strong>B</strong> elements each, and accessing one element on disk copies its entire block to cache. When assuming a tall cache, the cache can store up to <strong>M/B</strong> blocks, for a total size of <strong>M</strong> elements, <strong>M &#8805; B&sup2;</strong>.</p>
+
+<p>Meaning when the cache is already full and a block is grabbed from disk, then another block will be evicted from cache. Before exploring something more cache-aware let us demonstrate this occurring in our naive (and cache-oblivious) solution. Assuming square matrices which do not fit into a tall cache then</p>
+
+<p style="text-align:center;">n = rowAmountOfA = colAmountOfA = rowAmountOfB</p>
+
+<p style="text-align:center;">n > M/B</p>
+
+<p>Bellow we see the row-major layout of matrices <strong>A</strong> and <strong>B</strong>. We depict the red rectangles in matrix <strong>B</strong> as our blocks of cache. For all rows of matrix <strong>A</strong> we traverse over each column of B. Upon traversing <strong>B</strong> the accessing of each element is cached. Given that <strong>n = colAmountOfA</strong> and <strong>n > M/B</strong> then before the traversal of a column <strong>B</strong> completes the first, and possibly several subsequent, cached blocks of <strong>B</strong> will be evicted. So upon the next and remaining traversals of <strong>B</strong> we incur cache-misses on each block</p>
+
+<p><img src="/images/naive.png" alt="m" /></p>
+
+<p>From this we can be quite clever and infer that a naive algorithm with <strong>n > M/B</strong> results gets the following work done</p>
+
+<p style="text-align:center;">Q(n) = Θ(n3)</p>
+
+<p>Which implies that a naive algorithm with <strong>n &#8804; M/B</strong> will get the following work done since the second matrix can now exploit spatial locality</p>
+
+<p style="text-align:center;">Q(n) = Θ(n3)/B</p>
+
+<h2>Loop-Tiling, Feels Good</h2>
+
+<p>Lets take a look at a standard <a href="https://en.wikipedia.org/wiki/Loop_tiling">tiling</a> solution to resolve our cache capacity misses.
+<img src="/images/good.png" alt="good" /></p>
+
+<p>Pro tip: <em>loop-tiling is a type of loop transformation on which many cache blocking algorithms are built.</em></p>
+
+<p>It involves a combination of strip-mining and interchange in multiply-nested loops, in turn strip-mining nested loops and performing interchanges to bring the strip-loops inward.</p>
+
+<p>This following tiling solution ensures greater spatial locality for accesses across matrix <strong>B</strong>. Simple but effective, our implementation partitions the matrices’ iteration space though such strip mining and loop interchange</p>
+
+<pre><code class="java">s = (int) Math.ceil(rowAmount1 ∗ 1.0 / 4);
+s2 = (int) Math.ceil(colAmount1 ∗ 1.0 / 4);
+s3 = (int) Math.ceil(rowAmount2 ∗ 1.0 / 4);
+for (i = 0; i &lt; rowAmount1 / s; i+=s){
+  for (j = 0; j &lt; colAmount1 / s2; j+=s2){
+    for (k = 0; k &lt; rowAmount2 /s3; k+=s3){
+      for (i2 = i; i2 &lt; (i+s) &amp;&amp; i2 &lt; rowAmount1; i2++){
+        for (j2 = j; j2 &lt; (j+s2) &amp;&amp; j2 &lt; colAmount1; j2++){
+          for (k2 = k; k2 &lt; (k+s3) &amp;&amp; k2 &lt; rowAmount2; k2++){
+            C[i2][j2] += (A[i2][k2] ∗ B[k2][j2]);
+                          ....
+</code></pre>
+
+<p>Although not implemented recursively, tiling shares some similarities to the divide-and-conquer approach in that it aims to refine the problem size through partitioning the problems (matrices) into subproblems (submatrices). The design of the tiling solution quite naturally lends itself to parallelisation. Such is implemented as follows</p>
+
+<pre><code class="java">s = (int) Math.ceil(rowAmount1 ∗ 1.0 / 4);
+s2 = (int) Math.ceil(colAmount1 ∗ 1.0 / 4);
+s3 = (int) Math.ceil(rowAmount2 ∗ 1.0 / 4);
+executor = Executors.newFixedThreadPool(10);
+for(interval = 10, end = rowAmount1,
+    size = (int) Math.ceil(rowAmount1 ∗ 1.0 / 10);
+    interval &gt; 0 &amp;&amp; end &gt; 0; interval−−, end −= size){
+  to = end;
+  from = Math.max(0, end − size);
+  Runnable runnable = new Runnable (){
+    @Override
+    public void run() {
+      for (i = from; i &lt; to / s; i+=s) {
+        for (j = 0; j &lt; colAmount1 / s2; j+=s2){
+          for (k = 0; k &lt; rowAmount2 /s3; k+=s3){
+            for (i2 = i; i2 &lt; (i+s) &amp;&amp; i2 &lt; rowAmount1; i2++){
+              for (j2 = j; j2 &lt; (j+s2) &amp;&amp; j2 &lt; colAmount1; j2++){
+                for (k2 = k; k2 &lt; (k+s3) &amp;&amp; k2 &lt; rowAmount2; k2++){
+                  C[i2][j2] += (A[i2][k2] ∗ B[k2][j2]);
+                               ...
+</code></pre>
+
+<p>It is important to note the <strong>s</strong>, <strong>s2</strong> and <strong>s3</strong> parameters to our tiling algorithm. Above we see that they are derived respectively from a matrix dimension divided by 4. They are then later used to determine the dimensions (size <strong>s2</strong>x<strong>s3</strong>) of the submatrix-submatrix multiply tasks to be ran. In the case of a square MMM the submatrices’ dimensions would be <strong>s</strong>x<strong>s</strong>.</p>
+
+<p>We divide up these multiply tasks through from/to bounds - requiring no synchronisation as no mutable data is shared across threads.</p>
+
+<p>Determining values for <strong>s</strong>, <strong>s2</strong> and <strong>s3</strong> is not straight-forward, they ultimately determine the tiling size which in turn demands an accurate estimate of the cache size on your target machine. Assuming square matrices which do not fit into a tall cache then</p>
+
+<p style="text-align:center;">n = rowAmountOfA = colAmountOfA = rowAmountOfB</p>
+
+<p style="text-align:center;">n > M/B</p>
+
+<p>Once we determine <strong>s &#8804; M/B</strong> we can easily decompose submatrices (tiles) from matrix <strong>B</strong> that respect the target cache size</p>
+
+<p><img src="/images/tiled.png" alt="m" /></p>
+
+<p>As you would expect the tiling optimisation still results in <strong>Θ(n<sup>3</sup>)</strong> computations. With an optimal <strong>s</strong> value, <strong>Θ(M<sup>&frac12;</sup>)</strong>, we see an improvement in the amount work done to that of our naive approach. The tall-cache assumption implies that each submatrix and its data will fit in cache, meaning only cold caches misses should occur per submatrix (<strong>Θ(s<sup>2</sup>/B)</strong>).</p>
+
+<p style="text-align:center;">Θ(n) = Θ((n/s)<sup>3</sup>(s<sup>3</sup>)) = Θ(n<sup>3</sup>)</p>
+
+<p style="text-align:center;">Q(n) = Θ((n/s)<sup>3</sup>(s<sup>2</sup>/B)) = Θ(n<sup>3</sup>/BM<sup>&frac12;</sup>)</p>
+
+<p>From the above, as you might have guessed, we can see that <strong>s</strong> is actually a &ldquo;tuning&rdquo; parameter for cache-awareness. In our solution this tiling dividend is set to 4 which, from some rudimentary testing, is the optimal value on recent i5 and i7 processors (OS X 10.10).</p>
+
+<h2>Dem Benchmarks: What was measured?</h2>
+
+<p>Our benchmarking goal was to analyse the trends displayed across the executions of naive MMM and cache-aware MMM in conjunction with parallelisation. Thus the benchmarking process undertaken had the following features:</p>
+
+<ol>
+<li>A varying set of dimensions for <strong>A</strong> and <strong>B</strong> respectively on both algorithms were used to identify trends. The dimensions (200x200), (200x300), (1000x1000) and (1000x1200) were used.</li>
+<li>To maintain measurement accuracy the elements held by <strong>A</strong> and <strong>B</strong> needed to be the same for each measurement. Every element held by <strong>A</strong> is always 2, while each element in <strong>B</strong> is always 3.</li>
+<li>Each benchmark was conducted on two machines (4 core and 8 cores) under the same conditions (no other user processes running, machines connected to power outlets, etc.)</li>
+</ol>
+
+
+<p><img src="/images/i5.png" alt="m" /></p>
+
+<p><img src="/images/i7.png" alt="m" /></p>
+
+<h2>Dem Results</h2>
+
+<p>Reflecting on the mean (μ) execution-time and according standard deviation (σ) provided by our benchmark runs, the collated results are as follows</p>
+
+<p><img src="/images/res.png" alt="m" /></p>
+
+<p>Our data poses several interesting avenues of investigation. However our main concern is exploring the benefits of cache-aware algorithms, so lets just explore the performance differences between both algorithms across runs. The bellow sidebar chart illustrates an obvious difference in our algorithms, at a glance one can see that there is large deviation between the naive and tiled time results.</p>
+
+<p><img src="/images/data.png" alt="m" /></p>
+
+<p>This is particularly true across the benchmarks where matrix dimensions are in their thousands. Such is unsurprising given that the naive algorithm is cache-oblivious. When viewing every sidebar related to the tiled results we can see that varying matrix dimensions do not greatly affect performance. Interestingly, we see that an increase in cores only greatly benefits the naive algorithm. It sees around a 55% improvement in execution-time with the assistance of 4 extra cores across all dimension sizes.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Matrix Multiply: Naive vs Cache-Aware Approaches (Part 1)]]></title>
