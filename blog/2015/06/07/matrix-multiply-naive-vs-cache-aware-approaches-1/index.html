@@ -202,12 +202,12 @@ matrix A must equal equal the amount of rows in B.</p>
 
 <p>When working with most matrix sizes this approach sees significant improvements in execution time against its sequential counterpart. However as you may expect these improvements are not linear against different matrix sizes.</p>
 
-<p>The basic flaw of the naive triple-for-loop implementation is that the size of its per-loop working set prevents bandwidth amplification from the closest levels of the memory hierarchy, i.e. even with this parallelised horizontal-slicing approach the alogrithm <strong>still suffers from poor locality</strong>.</p>
+<p>The basic flaw of the naive triple-for-loop implementation is that the size of its per-loop working set prevents bandwidth amplification from the closest levels of the memory hierarchy, i.e. even with this parallelised horizontal-slicing approach the algorithm <strong>still suffers from poor locality</strong>.</p>
 
 <h2>Until Next Time</h2>
 
 <p><img src="/images/will.png" alt="will" />
-Later on we shall investigate some fun stuff like Cache-Awareness and the Tall-Cache Assumption. Of course we&rsquo;ll then develop a cache-aware MMM algorithm using a &ldquo;tiling&rdquo; approach. Finally we will see some pretty benchmark graphs that demonstrate how our alogrithms fared across different matrix sizes over a different number of cores.</p>
+Later on we shall investigate some fun stuff like Cache-Awareness and the Tall-Cache Assumption. Of course we&rsquo;ll then develop a cache-aware MMM algorithm using a &ldquo;tiling&rdquo; approach. Finally we will see some pretty benchmark graphs that demonstrate how our algorithms fared across different matrix sizes over a different number of cores.</p>
 
       <footer class="entry-meta">
         <span class="entry-tags"><a href="/categories/#concurrency" title="Pages tagged concurrency" class="tag">concurrency</a><a href="/categories/#java" title="Pages tagged java" class="tag">java</a><a href="/categories/#research" title="Pages tagged research" class="tag">research</a></span>

@@ -17,7 +17,7 @@
 
 
 <meta name="description" content="Matrix Multiplication Feels Bad In our last post
-we taked about the implications of both sequential and parallel naive Matrix-Matrix multiplication ( &hellip;">
+we talked about the implications of both sequential and parallel naive Matrix-Matrix multiplication &hellip;">
 
 <meta name="keywords" content="concurrency java research blog ruby rails javascript coffeescript backbone modern tech hacks dublin">
 
@@ -35,7 +35,7 @@ we taked about the implications of both sequential and parallel naive Matrix-Mat
   
   <meta name="twitter:title" content="Matrix Multiply: Naive Vs Cache-Aware Approaches (Part 2)">
   <meta name="twitter:description" content="Matrix Multiplication Feels Bad In our last post
-we taked about the implications of both sequential and parallel naive Matrix-Matrix multiplication ( &hellip;">
+we talked about the implications of both sequential and parallel naive Matrix-Matrix multiplication &hellip;">
   <meta name="twitter:creator" content="@devtoeknee">
 
 
@@ -45,7 +45,7 @@ we taked about the implications of both sequential and parallel naive Matrix-Mat
 <meta property="og:url" content="http:///blog/2015/08/24/matrix-multiply-naive-vs-cache-aware-approaches-part-2">
 <meta property="og:title" content="Matrix Multiply: Naive Vs Cache-Aware Approaches (Part 2)">
 <meta property="og:description" content="Matrix Multiplication Feels Bad In our last post
-we taked about the implications of both sequential and parallel naive Matrix-Matrix multiplication ( &hellip;">
+we talked about the implications of both sequential and parallel naive Matrix-Matrix multiplication &hellip;">
 
   <meta property="og:image" content="">
 
@@ -122,11 +122,11 @@ we taked about the implications of both sequential and parallel naive Matrix-Mat
       <h2>Matrix Multiplication Feels Bad</h2>
 
 <p>In our <a href="/blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/">last post</a>
-we taked about the implications of both sequential and parallel naive <a href="http://en.wikipedia.org/wiki/Matrix_multiplication">Matrix-Matrix multiplication (MMM)</a>. Sadly we found that this classic triple for-loop approach suffers from
+we talked about the implications of both sequential and parallel naive <a href="http://en.wikipedia.org/wiki/Matrix_multiplication">Matrix-Matrix multiplication (MMM)</a>. Sadly we found that this classic triple for-loop approach suffers from
 <strong><a href="http://en.wikipedia.org/wiki/Locality_of_reference">poor locality</a></strong>.</p>
 
 <p><img src="/images/pepe.png" alt="psad" />
-OMG, who would have known? Our alogrithms actually sometimes need to be cache-aware.</p>
+OMG, who would have known? Our algorithms actually sometimes need to be cache-aware.</p>
 
 <p>This time around we will look at the tall cache
 assumption along with <a href="https://en.wikipedia.org/wiki/Loop_tiling">loop-tiling</a> applied to parallel and

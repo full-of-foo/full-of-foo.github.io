@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Concurrency | ]]></title>
   <link href="http:///blog/categories/concurrency/atom.xml" rel="self"/>
   <link href="http:///"/>
-  <updated>2017-03-12T00:03:42+00:00</updated>
+  <updated>2017-03-19T21:17:10+00:00</updated>
   <id>http:///</id>
   <author>
     <name><![CDATA[Anthony Troy]]></name>
@@ -21,11 +21,11 @@
     <content type="html"><![CDATA[<h2>Matrix Multiplication Feels Bad</h2>
 
 <p>In our <a href="/blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/">last post</a>
-we taked about the implications of both sequential and parallel naive <a href="http://en.wikipedia.org/wiki/Matrix_multiplication">Matrix-Matrix multiplication (MMM)</a>. Sadly we found that this classic triple for-loop approach suffers from
+we talked about the implications of both sequential and parallel naive <a href="http://en.wikipedia.org/wiki/Matrix_multiplication">Matrix-Matrix multiplication (MMM)</a>. Sadly we found that this classic triple for-loop approach suffers from
 <strong><a href="http://en.wikipedia.org/wiki/Locality_of_reference">poor locality</a></strong>.</p>
 
 <p><img src="/images/pepe.png" alt="psad" />
-OMG, who would have known? Our alogrithms actually sometimes need to be cache-aware.</p>
+OMG, who would have known? Our algorithms actually sometimes need to be cache-aware.</p>
 
 <p>This time around we will look at the tall cache
 assumption along with <a href="https://en.wikipedia.org/wiki/Loop_tiling">loop-tiling</a> applied to parallel and
@@ -220,12 +220,12 @@ for (interval = numTasks, end = rowAmount1,
 
 <p>When working with most matrix sizes this approach sees significant improvements in execution time against its sequential counterpart. However as you may expect these improvements are not linear against different matrix sizes.</p>
 
-<p>The basic flaw of the naive triple-for-loop implementation is that the size of its per-loop working set prevents bandwidth amplification from the closest levels of the memory hierarchy, i.e. even with this parallelised horizontal-slicing approach the alogrithm <strong>still suffers from poor locality</strong>.</p>
+<p>The basic flaw of the naive triple-for-loop implementation is that the size of its per-loop working set prevents bandwidth amplification from the closest levels of the memory hierarchy, i.e. even with this parallelised horizontal-slicing approach the algorithm <strong>still suffers from poor locality</strong>.</p>
 
 <h2>Until Next Time</h2>
 
 <p><img src="/images/will.png" alt="will" />
-Later on we shall investigate some fun stuff like Cache-Awareness and the Tall-Cache Assumption. Of course we&rsquo;ll then develop a cache-aware MMM algorithm using a &ldquo;tiling&rdquo; approach. Finally we will see some pretty benchmark graphs that demonstrate how our alogrithms fared across different matrix sizes over a different number of cores.</p>
+Later on we shall investigate some fun stuff like Cache-Awareness and the Tall-Cache Assumption. Of course we&rsquo;ll then develop a cache-aware MMM algorithm using a &ldquo;tiling&rdquo; approach. Finally we will see some pretty benchmark graphs that demonstrate how our algorithms fared across different matrix sizes over a different number of cores.</p>
 ]]></content>
   </entry>
   

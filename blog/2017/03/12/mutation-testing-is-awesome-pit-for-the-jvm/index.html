@@ -1,0 +1,776 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+
+
+<meta charset="utf-8">
+<meta http-equiv="cleartype" content="on">
+
+<title>(╯°□°）╯︵ ┻━┻ Mutation Testing Is Awesome: PIT for the JVM - </title>
+<meta name="author" content="Anthony Troy">
+
+
+
+
+<meta name="description" content="Nowadays its not all that popular to be a testing enthusiast or fanatic. After all, real developers ship and TDD is dead, so developers ought to &hellip;">
+
+<meta name="keywords" content="java research testing blog ruby rails javascript coffeescript backbone modern tech hacks dublin">
+
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Twitter Cards -->
+
+  
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content"">
+  
+  <meta name="twitter:title" content="Mutation Testing is Awesome: PIT for the JVM">
+  <meta name="twitter:description" content="Nowadays its not all that popular to be a testing enthusiast or fanatic. After all, real developers ship and TDD is dead, so developers ought to &hellip;">
+  <meta name="twitter:creator" content="@devtoeknee">
+
+
+<!-- Open Graph -->
+<meta property="og:local" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http:///blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm">
+<meta property="og:title" content="Mutation Testing is Awesome: PIT for the JVM">
+<meta property="og:description" content="Nowadays its not all that popular to be a testing enthusiast or fanatic. After all, real developers ship and TDD is dead, so developers ought to &hellip;">
+
+  <meta property="og:image" content="">
+
+<meta property="og:site_name" content="">
+
+<link rel="canonical" href="http:///blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm">
+<link href="/favicon.png" rel="icon">
+<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="/atom.xml" rel="alternate" title="" type="application/atom+xml">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="/javascripts/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+
+</head>
+
+<body id="post" >
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="/">Home</a></li>
+		<li>
+			<a href="#">About</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="/images/avatar.jpeg" alt="Anthony Troy photo" class="author-photo">
+					<h4>Anthony Troy</h4>
+					<p>Code Pirate, </br>Project Monkey</p>
+				</li>
+				<li><a target="_blank" href="//ie.linkedin.com/pub/anthony-troy/62/40a/743">Learn More</a></li>
+				
+				<li>
+					<a target="_blank" href="http://twitter.com/devtoeknee"><i class="fa fa-twitter"></i> Twitter</a>
+				</li>
+				
+				<li>
+					<a target="_blank" href="http://github.com/full-of-foo"><i class="fa fa-github"></i> GitHub</a>
+				</li>
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#">Posts</a>
+			<ul class="dl-submenu">
+				<li><a href="/posts/">All Posts</a></li>
+				<li><a href="/categories/">All Categories</a></li>
+			</ul>
+		</li>
+		
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        
+          <h1 class="entry-title"><a href="/blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm/" rel="bookmark" title="Mutation Testing is Awesome: PIT for the JVM">Mutation Testing is Awesome: PIT for the JVM</a></h1>
+        
+        <h2>March 12, 2017</h2>
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <p><img src="/images/dil.jpg" alt="dil" /></p>
+
+<p>Nowadays its not all that popular to be a testing enthusiast or fanatic.</p>
+
+<p>After all, <em>real developers ship</em> and <em>TDD is dead</em>, so developers ought to spend
+less time getting caught up in testing-related hogwash and instead focus on the immediate
+churning out of what is at hand. Be <em>10x</em>, <em>move fast and break things</em>, pew pew pew, and so on, and so on.</p>
+
+<p><img src="/images/neck.png" alt="neck" />
+Free time from shipping our way to <em>software unicorn</em> land is often spent perusing
+blog posts from high-culture engineering forums. In doing so you
+may have stumbled upon this strange blog, and, much too your dismay we&rsquo;ll be getting into plenty of
+<em>1x</em> testing nonsense such as Mutation Testing, Code Coverage, Subsumption and all that jazz.</p>
+
+<p>- Buckle up buckaroos.</p>
+
+<h2>Back to Basics, Yo</h2>
+
+<p>Remember, begin rolling your eyes when you hear the terms &ldquo;complete testing&rdquo;, &ldquo;exhaustive
+testing&rdquo;, and &ldquo;full coverage&rdquo;. They are each poorly defined due to a
+fundamental theoretical limitation of software - the number of potential
+inputs for most programs is so large that they are effectively infinite.</p>
+
+<p><img src="/images/rly.png" alt="rly" />
+Consider <code>javac</code>. As a software artifact its potential inputs include not only every Java
+program, but all strings. Its only limitation is the size of the file that can be read by the parser. Therefore, the number of inputs is effectively infinite and cannot be explicitly enumerated. It can never have &ldquo;full coverage&rdquo;.</p>
+
+<p>Enter formal <em>coverage criteria</em>. As it is not feasible to generate all test inputs,
+coverage criteria can be used to decide our inputs. The supposition here is that
+coverage criteria will more effectively reveal faults (over using <code>n</code> arbitrary inputs).
+Albeit expensive, the most obvious way to use criteria is to directly generate test case values
+to satisfy the criterion <code>C</code>.</p>
+
+<p>However, in practice we generally manually create an arbitrary amount of pseudo-random inputs, and then measure the tests against the criterion in terms of their coverage.
+On the surface this understandable. Generating tests to directly satisfy
+a criterion is hard, really hard. This particularly true when attempting generate test paths
+for graph coverage criteria.</p>
+
+<p>Not all is lost though. More flexible criteria do exist which, more importantly, can actually be used sustainably against real programs.</p>
+
+<h2>Kanye test Grammar?</h2>
+
+<p>The most common coverage criteria generate tests to satisfy their criterion based on either graphs, logical expressions, or partitions of input space. Graph and logical models are built from software artifacts, such as source code, design descriptions and specifications. Similarly, a model of the inputs can be built based on some description of an input space. Test criteria can then be applied to these models.
+<img src="/images/kanye.png" alt="kanye" /></p>
+
+<p>A fourth major source for test coverage criteria is syntactic descriptions of software artifacts.
+Under syntax-based testing the syntax of the software artifact is used as the
+model and tests are created from the syntax. One of the interesting things that grammars do is describe what an input is not. We say that an input is valid if it is in the language specified by the grammar, and
+invalid otherwise.</p>
+
+<p>Thus, it is often useful to produce invalid strings from a grammar. It is also helpful
+in testing to use strings that are valid but that follow a different derivation from
+a pre-existing string. This general use of grammar in testing is known as
+mutation analysis, and it can be applied most types of software artifacts.</p>
+
+<p>Albeit this all quite theoretical feeling thus far, mutation analysis has paved the
+way for what is currently argued to be the <em>gold standard</em> in software testing - Program-based Mutation Testing.</p>
+
+<!-- For example, it is quite common to require a program to reject
+malformed inputs, and this property should clearly be tested, since it is easy for
+programmers to forget it or get it wrong. -->
+
+
+
+
+<!-- Mutation is always based on a set of “mutation operators,” which are expressed
+with respect to a “ground” string. -->
+
+
+<h2>Mutant Ninja Testing</h2>
+
+<p>Although mutation testing sounds somewhat highbrow, its conceptually quite simple.
+Faults, or <em>mutations</em>, are injected into one&rsquo;s testing target, and when those tests are ran there are total and per case mutation adequacy scores derived. Under most systems, given those tests have failed then the mutation is <em>killed</em> and if they have passed then the mutation has <em>survived</em>.
+In turn, this total percentage of mutations killed acts as a testing criterion for
+test case quality.</p>
+
+<p>So, unlike traditional test coverage criteria that only measure which code is executed
+by your tests, mutation testing actually measures the ability of your tests in revealing faults.
+This premise of mutation testing is intuitively appealing; we can discover the input
+data that can be used to reveal real faults. Nevertheless, as highlighted earlier, it is
+not possible for any system to generate every possible permutation of
+mutant in a candidate program.</p>
+
+<p><img src="/images/turt.png" alt="turt" />
+Consequently, mutation testing systems will only offer a finite set of injectable mutators. So, hopeful that these finite amount mutators will reveal faults, mutation testing can be
+said to rely on two assumptions: the Competent Programmer Hypothesis (CPH)
+and Coupling Effect.</p>
+
+<p>The CPH asserts that a program produced by a competent programmer is
+close to the final correct version of a program. Thus, it is assumed that the
+source faults introduced by a competent programmer are relatively simple and
+can be corrected by small syntactical changes. Accordingly, in mutation testing
+only simple syntactical mutations are generally used. Contrarily, the Coupling
+Effect brings the suggestion that tests capable of catching first order mutations
+will also detect higher order mutations that contain these first order mutations.</p>
+
+<!-- Mutation testing is conceptually quite simple.
+
+Faults (or mutations) are automatically seeded into your code, then your tests are run. If your tests fail then the mutation is killed, if your tests pass then the mutation lived.
+
+The quality of your tests can be gauged from the percentage of mutations killed.
+
+runs your unit tests against automatically modified versions of your application code. When the application code changes, it should produce different results and cause the unit tests to fail. If a unit test does not fail in this situation, it may indicate an issue with the test suite. -->
+
+
+
+
+<!-- Mutation testing is argued to be the ‘gold standard’ of software testing. It is
+a well-established test criterion but an expensive one, as it involves generating
+and running many tests across several mutants. Indeed PIT is not the only
+mutation testing tool available for the JVM, however it is the most popular,
+active, performant and configurable tool in this space. PIT is not intended to be
+a replacement for code coverage systems, instead it can serve as a complementary
+toolkit. Simply put, in a straightforward and effective way PIT helps ensure that
+one is actually testing and verifying all the parts of the code that are assumed
+to be otherwise covered. -->
+
+
+<h2>Strong and Weak Mutations</h2>
+
+<p>The implementation of mutation testing systems
+are generally characterised in terms of their adopted mutation generation techniques.
+Another distinction can be made with respect to
+how a given tool analyses how mutants are killed during the execution process.
+Such techniques can be classified as employing strong or weak mutation.
+Under strong mutation given program <em>p</em>, a
+mutant <em>m</em> of program <em>p</em> is said to be killed only if mutant <em>m</em> gives a different
+output from the original program <em>p</em>.
+<img src="/images/jug.png" alt="jug" /></p>
+
+<p>In contrast, weak mutation requires only that the value produced at the point
+we introduce <em>m</em> is different from the corresponding value in <em>p</em> for <em>m</em> to be killed.
+This more optimal approach is adopted by tools such as by PIT; instead of analysing each mutant after the execution of the entire run,
+mutants are checked immediately after their respective execution point.</p>
+
+<h2>Killing Mutants with PIT: (╯°□°)&ndash;︻╦╤─ - - -</h2>
+
+<p>PIT is a open-source mutation testing framework
+for Java and the JVM. Formerly being named Parallel Isolated Test, the project&rsquo;s
+initial function was to isolate static state through running JUnit tests in parallel
+using separate classloaders, however the author later found that this turned out
+to be a much less interesting problem than mutation testing which initially
+needed a lot of the same plumbing.</p>
+
+<p>Most importantly, as far as mutation testing projects go PIT is commercially popular
+and actively contributed to. As you would expect, it too has first-class support for
+the things like JUnit4, TestNg, Ant and Maven. Third-party support does also exist
+for Gradle, Eclipse and InteliJ integrations.</p>
+
+<p>In terms of design, mutation testing systems generally derive adequacy scores in four phases:
+mutant generation, test selection, mutant insertion and mutant detection. PIT parallelises
+these phases, making a mutation coverage run feel almost like a traditional statement coverage run.
+Most testing frameworks in this space have adopted varying strategies in implementing each of
+these phases. One reason for this disparity could be that many
+JVM-based mutation testing systems have been written to meet the needs of
+academic research.</p>
+
+<p>PIT is currently positioned as being the most performant mutation testing tool
+today, primarily due to fact that it adopts an effective byte code based approach in the mutant detection and generation phases. Generally systems will adopt either a source code or byte
+based approach at these stages. Using byte code during the mutation detection phase
+is quite computationally expensive, though this can be offset by an effective test
+selection phase.
+<img src="/images/doge2.png" alt="doge2" /></p>
+
+<p>Additionally, systems using source code at the generation stage
+can also incur a large computational cost if a naive approach is followed. Tools
+like MuJava, Javalanche and Jumble too use byte code generation, however PIT performs various other optimisations. Rather than blindly running all cases against one mutation PIT will
+first determine overall line coverage and subsequently run only those cases that
+can actually reach the mutation.</p>
+
+<h2>The Super Complicated Test Candidate</h2>
+
+<p>Most tech blogs love using real-world code examples, so lets not be an exception to
+that rule. Here we define a program that
+allows one classify a triangle shape based on three supplied coordinates. A classification can be either equilateral, isosceles, scalene or invalid. Accordingly we implement a <code>TriangleType</code>
+enum and following we define our <code>Triangle</code> class with one static method for classification.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">enum</span> <span class="n">TriangleType</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">INVALID</span><span class="o">,</span> <span class="n">SCALENE</span><span class="o">,</span> <span class="n">EQUILATERAL</span><span class="o">,</span> <span class="n">ISOSCELES</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Triangle</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="n">TriangleType</span> <span class="nf">classify</span><span class="o">(</span><span class="kd">final</span> <span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">b</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">trian</span><span class="o">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">((</span><span class="n">a</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">b</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">c</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">INVALID</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="n">trian</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">trian</span> <span class="o">=</span> <span class="n">trian</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">trian</span> <span class="o">=</span> <span class="n">trian</span> <span class="o">+</span> <span class="mi">2</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">trian</span> <span class="o">=</span> <span class="n">trian</span> <span class="o">+</span> <span class="mi">3</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(((</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">c</span><span class="o">)</span> <span class="o">||</span> <span class="o">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">)</span> <span class="o">||</span> <span class="o">((</span><span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">a</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">INVALID</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">SCALENE</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">trian</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">EQUILATERAL</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">((</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">c</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">ISOSCELES</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">((</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">b</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">ISOSCELES</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">((</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">3</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">a</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">ISOSCELES</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">INVALID</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We also implement a <code>TriangleTest</code> case, and because we&rsquo;re good testers we ensure to meet total line coverage:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TriangleTest</span> <span class="o">{</span>
+</span><span class='line'>  <span class="nd">@Test</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test1</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">SCALENE</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="nd">@Test</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid1</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="nd">@Test</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid2</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="nd">@Test</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid3</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="nd">@Test</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalidNeg1</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="nd">@Test</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalidNeg2</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="nd">@Test</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalidNeg3</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="nd">@Test</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testEquiliteral</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">EQUILATERAL</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="nd">@Test</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testIsoceles1</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">ISOSCELES</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="nd">@Test</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testIsoceles2</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">ISOSCELES</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="nd">@Test</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testIsoceles3</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">ISOSCELES</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>  <span class="nd">@Test</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So now lets gets webscale and get our candidate unit tested and mutation tested
+under Maven. The <code>pitest</code> artifact and its related dependencies are hosted by Sonatype so we can add the typical <code>oss-sonatype</code> <code>repository</code> and <code>pluginRepository</code> entries to our <code>pom.xml</code>. We can then simply  configure PIT under JUnit4 as follows:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>  ...
+</span><span class='line'><span class="nt">&lt;dependencies&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;version&gt;</span>4.11<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dependencies&gt;</span>
+</span><span class='line'><span class="nt">&lt;build&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;plugins&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;version&gt;</span>2.4<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/plugin&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;groupId&gt;</span>org.pitest<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;artifactId&gt;</span>pitest-maven<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;version&gt;</span>1.1.10-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;executions&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;execution&gt;</span>
+</span><span class='line'>                  <span class="nt">&lt;id&gt;</span>verify<span class="nt">&lt;/id&gt;</span>
+</span><span class='line'>                  <span class="nt">&lt;phase&gt;</span>verify<span class="nt">&lt;/phase&gt;</span>
+</span><span class='line'>                  <span class="nt">&lt;goals&gt;</span>
+</span><span class='line'>                      <span class="nt">&lt;goal&gt;</span>mutationCoverage<span class="nt">&lt;/goal&gt;</span>
+</span><span class='line'>                  <span class="nt">&lt;/goals&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;/execution&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/executions&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/plugin&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/plugins&gt;</span>
+</span><span class='line'><span class="nt">&lt;/build&gt;</span>
+</span><span class='line'>  ...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Unless we configure PIT to employ a whitelist of mutation operations,
+it will use a default of four default mutation operations. Of a possible sixteen
+operations these four are perhaps the most useful and least expensive:</p>
+
+<ol>
+<li>Negate Conditionals Mutator inverts all conditionals
+to their boundary counterpart.
+
+<ul>
+<li><code>boolean a = 1 == 2;</code> becomes mutated to <code>boolean a = 1 != 2;</code></li>
+</ul>
+</li>
+<li>Conditionals Boundary Mutator replaces relational operators
+with their boundary counterpart.
+
+<ul>
+<li><code>int a = 1 &gt; 2;</code> becomes mutated to <code>int a = 1 &lt;= 2;</code></li>
+</ul>
+</li>
+<li>Return Values Mutator mutates the return values of method calls.
+
+<ul>
+<li><code>return new Object();</code> becomes mutated to <code>new Object(); return null;</code></li>
+<li><code>return new Long(123);</code> becomes mutated to <code>return new Long(123)+1;</code></li>
+</ul>
+</li>
+<li>Math Mutator replaces binary arithmetic operations for either integer or floating-point arithmetic with another operation.
+
+<ul>
+<li><code>int a = 1 + 1</code> becomes mutated to <code>int a = 1 - 1</code></li>
+</ul>
+</li>
+</ol>
+
+
+<h2>Testing Tests While Testing</h2>
+
+<p>Given our configuration, PIT will now perform mutation testing at end the of the Maven <code>verfiy</code> lifecycle
+phases (after <code>test</code>). This involves running both line coverage and mutation coverage testing:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&gt; <span class="nv">$ </span>mvn verify
+</span><span class='line'>            ....
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Adding org.pitest:pitest to SUT classpath
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Mutating from /usr/src/app/maven-pit-review/target/classes
+</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Defaulting to group id <span class="o">(</span>com.review.app*<span class="o">)</span>
+</span><span class='line'>PIT &gt;&gt; INFO : Sending <span class="m">1</span> <span class="nb">test </span>classes to minion
+</span><span class='line'>PIT &gt;&gt; INFO : Sent tests to minion
+</span><span class='line'>PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : Checking environment
+</span><span class='line'>PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : Found  <span class="m">12</span> tests
+</span><span class='line'>PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : Dependency analysis reduced number of potential tests by 0
+</span><span class='line'>PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : <span class="m">12</span> tests received
+</span><span class='line'>PIT &gt;&gt; INFO : Calculated coverage in <span class="m">0</span> seconds.
+</span><span class='line'>PIT &gt;&gt; INFO : Created  <span class="m">1</span> mutation <span class="nb">test </span>units
+</span><span class='line'>PIT &gt;&gt; INFO : Completed in <span class="m">3</span> seconds
+</span><span class='line'>              ....
+</span><span class='line'><span class="o">================================================================================</span>
+</span><span class='line'>- <span class="nv">Statistics</span>
+</span><span class='line'><span class="o">================================================================================</span>
+</span><span class='line'>&gt;&gt; Generated <span class="m">44</span> mutations Killed <span class="m">36</span> <span class="o">(</span>82%<span class="o">)</span>
+</span><span class='line'>&gt;&gt; Ran <span class="m">115</span> tests <span class="o">(</span>2.61 tests per mutation<span class="o">)</span>
+</span><span class='line'><span class="o">================================================================================</span>
+</span><span class='line'>- <span class="nv">Mutators</span>
+</span><span class='line'><span class="o">================================================================================</span>
+</span><span class='line'>&gt; org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator
+</span><span class='line'>&gt;&gt; Generated <span class="m">10</span> Killed <span class="m">2</span> <span class="o">(</span>20%<span class="o">)</span>
+</span><span class='line'>&gt; KILLED <span class="m">2</span> SURVIVED <span class="m">8</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
+</span><span class='line'>&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
+</span><span class='line'>&gt; NO_COVERAGE 0
+</span><span class='line'>--------------------------------------------------------------------------------
+</span><span class='line'>&gt; org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator
+</span><span class='line'>&gt;&gt; Generated <span class="m">8</span> Killed <span class="m">8</span> <span class="o">(</span>100%<span class="o">)</span>
+</span><span class='line'>&gt; KILLED <span class="m">8</span> SURVIVED <span class="m">0</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
+</span><span class='line'>&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
+</span><span class='line'>&gt; NO_COVERAGE 0
+</span><span class='line'>--------------------------------------------------------------------------------
+</span><span class='line'>&gt; org.pitest.mutationtest.engine.gregor.mutators.MathMutator
+</span><span class='line'>&gt;&gt; Generated <span class="m">9</span> Killed <span class="m">9</span> <span class="o">(</span>100%<span class="o">)</span>
+</span><span class='line'>&gt; KILLED <span class="m">9</span> SURVIVED <span class="m">0</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
+</span><span class='line'>&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
+</span><span class='line'>&gt; NO_COVERAGE 0
+</span><span class='line'>--------------------------------------------------------------------------------
+</span><span class='line'>&gt; org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator
+</span><span class='line'>&gt;&gt; Generated <span class="m">17</span> Killed <span class="m">17</span> <span class="o">(</span>100%<span class="o">)</span>
+</span><span class='line'>&gt; KILLED <span class="m">17</span> SURVIVED <span class="m">0</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
+</span><span class='line'>&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
+</span><span class='line'>&gt; NO_COVERAGE 0
+</span><span class='line'>--------------------------------------------------------------------------------
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, who would of guessed, our &ldquo;total covered&rdquo; candidate app yields 44 mutations
+but eight survive. Resulting in a total mutation
+adequacy score of 82%. The default mutation operations are generated
+across our 12 test cases, resulting in the execution of 115 mutated test cases.
+So what is this tellings us about our tests? It means for each test run against a mutated version of the program all of the mutants can be reached (because we have full statement coverage). However, for eight of these runs at least the respective fault goes unnoticed as the tests pass.</p>
+
+      <footer class="entry-meta">
+        <span class="entry-tags"><a href="/categories/#java" title="Pages tagged java" class="tag">java</a><a href="/categories/#research" title="Pages tagged research" class="tag">research</a><a href="/categories/#testing" title="Pages tagged testing" class="tag">testing</a></span>
+        <span><a href="/blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm/" rel="bookmark" title="Mutation Testing is Awesome: PIT for the JVM">Mutation Testing is Awesome: PIT for the JVM</a> was published on <span class="entry-date date published updated"><time datetime="2017-03-12T12:17:39+00:00">March 12, 2017</time></span></span>
+        
+        <span class="author vcard"><span class="fn"><a href="" title="About Anthony Troy">Anthony Troy</a></span></span>
+        
+      </footer>
+    </div><!-- /.entry-content -->
+      
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2017 Anthony Troy. Powered by <a href="http://octopress.org">Octopress</a>.</span>
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/javascripts/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<!--
+<script src="/javascripts/octopress.js" type="text/javascript"></script>
+-->
+<script src="/javascripts/scripts.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'toekneeland';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm/';
+        var disqus_url = 'http://blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | ]]></title>
   <link href="http:///blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http:///"/>
-  <updated>2017-03-12T00:03:42+00:00</updated>
+  <updated>2017-03-19T21:17:10+00:00</updated>
   <id>http:///</id>
   <author>
     <name><![CDATA[Anthony Troy]]></name>
@@ -32,7 +32,7 @@ incredibly useful, original, cutting-edge and technically challenging to develop
 What else could it be but a <strong>TODO list</strong> of course.</p>
 
 <p><img src="/images/bizcat.png" alt="bizcat" />
-From scratch we are going develop a TODO list API with <a href="http://www.sinatrarb.com/">Sinatra</a>. If you are unfamiliar with Sinatra it is simply a small web framework for Ruby, somewhat like Ruby on Rails. As Sinatra is built ontop of <a href="http://rack.github.io/">Rack</a> we can then easily deploy our completed app to <a href="https://www.heroku.com/">Heroku</a>.</p>
+From scratch we are going develop a TODO list API with <a href="http://www.sinatrarb.com/">Sinatra</a>. If you are unfamiliar with Sinatra it is simply a small web framework for Ruby, somewhat like Ruby on Rails. As Sinatra is built on top of <a href="http://rack.github.io/">Rack</a> we can then easily deploy our completed app to <a href="https://www.heroku.com/">Heroku</a>.</p>
 
 <p>This tutorial expects that you have some grounding in Ruby and understand basic <a href="http://www.ibm.com/developerworks/library/ws-restful/">RESTful API</a> design. We will be using Ruby 2.1.2 but any Ruby version post-2.0 should be fine.</p>
 
@@ -148,7 +148,7 @@ DataMapper.finalize.auto_upgrade!
 
 <p>Before using our model we must first <code>finalize</code>. This checks the validity of all of our DataMapper model definitions and initializes all properties associated with relationships. This nicely returns its caller, <code>DataMapper</code>, so we can chain a call to <code>auto_upgrade!</code> which issues the necessary CREATE statement for our task table if it does not already exist.</p>
 
-<p>Now lets verify that our model is in fact persisent and working as expected. We can simply execute script and our DB will be in place. Lets query the current amount of task rows.
+<p>Now lets verify that our model is in fact persistent and working as expected. We can simply execute script and our DB will be in place. Lets query the current amount of task rows.
 <code>sh
 $ ruby -r ./app.rb -e "puts Task.all.size"
 </code></p>
@@ -224,7 +224,7 @@ Again, we can verify this by executing</code>curl <a href="http://localhost:4567
 
 <h2>Ship First, Test Later</h2>
 
-<p>Lets put this thing of beauty out there! The usual tweeks are required for our Heroku deploy. We need to parameterize
+<p>Lets put this thing of beauty out there! The usual tweaks are required for our Heroku deploy. We need to parameterize
 what gems are required and what DataMapper connection we wish to use per environment.</p>
 
 <pre><code class="ruby app.rb https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb Source Code">Bundler.require(:default, ENV['RACK_ENV'] || :development) if defined?(Bundler)
