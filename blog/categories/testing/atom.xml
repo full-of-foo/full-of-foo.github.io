@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Testing | ]]></title>
   <link href="http:///blog/categories/testing/atom.xml" rel="self"/>
   <link href="http:///"/>
-  <updated>2017-03-20T14:05:40+00:00</updated>
+  <updated>2017-03-20T21:05:39+00:00</updated>
   <id>http:///</id>
   <author>
     <name><![CDATA[Anthony Troy]]></name>
@@ -30,15 +30,14 @@ churning out of what is at hand. Be <a href="https://thenewstack.io/10x-programm
 Free time from shipping our way to <a href="https://en.wikipedia.org/wiki/Unicorn_(finance)">software unicorn</a> land is often spent perusing
 blog posts from high-culture <a href="https://news.ycombinator.com">engineering forums</a>. In doing so you
 may have stumbled upon this strange blog, and, much too your dismay we&rsquo;ll be getting into plenty of
-1x testing nonsense such as <a href="https://en.wikipedia.org/wiki/Mutation_testing">Mutation Testing</a>, <a href="http://mcminn.io/publications/j18.pdf">Code Coverage</a>, <a href="http://patricklam.ca/stqam/2010/notes/pdf/L3.pdf">Subsumption</a> and all that kind of jazz.</p>
+1x testing nonsense. Sarcasm aside, here we&rsquo;re going to explore and demonstrate some things like <a href="https://en.wikipedia.org/wiki/Mutation_testing">Mutation Testing</a>, <a href="http://mcminn.io/publications/j18.pdf">Code Coverage</a> and <a href="http://patricklam.ca/stqam/2010/notes/pdf/L3.pdf">Subsumption</a>.</p>
 
 <p>- Buckle up buckaroos.</p>
 
 <h2>Back to Basics, Yo</h2>
 
-<p>Remember, begin rolling your eyes when you hear the terms &ldquo;complete testing&rdquo;, &ldquo;exhaustive
-testing&rdquo;, and &ldquo;full coverage&rdquo;. They are each poorly defined due to a
-fundamental theoretical limitation of software - the number of potential
+<p>Remember, you might want to begin rolling your eyes when you hear the terms &ldquo;complete testing&rdquo;, &ldquo;exhaustive testing&rdquo;, and &ldquo;full coverage&rdquo;. They are each poorly defined due to a
+theoretical limitation of software - the number of potential
 inputs for most programs is so large that they are effectively infinite.</p>
 
 <p><img src="/images/rly.png" alt="rly" />
@@ -60,12 +59,11 @@ for <a href="http://swtv.kaist.ac.kr/courses/cs453-fall09/graph_coverage.pdf">gr
 
 <h2>Kanye test Grammar?</h2>
 
-<p>The most common coverage criteria generate tests to satisfy their criterion based on either graphs, logical expressions, or partitions of input space. Graph and logical models are built from software artifacts, such as source code, design descriptions and specifications. Similarly, a model of the inputs can be built based on some description of an input space. Test criteria can then be applied to these models.
+<p>The most common coverage criteria generate tests to satisfy their criterion based on either graphs, logical expressions, or partitions of input space. Graph and logical models are built from software artifacts (such as source code, design descriptions and specifications). Similarly, a model of the inputs can be built based on some description of an input space. Test criteria can then be applied to these models.
 <img src="/images/kanye.png" alt="kanye" /></p>
 
-<p>A fourth major source for test coverage criteria is syntactic descriptions of software artifacts.
-Under syntax-based testing the syntax of the software artifact is used as the
-model and tests are created from the syntax. One of the interesting things that grammars do is describe what an input is not. We say that an input is valid if it is in the language specified by the grammar, and
+<p>Another major method of deriving coverage criteria is though the syntactic descriptions of software artifacts. Under syntax-based testing, the syntax of the software artifact is used as the
+criteria model and tests are created from the syntax. One of the interesting things that grammars do is describe what an input <em>is not</em>. We say that an input is valid if it is <em>in the language</em> specified by the grammar, and
 invalid otherwise.</p>
 
 <p>Thus, it is often useful to produce invalid strings from a grammar. It is also helpful
@@ -75,17 +73,6 @@ mutation analysis, and it can be applied most types of software artifacts.</p>
 
 <p>Albeit this all quite theoretical feeling thus far, mutation analysis has paved the
 way for what is currently argued to be the <a href="http://crestweb.cs.ucl.ac.uk/resources/mutation_testing_repository/search_paper.php?func=2&amp;pid=OffuttMK04">gold standard</a> in software testing; <a href="https://en.wikipedia.org/wiki/Mutation_testing">Program-based Mutation Testing</a>.</p>
-
-<!-- For example, it is quite common to require a program to reject
-malformed inputs, and this property should clearly be tested, since it is easy for
-programmers to forget it or get it wrong. -->
-
-
-
-
-<!-- Mutation is always based on a set of “mutation operators,” which are expressed
-with respect to a “ground” string. -->
-
 
 <h2>Mutant Ninja Testing</h2>
 
@@ -113,28 +100,6 @@ can be corrected by small syntactical changes. Accordingly, in mutation testing
 only simple syntactical mutations are generally used. Contrarily, the Coupling
 Effect brings the suggestion that tests capable of catching first order mutations
 will also detect higher order mutations that contain these first order mutations.</p>
-
-<!-- Mutation testing is conceptually quite simple.
-
-Faults (or mutations) are automatically seeded into your code, then your tests are run. If your tests fail then the mutation is killed, if your tests pass then the mutation lived.
-
-The quality of your tests can be gauged from the percentage of mutations killed.
-
-runs your unit tests against automatically modified versions of your application code. When the application code changes, it should produce different results and cause the unit tests to fail. If a unit test does not fail in this situation, it may indicate an issue with the test suite. -->
-
-
-
-
-<!-- Mutation testing is argued to be the ‘gold standard’ of software testing. It is
-a well-established test criterion but an expensive one, as it involves generating
-and running many tests across several mutants. Indeed PIT is not the only
-mutation testing tool available for the JVM, however it is the most popular,
-active, performant and configurable tool in this space. PIT is not intended to be
-a replacement for code coverage systems, instead it can serve as a complementary
-toolkit. Simply put, in a straightforward and effective way PIT helps ensure that
-one is actually testing and verifying all the parts of the code that are assumed
-to be otherwise covered. -->
-
 
 <h2>Strong and Weak Mutations</h2>
 
