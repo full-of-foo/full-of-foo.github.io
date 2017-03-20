@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Testing | ]]></title>
   <link href="http:///blog/categories/testing/atom.xml" rel="self"/>
   <link href="http:///"/>
-  <updated>2017-03-20T21:22:23+00:00</updated>
+  <updated>2017-03-20T21:31:49+00:00</updated>
   <id>http:///</id>
   <author>
     <name><![CDATA[Anthony Troy]]></name>
@@ -30,8 +30,9 @@ churning out of what is at hand. Be <a href="https://thenewstack.io/10x-programm
 Free time from shipping our way to <a href="https://en.wikipedia.org/wiki/Unicorn_(finance)">software unicorn</a> land is often spent perusing
 blog posts from high-culture <a href="https://news.ycombinator.com">engineering forums</a>. In doing so you
 may have stumbled upon this strange blog, and, much too your dismay we&rsquo;ll be getting into plenty of
-1x testing nonsense. <em>Sarcasm</em> aside, here we&rsquo;re going to explore and demonstrate some things like <a href="https://en.wikipedia.org/wiki/Mutation_testing">Mutation Testing</a>, <a href="http://mcminn.io/publications/j18.pdf">Code Coverage</a> and <a href="http://patricklam.ca/stqam/2010/notes/pdf/L3.pdf">Subsumption</a>. The hope is to possibly convince
-you that (in general) code coverage is useful, and moreover, that mutation coverage testing is awesome and practical.</p>
+1x testing nonsense. <em>Sarcasm</em> aside, here we&rsquo;re going to explore and demonstrate some things like <a href="https://en.wikipedia.org/wiki/Mutation_testing">Mutation Testing</a>, <a href="http://mcminn.io/publications/j18.pdf">Code Coverage</a> and <a href="http://patricklam.ca/stqam/2010/notes/pdf/L3.pdf">Subsumption</a>.</p>
+
+<p>The hope is to possibly convince you that (in general) code coverage is useful, and moreover, that mutation coverage testing is both awesome and practical.</p>
 
 <p>- Buckle up buckaroos.</p>
 
@@ -64,7 +65,7 @@ for <a href="http://swtv.kaist.ac.kr/courses/cs453-fall09/graph_coverage.pdf">gr
 <img src="/images/kanye.png" alt="kanye" /></p>
 
 <p>Another major method of deriving coverage criteria is though the syntactic descriptions of software artifacts. Under syntax-based testing, the syntax of the software artifact is used as the
-criteria model and tests are created from the syntax. One of the interesting things that grammars do is describe what an input <em>is not</em>. We say that an input is valid if it is <em>in the language</em> specified by the grammar, and
+criteria model and tests are created from the syntax (ie. covering or violating the syntax in some way). So simply, by virtue a grammar describes what a test input <em>is not</em>. We say that an input is valid if it is <em>in the language</em> specified by the grammar, and
 invalid otherwise.</p>
 
 <p>Thus, it is often useful to produce invalid strings from a grammar. It is also helpful
