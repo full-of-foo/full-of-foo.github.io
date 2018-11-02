@@ -1,86 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  
-  <url>
-    <loc>http:///blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm/</loc>
-    <lastmod>2017-03-12T12:17:39+00:00</lastmod>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>http:///blog/2015/08/24/matrix-multiply-naive-vs-cache-aware-approaches-part-2/</loc>
-    <lastmod>2015-08-24T19:56:46+01:00</lastmod>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>http:///blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/</loc>
-    <lastmod>2015-06-07T17:12:21+01:00</lastmod>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>http:///blog/2015/05/13/babys-first-sinatra-app/</loc>
-    <lastmod>2015-05-13T20:50:05+01:00</lastmod>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>http:///blog/2014/08/04/it-has-begun/</loc>
-    <lastmod>2014-08-04T19:54:57+01:00</lastmod>
-    <priority>0.8</priority>
-  </url>
-  
-  
-  <url>
-    <loc>http:///categories/</loc>
-    <lastmod>2017-03-20T21:31:49+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>http:///blog/</loc>
-    <lastmod>2017-03-20T21:31:49+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>http:///blog/archives/</loc>
-    <lastmod>2017-03-20T21:31:49+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>http:///archives/</loc>
-    <lastmod>2017-03-20T21:31:49+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>http:///</loc>
-    <lastmod>2017-03-20T21:31:49+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  
-  <url>
-    <loc>http:///posts/</loc>
-    <lastmod>2017-03-20T21:31:49+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>http:///search.html</loc>
-    <lastmod>2017-03-20T21:31:49+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  
+<url>
+<loc>http:///blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm/</loc>
+<lastmod>2017-03-12T12:17:39+00:00</lastmod>
+</url>
+<url>
+<loc>http:///blog/2015/08/24/matrix-multiply-naive-vs-cache-aware-approaches-part-2/</loc>
+<lastmod>2015-08-24T19:56:46+01:00</lastmod>
+</url>
+<url>
+<loc>http:///blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/</loc>
+<lastmod>2015-06-07T17:12:21+01:00</lastmod>
+</url>
+<url>
+<loc>http:///blog/2015/05/13/babys-first-sinatra-app/</loc>
+<lastmod>2015-05-13T20:50:05+01:00</lastmod>
+</url>
+<url>
+<loc>http:///blog/2014/08/04/it-has-begun/</loc>
+<lastmod>2014-08-04T19:54:57+01:00</lastmod>
+</url>
+<url>
+<loc>http:///categories/</loc>
+</url>
+<url>
+<loc>http:///blog/</loc>
+</url>
+<url>
+<loc>http:///blog/archives/</loc>
+</url>
+<url>
+<loc>http:///archives/</loc>
+</url>
+<url>
+<loc>http:///</loc>
+</url>
+<url>
+<loc>http:///posts/</loc>
+</url>
+<url>
+<loc>http:///search.html</loc>
+</url>
+<url>
+<loc>http:///images/07359265.pdf</loc>
+<lastmod>2017-03-19T19:58:02+00:00</lastmod>
+</url>
 </urlset>

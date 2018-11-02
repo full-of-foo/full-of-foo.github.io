@@ -10,15 +10,18 @@
 <meta charset="utf-8">
 <meta http-equiv="cleartype" content="on">
 
-<title>(╯°□°）╯︵ ┻━┻ Matrix Multiply: Naive vs Cache-Aware Approaches (Part 1) - </title>
-<meta name="author" content="Anthony Troy">
+<title>(╯°□°）╯︵ ┻━┻ Matrix Multiply: Naive Vs Cache-Aware Approaches (Part 1) - toeknee land</title>
+<meta name="author" content="- Proud Torrenter of Software - All Rights Reserved">
 
 
 
 
-<meta name="description" content="Why, Why, Why? Before undertaking my postgraduate studies I led a quite joyous and sheltered life. Living the high life in the worlds of Ruby, &hellip;">
 
-<meta name="keywords" content="concurrency java research blog ruby rails javascript coffeescript backbone modern tech hacks dublin">
+<meta name="description" content="Why, Why, Why?
+
+Before undertaking my postgraduate studies I led a quite joyous and sheltered life. Living the high life in the worlds of Ruby, Jav...">
+
+<meta name="keywords" content="research java concurrency blog ruby rails javascript coffeescript backbone modern tech hacks dublin">
 
 
 <!-- http://t.co/dKP3o1e -->
@@ -33,26 +36,30 @@
     <meta name="twitter:image" content"">
   
   <meta name="twitter:title" content="Matrix Multiply: Naive Vs Cache-Aware Approaches (Part 1)">
-  <meta name="twitter:description" content="Why, Why, Why? Before undertaking my postgraduate studies I led a quite joyous and sheltered life. Living the high life in the worlds of Ruby, &hellip;">
+  <meta name="twitter:description" content="Why, Why, Why?
+
+Before undertaking my postgraduate studies I led a quite joyous and sheltered life. Living the high life in the worlds of Ruby, Jav...">
   <meta name="twitter:creator" content="@devtoeknee">
 
 
 <!-- Open Graph -->
 <meta property="og:local" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http:///blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1">
+<meta property="og:url" content="http://page.url | remove:">
 <meta property="og:title" content="Matrix Multiply: Naive Vs Cache-Aware Approaches (Part 1)">
-<meta property="og:description" content="Why, Why, Why? Before undertaking my postgraduate studies I led a quite joyous and sheltered life. Living the high life in the worlds of Ruby, &hellip;">
+<meta property="og:description" content="Why, Why, Why?
+
+Before undertaking my postgraduate studies I led a quite joyous and sheltered life. Living the high life in the worlds of Ruby, Jav...">
 
   <meta property="og:image" content="">
 
-<meta property="og:site_name" content="">
+<meta property="og:site_name" content="toeknee land">
 
-<link rel="canonical" href="http:///blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1">
+<link rel="canonical" href="/">
 <link href="/favicon.png" rel="icon">
 <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="/atom.xml" rel="alternate" title="" type="application/atom+xml">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="/atom.xml" rel="alternate" title="toeknee land" type="application/atom+xml">
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script src="/javascripts/vendor/modernizr-2.6.2.custom.min.js"></script>
 
@@ -76,8 +83,8 @@
 			<a href="#">About</a>
 			<ul class="dl-submenu">
 				<li>
-					<img src="/images/avatar.jpeg" alt="Anthony Troy photo" class="author-photo">
-					<h4>Anthony Troy</h4>
+					<img src="/images/avatar.jpg" alt="- Proud Torrenter of Software - All Rights Reserved photo" class="author-photo">
+					<h4>- Proud Torrenter of Software - All Rights Reserved</h4>
 					<p>Code Pirate, </br>Project Monkey</p>
 				</li>
 				<li><a target="_blank" href="//ie.linkedin.com/pub/anthony-troy/62/40a/743">Learn More</a></li>
@@ -110,7 +117,7 @@
     <header class="header-title">
       <div class="header-title-wrap">
         
-          <h1 class="entry-title"><a href="/blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/" rel="bookmark" title="Matrix Multiply: Naive Vs Cache-Aware Approaches (Part 1)">Matrix Multiply: Naive Vs Cache-Aware Approaches (Part 1)</a></h1>
+          <h1 class="entry-title"><a href="//blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/" rel="bookmark" title="Matrix Multiply: Naive Vs Cache-Aware Approaches (Part 1)">Matrix Multiply: Naive Vs Cache-Aware Approaches (Part 1)</a></h1>
         
         <h2>June 07, 2015</h2>
       </div><!-- /.header-title-wrap -->
@@ -144,56 +151,33 @@ matrix A must equal equal the amount of rows in B.</p>
 
 <p>The most naive algorithm for MMM comes straight from the above definition and mimics computing the product by hand. Assuming the arrays are stored such that rows of the arrays are in consecutive memory locations, i.e. row-major order, then we derive C as follows</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">rowAmount1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-</span><span class='line'>  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">colAmount1</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span>
-</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">rowAmount2</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span>
-</span><span class='line'>          <span class="n">C</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+=</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="err">∗</span> <span class="n">B</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">rowAmount1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">colAmount1</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">rowAmount2</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span>
+            <span class="n">C</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+=</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="err">∗</span> <span class="n">B</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span></code></pre></div>
 
 
 <p>This algorithm is said to be naive because it suffers from poor locality. Elements of B are accessed column-wise, and therefore not in sequential order in memory. While each iteration in j reuses row i of A, that row may have been evicted from the cache by the time the inner-most loop completes. As a result, the algorithm is bandwidth limited and displays poor performance and low efficiency.</p>
 
 <p>As we highlighted before, matrix multiplications have abundant parallel computation. While maintaining the less favourable design of this naive approach, let us introduce a parallelised implementation</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span> <span class="o">;</span>
-</span><span class='line'><span class="k">for</span> <span class="o">(</span><span class="n">interval</span> <span class="o">=</span> <span class="n">numTasks</span><span class="o">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">rowAmount1</span><span class="o">,</span>
-</span><span class='line'>      <span class="n">size</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">rowAmount1</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">10</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">interval</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">end</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="n">interval</span><span class="err">−−</span><span class="o">,</span> <span class="n">end</span> <span class="err">−</span><span class="o">=</span> <span class="n">size</span><span class="o">){</span>
-</span><span class='line'>  <span class="kd">final</span> <span class="kt">int</span> <span class="n">to</span> <span class="o">=</span> <span class="n">end</span><span class="o">;</span>
-</span><span class='line'>  <span class="kd">final</span> <span class="kt">int</span> <span class="n">from</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">end</span> <span class="err">−</span> <span class="n">size</span><span class="o">);</span>
-</span><span class='line'>  <span class="n">Runnable</span> <span class="n">runnable</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Runnable</span><span class="o">(){</span>
-</span><span class='line'>      <span class="nd">@Override</span>
-</span><span class='line'>      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
-</span><span class='line'>          <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">from</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">to</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-</span><span class='line'>              <span class="k">for</span> <span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">colAmount1</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span>
-</span><span class='line'>                  <span class="k">for</span> <span class="o">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">rowAmount2</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span>
-</span><span class='line'>                      <span class="n">C</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+=</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="err">∗</span> <span class="n">B</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">};</span>
-</span><span class='line'>  <span class="n">executor</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="n">runnable</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span> <span class="o">;</span>
+<span class="k">for</span> <span class="o">(</span><span class="n">interval</span> <span class="o">=</span> <span class="n">numTasks</span><span class="o">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">rowAmount1</span><span class="o">,</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">rowAmount1</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">10</span><span class="o">);</span>
+        <span class="n">interval</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">end</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="n">interval</span><span class="err">−−</span><span class="o">,</span> <span class="n">end</span> <span class="err">−</span><span class="o">=</span> <span class="n">size</span><span class="o">){</span>
+    <span class="kd">final</span> <span class="kt">int</span> <span class="n">to</span> <span class="o">=</span> <span class="n">end</span><span class="o">;</span>
+    <span class="kd">final</span> <span class="kt">int</span> <span class="n">from</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">end</span> <span class="err">−</span> <span class="n">size</span><span class="o">);</span>
+    <span class="n">Runnable</span> <span class="n">runnable</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Runnable</span><span class="o">(){</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
+            <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">from</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">to</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+                <span class="k">for</span> <span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">colAmount1</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span>
+                    <span class="k">for</span> <span class="o">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">rowAmount2</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span>
+                        <span class="n">C</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+=</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="err">∗</span> <span class="n">B</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
+        <span class="o">}</span>
+    <span class="o">};</span>
+    <span class="n">executor</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="n">runnable</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
 
 
 <p>We must manually divide the work up into tasks and provide each task with its from/to bounds. Each task will run the entire outer loop but for only specific non-overlapping values. Thus there is no synchronisation in this implementation as no mutable data is shared across threads. The input arrays A and B are not mutated. While the contents of output array C are altered, each thread works on different slices.</p>
@@ -210,10 +194,10 @@ matrix A must equal equal the amount of rows in B.</p>
 Later on we shall investigate some fun stuff like Cache-Awareness and the Tall-Cache Assumption. Of course we&rsquo;ll then develop a cache-aware MMM algorithm using a &ldquo;tiling&rdquo; approach. Finally we will see some pretty benchmark graphs that demonstrate how our algorithms fared across different matrix sizes over a different number of cores.</p>
 
       <footer class="entry-meta">
-        <span class="entry-tags"><a href="/categories/#concurrency" title="Pages tagged concurrency" class="tag">concurrency</a><a href="/categories/#java" title="Pages tagged java" class="tag">java</a><a href="/categories/#research" title="Pages tagged research" class="tag">research</a></span>
-        <span><a href="/blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/" rel="bookmark" title="Matrix Multiply: Naive Vs Cache-Aware Approaches (Part 1)">Matrix Multiply: Naive Vs Cache-Aware Approaches (Part 1)</a> was published on <span class="entry-date date published updated"><time datetime="2015-06-07T17:12:21+01:00">June 07, 2015</time></span></span>
+        <span class="entry-tags"><a href="//categories/#research" title="Pages tagged research" class="tag">research</a><a href="//categories/#java" title="Pages tagged java" class="tag">java</a><a href="//categories/#concurrency" title="Pages tagged concurrency" class="tag">concurrency</a></span>
+        <span><a href="//blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/" rel="bookmark" title="Matrix Multiply: Naive Vs Cache-Aware Approaches (Part 1)">Matrix Multiply: Naive Vs Cache-Aware Approaches (Part 1)</a> was published on <span class="entry-date date published updated"><time datetime="2015-06-07T17:12:21+01:00">June 07, 2015</time></span></span>
         
-        <span class="author vcard"><span class="fn"><a href="" title="About Anthony Troy">Anthony Troy</a></span></span>
+        <span class="author vcard"><span class="fn"><a href="" title="About - Proud Torrenter of Software - All Rights Reserved">- Proud Torrenter of Software - All Rights Reserved</a></span></span>
         
       </footer>
     </div><!-- /.entry-content -->
@@ -224,7 +208,7 @@ Later on we shall investigate some fun stuff like Cache-Awareness and the Tall-C
 
 <div class="footer-wrapper">
   <footer role="contentinfo">
-    <span>&copy; 2017 Anthony Troy. Powered by <a href="http://octopress.org">Octopress</a>.</span>
+    <span>&copy; 2018 - Proud Torrenter of Software - All Rights Reserved. Powered by <a href="http://octopress.org">Octopress</a>.</span>
 
   </footer>
 </div><!-- /.footer-wrapper -->
@@ -234,7 +218,7 @@ Later on we shall investigate some fun stuff like Cache-Awareness and the Tall-C
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="/javascripts/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <!--
-<script src="/javascripts/octopress.js" type="text/javascript"></script>
+<script src="//javascripts/octopress.js" type="text/javascript"></script>
 -->
 <script src="/javascripts/scripts.min.js"></script>
 
@@ -246,8 +230,8 @@ Later on we shall investigate some fun stuff like Cache-Awareness and the Tall-C
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/';
-        var disqus_url = 'http://blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/';
+        var disqus_identifier = 'http:///blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/';
+        var disqus_url = 'http:///blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/';
         var disqus_script = 'embed.js';
       
     (function () {

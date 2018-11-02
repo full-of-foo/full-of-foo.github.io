@@ -10,15 +10,20 @@
 <meta charset="utf-8">
 <meta http-equiv="cleartype" content="on">
 
-<title>(╯°□°）╯︵ ┻━┻ Mutation Testing Is Awesome: PIT for the JVM - </title>
-<meta name="author" content="Anthony Troy">
+<title>(╯°□°）╯︵ ┻━┻ Mutation Testing is Awesome: PIT for the JVM - toeknee land</title>
+<meta name="author" content="- Proud Torrenter of Software - All Rights Reserved">
 
 
 
 
-<meta name="description" content="Nowadays its not all that popular to be a testing enthusiast or fanatic. After all, real developers ship and TDD is dead, so developers ought to &hellip;">
 
-<meta name="keywords" content="java research testing blog ruby rails javascript coffeescript backbone modern tech hacks dublin">
+<meta name="description" content="
+
+Nowadays its not all that popular to be a testing enthusiast or fanatic.
+
+After all, real developers ship and TDD is dead, so developers ought to...">
+
+<meta name="keywords" content="research java testing blog ruby rails javascript coffeescript backbone modern tech hacks dublin">
 
 
 <!-- http://t.co/dKP3o1e -->
@@ -33,26 +38,34 @@
     <meta name="twitter:image" content"">
   
   <meta name="twitter:title" content="Mutation Testing is Awesome: PIT for the JVM">
-  <meta name="twitter:description" content="Nowadays its not all that popular to be a testing enthusiast or fanatic. After all, real developers ship and TDD is dead, so developers ought to &hellip;">
+  <meta name="twitter:description" content="
+
+Nowadays its not all that popular to be a testing enthusiast or fanatic.
+
+After all, real developers ship and TDD is dead, so developers ought to...">
   <meta name="twitter:creator" content="@devtoeknee">
 
 
 <!-- Open Graph -->
 <meta property="og:local" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http:///blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm">
+<meta property="og:url" content="http://page.url | remove:">
 <meta property="og:title" content="Mutation Testing is Awesome: PIT for the JVM">
-<meta property="og:description" content="Nowadays its not all that popular to be a testing enthusiast or fanatic. After all, real developers ship and TDD is dead, so developers ought to &hellip;">
+<meta property="og:description" content="
+
+Nowadays its not all that popular to be a testing enthusiast or fanatic.
+
+After all, real developers ship and TDD is dead, so developers ought to...">
 
   <meta property="og:image" content="">
 
-<meta property="og:site_name" content="">
+<meta property="og:site_name" content="toeknee land">
 
-<link rel="canonical" href="http:///blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm">
+<link rel="canonical" href="/">
 <link href="/favicon.png" rel="icon">
 <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="/atom.xml" rel="alternate" title="" type="application/atom+xml">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="/atom.xml" rel="alternate" title="toeknee land" type="application/atom+xml">
 <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script src="/javascripts/vendor/modernizr-2.6.2.custom.min.js"></script>
 
@@ -76,8 +89,8 @@
 			<a href="#">About</a>
 			<ul class="dl-submenu">
 				<li>
-					<img src="/images/avatar.jpeg" alt="Anthony Troy photo" class="author-photo">
-					<h4>Anthony Troy</h4>
+					<img src="/images/avatar.jpg" alt="- Proud Torrenter of Software - All Rights Reserved photo" class="author-photo">
+					<h4>- Proud Torrenter of Software - All Rights Reserved</h4>
 					<p>Code Pirate, </br>Project Monkey</p>
 				</li>
 				<li><a target="_blank" href="//ie.linkedin.com/pub/anthony-troy/62/40a/743">Learn More</a></li>
@@ -110,7 +123,7 @@
     <header class="header-title">
       <div class="header-title-wrap">
         
-          <h1 class="entry-title"><a href="/blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm/" rel="bookmark" title="Mutation Testing is Awesome: PIT for the JVM">Mutation Testing is Awesome: PIT for the JVM</a></h1>
+          <h1 class="entry-title"><a href="//blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm/" rel="bookmark" title="Mutation Testing is Awesome: PIT for the JVM">Mutation Testing is Awesome: PIT for the JVM</a></h1>
         
         <h2>March 12, 2017</h2>
       </div><!-- /.header-title-wrap -->
@@ -260,289 +273,153 @@ that rule. Here we define a program that
 allows one <a href="http://russcon.org/triangle_classification.html">classify a triangle</a> shape based on three supplied coordinates. A classification can be either equilateral, isosceles, scalene or invalid. Accordingly we implement a <code>TriangleType</code>
 enum and following we define our <code>Triangle</code> class with one static method for classification.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">enum</span> <span class="n">TriangleType</span> <span class="o">{</span>
-</span><span class='line'>  <span class="n">INVALID</span><span class="o">,</span> <span class="n">SCALENE</span><span class="o">,</span> <span class="n">EQUILATERAL</span><span class="o">,</span> <span class="n">ISOSCELES</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">enum</span> <span class="n">TriangleType</span> <span class="o">{</span>
+  <span class="n">INVALID</span><span class="o">,</span> <span class="n">SCALENE</span><span class="o">,</span> <span class="n">EQUILATERAL</span><span class="o">,</span> <span class="n">ISOSCELES</span>
+<span class="o">}</span></code></pre></div>
 
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Triangle</span> <span class="o">{</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="n">TriangleType</span> <span class="nf">classify</span><span class="o">(</span><span class="kd">final</span> <span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">b</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kt">int</span> <span class="n">trian</span><span class="o">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="o">((</span><span class="n">a</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">b</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">c</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">INVALID</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="n">trian</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">trian</span> <span class="o">=</span> <span class="n">trian</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">trian</span> <span class="o">=</span> <span class="n">trian</span> <span class="o">+</span> <span class="mi">2</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">trian</span> <span class="o">=</span> <span class="n">trian</span> <span class="o">+</span> <span class="mi">3</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">if</span> <span class="o">(((</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">c</span><span class="o">)</span> <span class="o">||</span> <span class="o">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">)</span> <span class="o">||</span> <span class="o">((</span><span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">a</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">INVALID</span><span class="o">;</span>
-</span><span class='line'>      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">SCALENE</span><span class="o">;</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">trian</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">EQUILATERAL</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="k">if</span> <span class="o">((</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">c</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">ISOSCELES</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">((</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">b</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">ISOSCELES</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">((</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">3</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">a</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">ISOSCELES</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">INVALID</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
+
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Triangle</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="n">TriangleType</span> <span class="nf">classify</span><span class="o">(</span><span class="kd">final</span> <span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">b</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">trian</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">((</span><span class="n">a</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">b</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">c</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">))</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">INVALID</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">trian</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">trian</span> <span class="o">=</span> <span class="n">trian</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">trian</span> <span class="o">=</span> <span class="n">trian</span> <span class="o">+</span> <span class="mi">2</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">trian</span> <span class="o">=</span> <span class="n">trian</span> <span class="o">+</span> <span class="mi">3</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(((</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">c</span><span class="o">)</span> <span class="o">||</span> <span class="o">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">)</span> <span class="o">||</span> <span class="o">((</span><span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">a</span><span class="o">))</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">INVALID</span><span class="o">;</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">SCALENE</span><span class="o">;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">trian</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">EQUILATERAL</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">((</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">c</span><span class="o">))</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">ISOSCELES</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">((</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">b</span><span class="o">))</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">ISOSCELES</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">((</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">3</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">a</span><span class="o">))</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">ISOSCELES</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">INVALID</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
 
 
 <p>We also implement a <code>TriangleTest</code> case, and because we&rsquo;re good testers we ensure to meet total line coverage:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TriangleTest</span> <span class="o">{</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test1</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">SCALENE</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid1</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid2</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid3</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalidNeg1</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalidNeg2</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalidNeg3</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testEquiliteral</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">EQUILATERAL</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testIsoceles1</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">ISOSCELES</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testIsoceles2</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">ISOSCELES</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testIsoceles3</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">ISOSCELES</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TriangleTest</span> <span class="o">{</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test1</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">SCALENE</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid1</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid2</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid3</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalidNeg1</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalidNeg2</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalidNeg3</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testEquiliteral</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">EQUILATERAL</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testIsoceles1</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">ISOSCELES</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testIsoceles2</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">ISOSCELES</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testIsoceles3</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">ISOSCELES</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
 
 
 <p>So now lets gets webscale and get our candidate unit tested and mutation tested
 under Maven. The <code>pitest</code> artifact and its related dependencies are hosted by Sonatype so we can add the typical <a href="https://github.com/full-of-foo/pit-coverage-tool-review/blob/master/practical/maven-pit-review/pom.xml#L9"><code>oss-sonatype</code></a> <code>repository</code> and <code>pluginRepository</code> entries to our <code>pom.xml</code>. We can then simply  configure PIT under JUnit4 as follows:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>  ...
-</span><span class='line'><span class="nt">&lt;dependencies&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;version&gt;</span>4.11<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
-</span><span class='line'><span class="nt">&lt;/dependencies&gt;</span>
-</span><span class='line'><span class="nt">&lt;build&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;plugins&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;version&gt;</span>2.4<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;/plugin&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;groupId&gt;</span>org.pitest<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;artifactId&gt;</span>pitest-maven<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;version&gt;</span>1.1.10-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;executions&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;execution&gt;</span>
-</span><span class='line'>                  <span class="nt">&lt;id&gt;</span>verify<span class="nt">&lt;/id&gt;</span>
-</span><span class='line'>                  <span class="nt">&lt;phase&gt;</span>verify<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>                  <span class="nt">&lt;goals&gt;</span>
-</span><span class='line'>                      <span class="nt">&lt;goal&gt;</span>mutationCoverage<span class="nt">&lt;/goal&gt;</span>
-</span><span class='line'>                  <span class="nt">&lt;/goals&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;/execution&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;/executions&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;/plugin&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/plugins&gt;</span>
-</span><span class='line'><span class="nt">&lt;/build&gt;</span>
-</span><span class='line'>  ...
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml">...
+<span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>4.11<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>2.4<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;plugin&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.pitest<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>pitest-maven<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>1.1.10-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;executions&gt;</span>
+                <span class="nt">&lt;execution&gt;</span>
+                    <span class="nt">&lt;id&gt;</span>verify<span class="nt">&lt;/id&gt;</span>
+                    <span class="nt">&lt;phase&gt;</span>verify<span class="nt">&lt;/phase&gt;</span>
+                    <span class="nt">&lt;goals&gt;</span>
+                        <span class="nt">&lt;goal&gt;</span>mutationCoverage<span class="nt">&lt;/goal&gt;</span>
+                    <span class="nt">&lt;/goals&gt;</span>
+                <span class="nt">&lt;/execution&gt;</span>
+            <span class="nt">&lt;/executions&gt;</span>
+        <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span>
+  ...</code></pre></div>
 
 
 <p>Unless we configure PIT to employ a <a href="https://github.com/full-of-foo/pit-coverage-tool-review/blob/master/practical/maven-pit-review/all-configs-pom.xml#L75">whitelist of mutation operations</a>,
@@ -585,101 +462,53 @@ with their boundary counterpart.
 <p>Given our configuration, PIT will now perform mutation testing at end the of the Maven <code>verfiy</code> lifecycle
 phases (after <code>test</code>). This involves running both line coverage and mutation coverage testing:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&gt; <span class="nv">$ </span>mvn verify
-</span><span class='line'>            ....
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Adding org.pitest:pitest to SUT classpath
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Mutating from /usr/src/app/maven-pit-review/target/classes
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Defaulting to group id <span class="o">(</span>com.review.app*<span class="o">)</span>
-</span><span class='line'>PIT &gt;&gt; INFO : Sending <span class="m">1</span> <span class="nb">test </span>classes to minion
-</span><span class='line'>PIT &gt;&gt; INFO : Sent tests to minion
-</span><span class='line'>PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : Checking environment
-</span><span class='line'>PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : Found  <span class="m">12</span> tests
-</span><span class='line'>PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : Dependency analysis reduced number of potential tests by 0
-</span><span class='line'>PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : <span class="m">12</span> tests received
-</span><span class='line'>PIT &gt;&gt; INFO : Calculated coverage in <span class="m">0</span> seconds.
-</span><span class='line'>PIT &gt;&gt; INFO : Created  <span class="m">1</span> mutation <span class="nb">test </span>units
-</span><span class='line'>PIT &gt;&gt; INFO : Completed in <span class="m">3</span> seconds
-</span><span class='line'>              ....
-</span><span class='line'><span class="o">================================================================================</span>
-</span><span class='line'>- <span class="nv">Statistics</span>
-</span><span class='line'><span class="o">================================================================================</span>
-</span><span class='line'>&gt;&gt; Generated <span class="m">44</span> mutations Killed <span class="m">36</span> <span class="o">(</span>82%<span class="o">)</span>
-</span><span class='line'>&gt;&gt; Ran <span class="m">115</span> tests <span class="o">(</span>2.61 tests per mutation<span class="o">)</span>
-</span><span class='line'><span class="o">================================================================================</span>
-</span><span class='line'>- <span class="nv">Mutators</span>
-</span><span class='line'><span class="o">================================================================================</span>
-</span><span class='line'>&gt; org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator
-</span><span class='line'>&gt;&gt; Generated <span class="m">10</span> Killed <span class="m">2</span> <span class="o">(</span>20%<span class="o">)</span>
-</span><span class='line'>&gt; KILLED <span class="m">2</span> SURVIVED <span class="m">8</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
-</span><span class='line'>&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
-</span><span class='line'>&gt; NO_COVERAGE 0
-</span><span class='line'>--------------------------------------------------------------------------------
-</span><span class='line'>&gt; org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator
-</span><span class='line'>&gt;&gt; Generated <span class="m">8</span> Killed <span class="m">8</span> <span class="o">(</span>100%<span class="o">)</span>
-</span><span class='line'>&gt; KILLED <span class="m">8</span> SURVIVED <span class="m">0</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
-</span><span class='line'>&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
-</span><span class='line'>&gt; NO_COVERAGE 0
-</span><span class='line'>--------------------------------------------------------------------------------
-</span><span class='line'>&gt; org.pitest.mutationtest.engine.gregor.mutators.MathMutator
-</span><span class='line'>&gt;&gt; Generated <span class="m">9</span> Killed <span class="m">9</span> <span class="o">(</span>100%<span class="o">)</span>
-</span><span class='line'>&gt; KILLED <span class="m">9</span> SURVIVED <span class="m">0</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
-</span><span class='line'>&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
-</span><span class='line'>&gt; NO_COVERAGE 0
-</span><span class='line'>--------------------------------------------------------------------------------
-</span><span class='line'>&gt; org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator
-</span><span class='line'>&gt;&gt; Generated <span class="m">17</span> Killed <span class="m">17</span> <span class="o">(</span>100%<span class="o">)</span>
-</span><span class='line'>&gt; KILLED <span class="m">17</span> SURVIVED <span class="m">0</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
-</span><span class='line'>&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
-</span><span class='line'>&gt; NO_COVERAGE 0
-</span><span class='line'>--------------------------------------------------------------------------------
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">&gt; <span class="nv">$ </span>mvn verify
+            ....
+<span class="o">[</span>INFO<span class="o">]</span> Adding org.pitest:pitest to SUT classpath
+<span class="o">[</span>INFO<span class="o">]</span> Mutating from /usr/src/app/maven-pit-review/target/classes
+<span class="o">[</span>INFO<span class="o">]</span> Defaulting to group id <span class="o">(</span>com.review.app*<span class="o">)</span>
+PIT &gt;&gt; INFO : Sending <span class="m">1</span> <span class="nb">test </span>classes to minion
+PIT &gt;&gt; INFO : Sent tests to minion
+PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : Checking environment
+PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : Found  <span class="m">12</span> tests
+PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : Dependency analysis reduced number of potential tests by 0
+PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : <span class="m">12</span> tests received
+PIT &gt;&gt; INFO : Calculated coverage in <span class="m">0</span> seconds.
+PIT &gt;&gt; INFO : Created  <span class="m">1</span> mutation <span class="nb">test </span>units
+PIT &gt;&gt; INFO : Completed in <span class="m">3</span> seconds
+              ....
+<span class="o">================================================================================</span>
+- <span class="nv">Statistics</span>
+<span class="o">================================================================================</span>
+&gt;&gt; Generated <span class="m">44</span> mutations Killed <span class="m">36</span> <span class="o">(</span>82%<span class="o">)</span>
+&gt;&gt; Ran <span class="m">115</span> tests <span class="o">(</span>2.61 tests per mutation<span class="o">)</span>
+<span class="o">================================================================================</span>
+- <span class="nv">Mutators</span>
+<span class="o">================================================================================</span>
+&gt; org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator
+&gt;&gt; Generated <span class="m">10</span> Killed <span class="m">2</span> <span class="o">(</span>20%<span class="o">)</span>
+&gt; KILLED <span class="m">2</span> SURVIVED <span class="m">8</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
+&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
+&gt; NO_COVERAGE 0
+--------------------------------------------------------------------------------
+&gt; org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator
+&gt;&gt; Generated <span class="m">8</span> Killed <span class="m">8</span> <span class="o">(</span>100%<span class="o">)</span>
+&gt; KILLED <span class="m">8</span> SURVIVED <span class="m">0</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
+&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
+&gt; NO_COVERAGE 0
+--------------------------------------------------------------------------------
+&gt; org.pitest.mutationtest.engine.gregor.mutators.MathMutator
+&gt;&gt; Generated <span class="m">9</span> Killed <span class="m">9</span> <span class="o">(</span>100%<span class="o">)</span>
+&gt; KILLED <span class="m">9</span> SURVIVED <span class="m">0</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
+&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
+&gt; NO_COVERAGE 0
+--------------------------------------------------------------------------------
+&gt; org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator
+&gt;&gt; Generated <span class="m">17</span> Killed <span class="m">17</span> <span class="o">(</span>100%<span class="o">)</span>
+&gt; KILLED <span class="m">17</span> SURVIVED <span class="m">0</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
+&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
+&gt; NO_COVERAGE 0
+--------------------------------------------------------------------------------</code></pre></div>
 
 
 <p>So, who would of guessed, our &ldquo;total covered&rdquo; candidate app yields 44 mutations
@@ -689,10 +518,10 @@ across our 12 test cases, resulting in the execution of 115 mutated test cases.
 So what is this tellings us about our tests? It means for each test run against a mutated version of the program all of the mutants can be reached (because we have full statement coverage). However, for eight of these runs at least the respective fault goes unnoticed as the tests pass.</p>
 
       <footer class="entry-meta">
-        <span class="entry-tags"><a href="/categories/#java" title="Pages tagged java" class="tag">java</a><a href="/categories/#research" title="Pages tagged research" class="tag">research</a><a href="/categories/#testing" title="Pages tagged testing" class="tag">testing</a></span>
-        <span><a href="/blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm/" rel="bookmark" title="Mutation Testing is Awesome: PIT for the JVM">Mutation Testing is Awesome: PIT for the JVM</a> was published on <span class="entry-date date published updated"><time datetime="2017-03-12T12:17:39+00:00">March 12, 2017</time></span></span>
+        <span class="entry-tags"><a href="//categories/#research" title="Pages tagged research" class="tag">research</a><a href="//categories/#java" title="Pages tagged java" class="tag">java</a><a href="//categories/#testing" title="Pages tagged testing" class="tag">testing</a></span>
+        <span><a href="//blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm/" rel="bookmark" title="Mutation Testing is Awesome: PIT for the JVM">Mutation Testing is Awesome: PIT for the JVM</a> was published on <span class="entry-date date published updated"><time datetime="2017-03-12T12:17:39+00:00">March 12, 2017</time></span></span>
         
-        <span class="author vcard"><span class="fn"><a href="" title="About Anthony Troy">Anthony Troy</a></span></span>
+        <span class="author vcard"><span class="fn"><a href="" title="About - Proud Torrenter of Software - All Rights Reserved">- Proud Torrenter of Software - All Rights Reserved</a></span></span>
         
       </footer>
     </div><!-- /.entry-content -->
@@ -703,7 +532,7 @@ So what is this tellings us about our tests? It means for each test run against 
 
 <div class="footer-wrapper">
   <footer role="contentinfo">
-    <span>&copy; 2017 Anthony Troy. Powered by <a href="http://octopress.org">Octopress</a>.</span>
+    <span>&copy; 2018 - Proud Torrenter of Software - All Rights Reserved. Powered by <a href="http://octopress.org">Octopress</a>.</span>
 
   </footer>
 </div><!-- /.footer-wrapper -->
@@ -713,7 +542,7 @@ So what is this tellings us about our tests? It means for each test run against 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="/javascripts/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <!--
-<script src="/javascripts/octopress.js" type="text/javascript"></script>
+<script src="//javascripts/octopress.js" type="text/javascript"></script>
 -->
 <script src="/javascripts/scripts.min.js"></script>
 
@@ -725,8 +554,8 @@ So what is this tellings us about our tests? It means for each test run against 
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm/';
-        var disqus_url = 'http://blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm/';
+        var disqus_identifier = 'http:///blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm/';
+        var disqus_url = 'http:///blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm/';
         var disqus_script = 'embed.js';
       
     (function () {

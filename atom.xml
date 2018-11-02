@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[]]></title>
+  <title><![CDATA[toeknee land]]></title>
   <link href="http:///atom.xml" rel="self"/>
   <link href="http:///"/>
-  <updated>2017-03-20T21:31:49+00:00</updated>
+  <updated>2018-11-02T12:49:19+00:00</updated>
   <id>http:///</id>
   <author>
-    <name><![CDATA[Anthony Troy]]></name>
+    <name><![CDATA[- Proud Torrenter of Software - All Rights Reserved]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
-    <title type="html"><![CDATA[Mutation Testing Is Awesome: PIT for the JVM]]></title>
+    <title type="html"><![CDATA[Mutation Testing is Awesome: PIT for the JVM]]></title>
     <link href="http:///blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm/"/>
     <updated>2017-03-12T12:17:39+00:00</updated>
     <id>http:///blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm</id>
-    <content type="html"><![CDATA[<p><img src="http:///images/dil.jpg" alt="dil" /></p>
+    <content type="html"><![CDATA[<p><img src="/images/dil.jpg" alt="dil" /></p>
 
 <p>Nowadays its not all that popular to be a testing enthusiast or fanatic.</p>
 
@@ -26,7 +26,7 @@
 less time getting caught up in testing-related hogwash and instead focus on the immediate
 churning out of what is at hand. Be <a href="https://thenewstack.io/10x-programmer-just-jerk/">10x</a>, <a href="https://xkcd.com/1428/">move fast and break things</a>, pew pew pew, and so on, and so on.</p>
 
-<p><img src="http:///images/neck.png" alt="neck" />
+<p><img src="/images/neck.png" alt="neck" />
 Free time from shipping our way to <a href="https://en.wikipedia.org/wiki/Unicorn_(finance)">software unicorn</a> land is often spent perusing
 blog posts from high-culture <a href="https://news.ycombinator.com">engineering forums</a>. In doing so you
 may have stumbled upon this strange blog, and, much too your dismay we&rsquo;ll be getting into plenty of
@@ -42,7 +42,7 @@ may have stumbled upon this strange blog, and, much too your dismay we&rsquo;ll 
 theoretical limitation of software - the number of potential
 inputs for most programs is so large that they are effectively infinite.</p>
 
-<p><img src="http:///images/rly.png" alt="rly" />
+<p><img src="/images/rly.png" alt="rly" />
 Consider <code>javac</code>. As a software artifact its potential inputs include not only every Java
 program, but all strings. Its only limitation is the size of the file that can be read by the parser. Therefore, the number of inputs is effectively infinite and cannot be explicitly enumerated. It can never have &ldquo;full coverage&rdquo;.</p>
 
@@ -62,7 +62,7 @@ for <a href="http://swtv.kaist.ac.kr/courses/cs453-fall09/graph_coverage.pdf">gr
 <h2>Kanye test Grammar?</h2>
 
 <p>The most common coverage criteria generate tests to satisfy their criterion based on either graphs, logical expressions, or partitions of input space. Graph and logical models are built from software artifacts (such as source code, design descriptions and specifications). Similarly, a model of the inputs can be built based on some description of an input space. Test criteria can then be applied to these models.
-<img src="http:///images/kanye.png" alt="kanye" /></p>
+<img src="/images/kanye.png" alt="kanye" /></p>
 
 <p>Another major method of deriving coverage criteria is though the syntactic descriptions of software artifacts. Under syntax-based testing, the syntax of the software artifact is used as the
 criteria model and tests are created from the syntax (ie. covering or violating the syntax in some way). So simply, by virtue a grammar describes what a test input <em>is not</em>. We say that an input is valid if it is <em>in the language</em> specified by the grammar, and
@@ -90,7 +90,7 @@ data that can be used to reveal real faults. Nevertheless, as highlighted earlie
 not possible for any system to generate every possible permutation of
 mutant in a candidate program.</p>
 
-<p><img src="http:///images/turt.png" alt="turt" />
+<p><img src="/images/turt.png" alt="turt" />
 Consequently, mutation testing systems will only offer a finite set of injectable mutators. So, hopeful that these finite amount mutators will reveal faults, mutation testing can be
 said to rely on two assumptions: the <a href="https://edisciplinas.usp.br/pluginfile.php/1943431/mod_resource/content/1/Hints_on_Test_Data_Selection-Demillo.pdf">Competent Programmer Hypothesis (CPH)
 and Coupling Effect</a>.</p>
@@ -113,7 +113,7 @@ Such techniques can be classified as employing strong or weak mutation.
 Under strong mutation given program <em>p</em>, a
 mutant <em>m</em> of program <em>p</em> is said to be killed only if mutant <em>m</em> gives a different
 output from the original program <em>p</em>.
-<img src="http:///images/jug.png" alt="jug" /></p>
+<img src="/images/jug.png" alt="jug" /></p>
 
 <p>In contrast, weak mutation requires only that the value produced at the point
 we introduce <em>m</em> is different from the corresponding value in <em>p</em> for <em>m</em> to be killed.
@@ -147,7 +147,7 @@ today, primarily due to fact that it adopts an effective byte code based approac
 based approach at these stages. Using byte code during the mutation detection phase
 is quite computationally expensive, though this can be offset by an effective test
 selection phase.
-<img src="http:///images/doge2.png" alt="doge2" /></p>
+<img src="/images/doge2.png" alt="doge2" /></p>
 
 <p>Additionally, systems using source code at the generation stage
 can also incur a large computational cost if a naive approach is followed. Tools
@@ -162,289 +162,153 @@ that rule. Here we define a program that
 allows one <a href="http://russcon.org/triangle_classification.html">classify a triangle</a> shape based on three supplied coordinates. A classification can be either equilateral, isosceles, scalene or invalid. Accordingly we implement a <code>TriangleType</code>
 enum and following we define our <code>Triangle</code> class with one static method for classification.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">enum</span> <span class="n">TriangleType</span> <span class="o">{</span>
-</span><span class='line'>  <span class="n">INVALID</span><span class="o">,</span> <span class="n">SCALENE</span><span class="o">,</span> <span class="n">EQUILATERAL</span><span class="o">,</span> <span class="n">ISOSCELES</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">enum</span> <span class="n">TriangleType</span> <span class="o">{</span>
+  <span class="n">INVALID</span><span class="o">,</span> <span class="n">SCALENE</span><span class="o">,</span> <span class="n">EQUILATERAL</span><span class="o">,</span> <span class="n">ISOSCELES</span>
+<span class="o">}</span></code></pre></div>
 
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Triangle</span> <span class="o">{</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kd">static</span> <span class="n">TriangleType</span> <span class="nf">classify</span><span class="o">(</span><span class="kd">final</span> <span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">b</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kt">int</span> <span class="n">trian</span><span class="o">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="o">((</span><span class="n">a</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">b</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">c</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">INVALID</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="n">trian</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">trian</span> <span class="o">=</span> <span class="n">trian</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">trian</span> <span class="o">=</span> <span class="n">trian</span> <span class="o">+</span> <span class="mi">2</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">trian</span> <span class="o">=</span> <span class="n">trian</span> <span class="o">+</span> <span class="mi">3</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">if</span> <span class="o">(((</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">c</span><span class="o">)</span> <span class="o">||</span> <span class="o">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">)</span> <span class="o">||</span> <span class="o">((</span><span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">a</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">INVALID</span><span class="o">;</span>
-</span><span class='line'>      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">SCALENE</span><span class="o">;</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">trian</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">EQUILATERAL</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="k">if</span> <span class="o">((</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">c</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">ISOSCELES</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">((</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">b</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">ISOSCELES</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">((</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">3</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">a</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">ISOSCELES</span><span class="o">;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">INVALID</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
+
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Triangle</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="n">TriangleType</span> <span class="nf">classify</span><span class="o">(</span><span class="kd">final</span> <span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">b</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">trian</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">((</span><span class="n">a</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">b</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">c</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">))</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">INVALID</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">trian</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">trian</span> <span class="o">=</span> <span class="n">trian</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">trian</span> <span class="o">=</span> <span class="n">trian</span> <span class="o">+</span> <span class="mi">2</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">==</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">trian</span> <span class="o">=</span> <span class="n">trian</span> <span class="o">+</span> <span class="mi">3</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(((</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">c</span><span class="o">)</span> <span class="o">||</span> <span class="o">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">)</span> <span class="o">||</span> <span class="o">((</span><span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">a</span><span class="o">))</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">INVALID</span><span class="o">;</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">SCALENE</span><span class="o">;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">trian</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">EQUILATERAL</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">if</span> <span class="o">((</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">c</span><span class="o">))</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">ISOSCELES</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">((</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">a</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">b</span><span class="o">))</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">ISOSCELES</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="o">((</span><span class="n">trian</span> <span class="o">==</span> <span class="mi">3</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">((</span><span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="o">)</span> <span class="o">&gt;</span> <span class="n">a</span><span class="o">))</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">ISOSCELES</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">TriangleType</span><span class="o">.</span><span class="na">INVALID</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
 
 
 <p>We also implement a <code>TriangleTest</code> case, and because we&rsquo;re good testers we ensure to meet total line coverage:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TriangleTest</span> <span class="o">{</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test1</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">SCALENE</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid1</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid2</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid3</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalidNeg1</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalidNeg2</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalidNeg3</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testEquiliteral</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">EQUILATERAL</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testIsoceles1</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">ISOSCELES</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testIsoceles2</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">ISOSCELES</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testIsoceles3</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">ISOSCELES</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="nd">@Test</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TriangleTest</span> <span class="o">{</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test1</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">SCALENE</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid1</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">4</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid2</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid3</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalidNeg1</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalidNeg2</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalidNeg3</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testEquiliteral</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">EQUILATERAL</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testIsoceles1</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">ISOSCELES</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testIsoceles2</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">ISOSCELES</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testIsoceles3</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">ISOSCELES</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInvalid</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">TriangleType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">Triangle</span><span class="o">.</span><span class="na">classify</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="n">assertEquals</span><span class="o">(</span><span class="n">INVALID</span><span class="o">,</span> <span class="n">type</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
 
 
 <p>So now lets gets webscale and get our candidate unit tested and mutation tested
 under Maven. The <code>pitest</code> artifact and its related dependencies are hosted by Sonatype so we can add the typical <a href="https://github.com/full-of-foo/pit-coverage-tool-review/blob/master/practical/maven-pit-review/pom.xml#L9"><code>oss-sonatype</code></a> <code>repository</code> and <code>pluginRepository</code> entries to our <code>pom.xml</code>. We can then simply  configure PIT under JUnit4 as follows:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>  ...
-</span><span class='line'><span class="nt">&lt;dependencies&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;dependency&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;version&gt;</span>4.11<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/dependency&gt;</span>
-</span><span class='line'><span class="nt">&lt;/dependencies&gt;</span>
-</span><span class='line'><span class="nt">&lt;build&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;plugins&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;version&gt;</span>2.4<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;/plugin&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;groupId&gt;</span>org.pitest<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;artifactId&gt;</span>pitest-maven<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;version&gt;</span>1.1.10-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;executions&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;execution&gt;</span>
-</span><span class='line'>                  <span class="nt">&lt;id&gt;</span>verify<span class="nt">&lt;/id&gt;</span>
-</span><span class='line'>                  <span class="nt">&lt;phase&gt;</span>verify<span class="nt">&lt;/phase&gt;</span>
-</span><span class='line'>                  <span class="nt">&lt;goals&gt;</span>
-</span><span class='line'>                      <span class="nt">&lt;goal&gt;</span>mutationCoverage<span class="nt">&lt;/goal&gt;</span>
-</span><span class='line'>                  <span class="nt">&lt;/goals&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;/execution&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;/executions&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;/plugin&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/plugins&gt;</span>
-</span><span class='line'><span class="nt">&lt;/build&gt;</span>
-</span><span class='line'>  ...
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml">...
+<span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+        <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+        <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+        <span class="nt">&lt;version&gt;</span>4.11<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;build&gt;</span>
+    <span class="nt">&lt;plugins&gt;</span>
+        <span class="nt">&lt;plugin&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>maven-compiler-plugin<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>2.4<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;plugin&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.pitest<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>pitest-maven<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>1.1.10-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;executions&gt;</span>
+                <span class="nt">&lt;execution&gt;</span>
+                    <span class="nt">&lt;id&gt;</span>verify<span class="nt">&lt;/id&gt;</span>
+                    <span class="nt">&lt;phase&gt;</span>verify<span class="nt">&lt;/phase&gt;</span>
+                    <span class="nt">&lt;goals&gt;</span>
+                        <span class="nt">&lt;goal&gt;</span>mutationCoverage<span class="nt">&lt;/goal&gt;</span>
+                    <span class="nt">&lt;/goals&gt;</span>
+                <span class="nt">&lt;/execution&gt;</span>
+            <span class="nt">&lt;/executions&gt;</span>
+        <span class="nt">&lt;/plugin&gt;</span>
+    <span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span>
+  ...</code></pre></div>
 
 
 <p>Unless we configure PIT to employ a <a href="https://github.com/full-of-foo/pit-coverage-tool-review/blob/master/practical/maven-pit-review/all-configs-pom.xml#L75">whitelist of mutation operations</a>,
@@ -487,101 +351,53 @@ with their boundary counterpart.
 <p>Given our configuration, PIT will now perform mutation testing at end the of the Maven <code>verfiy</code> lifecycle
 phases (after <code>test</code>). This involves running both line coverage and mutation coverage testing:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&gt; <span class="nv">$ </span>mvn verify
-</span><span class='line'>            ....
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Adding org.pitest:pitest to SUT classpath
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Mutating from /usr/src/app/maven-pit-review/target/classes
-</span><span class='line'><span class="o">[</span>INFO<span class="o">]</span> Defaulting to group id <span class="o">(</span>com.review.app*<span class="o">)</span>
-</span><span class='line'>PIT &gt;&gt; INFO : Sending <span class="m">1</span> <span class="nb">test </span>classes to minion
-</span><span class='line'>PIT &gt;&gt; INFO : Sent tests to minion
-</span><span class='line'>PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : Checking environment
-</span><span class='line'>PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : Found  <span class="m">12</span> tests
-</span><span class='line'>PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : Dependency analysis reduced number of potential tests by 0
-</span><span class='line'>PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : <span class="m">12</span> tests received
-</span><span class='line'>PIT &gt;&gt; INFO : Calculated coverage in <span class="m">0</span> seconds.
-</span><span class='line'>PIT &gt;&gt; INFO : Created  <span class="m">1</span> mutation <span class="nb">test </span>units
-</span><span class='line'>PIT &gt;&gt; INFO : Completed in <span class="m">3</span> seconds
-</span><span class='line'>              ....
-</span><span class='line'><span class="o">================================================================================</span>
-</span><span class='line'>- <span class="nv">Statistics</span>
-</span><span class='line'><span class="o">================================================================================</span>
-</span><span class='line'>&gt;&gt; Generated <span class="m">44</span> mutations Killed <span class="m">36</span> <span class="o">(</span>82%<span class="o">)</span>
-</span><span class='line'>&gt;&gt; Ran <span class="m">115</span> tests <span class="o">(</span>2.61 tests per mutation<span class="o">)</span>
-</span><span class='line'><span class="o">================================================================================</span>
-</span><span class='line'>- <span class="nv">Mutators</span>
-</span><span class='line'><span class="o">================================================================================</span>
-</span><span class='line'>&gt; org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator
-</span><span class='line'>&gt;&gt; Generated <span class="m">10</span> Killed <span class="m">2</span> <span class="o">(</span>20%<span class="o">)</span>
-</span><span class='line'>&gt; KILLED <span class="m">2</span> SURVIVED <span class="m">8</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
-</span><span class='line'>&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
-</span><span class='line'>&gt; NO_COVERAGE 0
-</span><span class='line'>--------------------------------------------------------------------------------
-</span><span class='line'>&gt; org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator
-</span><span class='line'>&gt;&gt; Generated <span class="m">8</span> Killed <span class="m">8</span> <span class="o">(</span>100%<span class="o">)</span>
-</span><span class='line'>&gt; KILLED <span class="m">8</span> SURVIVED <span class="m">0</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
-</span><span class='line'>&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
-</span><span class='line'>&gt; NO_COVERAGE 0
-</span><span class='line'>--------------------------------------------------------------------------------
-</span><span class='line'>&gt; org.pitest.mutationtest.engine.gregor.mutators.MathMutator
-</span><span class='line'>&gt;&gt; Generated <span class="m">9</span> Killed <span class="m">9</span> <span class="o">(</span>100%<span class="o">)</span>
-</span><span class='line'>&gt; KILLED <span class="m">9</span> SURVIVED <span class="m">0</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
-</span><span class='line'>&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
-</span><span class='line'>&gt; NO_COVERAGE 0
-</span><span class='line'>--------------------------------------------------------------------------------
-</span><span class='line'>&gt; org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator
-</span><span class='line'>&gt;&gt; Generated <span class="m">17</span> Killed <span class="m">17</span> <span class="o">(</span>100%<span class="o">)</span>
-</span><span class='line'>&gt; KILLED <span class="m">17</span> SURVIVED <span class="m">0</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
-</span><span class='line'>&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
-</span><span class='line'>&gt; NO_COVERAGE 0
-</span><span class='line'>--------------------------------------------------------------------------------
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">&gt; <span class="nv">$ </span>mvn verify
+            ....
+<span class="o">[</span>INFO<span class="o">]</span> Adding org.pitest:pitest to SUT classpath
+<span class="o">[</span>INFO<span class="o">]</span> Mutating from /usr/src/app/maven-pit-review/target/classes
+<span class="o">[</span>INFO<span class="o">]</span> Defaulting to group id <span class="o">(</span>com.review.app*<span class="o">)</span>
+PIT &gt;&gt; INFO : Sending <span class="m">1</span> <span class="nb">test </span>classes to minion
+PIT &gt;&gt; INFO : Sent tests to minion
+PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : Checking environment
+PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : Found  <span class="m">12</span> tests
+PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : Dependency analysis reduced number of potential tests by 0
+PIT &gt;&gt; INFO : MINION : PIT &gt;&gt; INFO : <span class="m">12</span> tests received
+PIT &gt;&gt; INFO : Calculated coverage in <span class="m">0</span> seconds.
+PIT &gt;&gt; INFO : Created  <span class="m">1</span> mutation <span class="nb">test </span>units
+PIT &gt;&gt; INFO : Completed in <span class="m">3</span> seconds
+              ....
+<span class="o">================================================================================</span>
+- <span class="nv">Statistics</span>
+<span class="o">================================================================================</span>
+&gt;&gt; Generated <span class="m">44</span> mutations Killed <span class="m">36</span> <span class="o">(</span>82%<span class="o">)</span>
+&gt;&gt; Ran <span class="m">115</span> tests <span class="o">(</span>2.61 tests per mutation<span class="o">)</span>
+<span class="o">================================================================================</span>
+- <span class="nv">Mutators</span>
+<span class="o">================================================================================</span>
+&gt; org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator
+&gt;&gt; Generated <span class="m">10</span> Killed <span class="m">2</span> <span class="o">(</span>20%<span class="o">)</span>
+&gt; KILLED <span class="m">2</span> SURVIVED <span class="m">8</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
+&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
+&gt; NO_COVERAGE 0
+--------------------------------------------------------------------------------
+&gt; org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator
+&gt;&gt; Generated <span class="m">8</span> Killed <span class="m">8</span> <span class="o">(</span>100%<span class="o">)</span>
+&gt; KILLED <span class="m">8</span> SURVIVED <span class="m">0</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
+&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
+&gt; NO_COVERAGE 0
+--------------------------------------------------------------------------------
+&gt; org.pitest.mutationtest.engine.gregor.mutators.MathMutator
+&gt;&gt; Generated <span class="m">9</span> Killed <span class="m">9</span> <span class="o">(</span>100%<span class="o">)</span>
+&gt; KILLED <span class="m">9</span> SURVIVED <span class="m">0</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
+&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
+&gt; NO_COVERAGE 0
+--------------------------------------------------------------------------------
+&gt; org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator
+&gt;&gt; Generated <span class="m">17</span> Killed <span class="m">17</span> <span class="o">(</span>100%<span class="o">)</span>
+&gt; KILLED <span class="m">17</span> SURVIVED <span class="m">0</span> TIMED_OUT <span class="m">0</span> NON_VIABLE 0
+&gt; MEMORY_ERROR <span class="m">0</span> NOT_STARTED <span class="m">0</span> STARTED <span class="m">0</span> RUN_ERROR 0
+&gt; NO_COVERAGE 0
+--------------------------------------------------------------------------------</code></pre></div>
 
 
 <p>So, who would of guessed, our &ldquo;total covered&rdquo; candidate app yields 44 mutations
@@ -593,17 +409,17 @@ So what is this tellings us about our tests? It means for each test run against 
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Matrix Multiply: Naive vs Cache-Aware Approaches (Part 2)]]></title>
+    <title type="html"><![CDATA[Matrix Multiply: Naive Vs Cache-Aware Approaches (Part 2)]]></title>
     <link href="http:///blog/2015/08/24/matrix-multiply-naive-vs-cache-aware-approaches-part-2/"/>
     <updated>2015-08-24T19:56:46+01:00</updated>
     <id>http:///blog/2015/08/24/matrix-multiply-naive-vs-cache-aware-approaches-part-2</id>
     <content type="html"><![CDATA[<h2>Matrix Multiplication Feels Bad</h2>
 
-<p>In our <a href="http:///blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/">last post</a>
+<p>In our <a href="/blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/">last post</a>
 we talked about the implications of both sequential and parallel naive <a href="http://en.wikipedia.org/wiki/Matrix_multiplication">Matrix-Matrix multiplication (MMM)</a>. Sadly we found that this classic triple for-loop approach suffers from
 <strong><a href="http://en.wikipedia.org/wiki/Locality_of_reference">poor locality</a></strong>.</p>
 
-<p><img src="http:///images/pepe.png" alt="psad" />
+<p><img src="/images/pepe.png" alt="psad" />
 OMG, who would have known? Our algorithms actually sometimes need to be cache-aware.</p>
 
 <p>This time around we will look at the tall cache
@@ -623,7 +439,7 @@ benchmarks involved.</p>
 
 <p>Bellow we see the row-major layout of matrices <strong>A</strong> and <strong>B</strong>. We depict the red rectangles in matrix <strong>B</strong> as our blocks of cache. For all rows of matrix <strong>A</strong> we traverse over each column of <strong>B</strong>. Upon traversing <strong>B</strong> the accessing of each element is cached. Given that <strong>n = colAmountOfA</strong> and <strong>n > M/B</strong> then before the traversal of a column <strong>B</strong> completes the first, and possibly several subsequent, cached blocks of <strong>B</strong> will be evicted. So upon the next and remaining traversals of <strong>B</strong> we incur cache-misses on each block</p>
 
-<p><img src="http:///images/naive.png" alt="m" /></p>
+<p><img src="/images/naive.png" alt="m" /></p>
 
 <p>From this we can be quite clever and infer that a naive algorithm with <strong>n > M/B</strong> results gets the following work done</p>
 
@@ -636,7 +452,7 @@ benchmarks involved.</p>
 <h2>Loop-Tiling, Feels Good</h2>
 
 <p>Lets take a look at a standard <a href="https://en.wikipedia.org/wiki/Loop_tiling">tiling</a> solution to resolve our cache capacity misses.
-<img src="http:///images/good.png" alt="good" /></p>
+<img src="/images/good.png" alt="good" /></p>
 
 <p>Pro tip: <em>loop-tiling is a type of loop transformation on which many cache blocking algorithms are built.</em></p>
 
@@ -644,74 +460,41 @@ benchmarks involved.</p>
 
 <p>This following tiling solution ensures greater spatial locality for accesses across matrix <strong>B</strong>. Simple but effective, our implementation partitions the matrices’ iteration space though such strip mining and loop interchange</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">rowAmount1</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">4</span><span class="o">);</span>
-</span><span class='line'><span class="n">s2</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">colAmount1</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">4</span><span class="o">);</span>
-</span><span class='line'><span class="n">s3</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">rowAmount2</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">4</span><span class="o">);</span>
-</span><span class='line'><span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">rowAmount1</span> <span class="o">/</span> <span class="n">s</span><span class="o">;</span> <span class="n">i</span><span class="o">+=</span><span class="n">s</span><span class="o">){</span>
-</span><span class='line'>  <span class="k">for</span> <span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">colAmount1</span> <span class="o">/</span> <span class="n">s2</span><span class="o">;</span> <span class="n">j</span><span class="o">+=</span><span class="n">s2</span><span class="o">){</span>
-</span><span class='line'>    <span class="k">for</span> <span class="o">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">rowAmount2</span> <span class="o">/</span><span class="n">s3</span><span class="o">;</span> <span class="n">k</span><span class="o">+=</span><span class="n">s3</span><span class="o">){</span>
-</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="n">i2</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">i2</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="n">s</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">i2</span> <span class="o">&lt;</span> <span class="n">rowAmount1</span><span class="o">;</span> <span class="n">i2</span><span class="o">++){</span>
-</span><span class='line'>        <span class="k">for</span> <span class="o">(</span><span class="n">j2</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span> <span class="n">j2</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">j</span><span class="o">+</span><span class="n">s2</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">j2</span> <span class="o">&lt;</span> <span class="n">colAmount1</span><span class="o">;</span> <span class="n">j2</span><span class="o">++){</span>
-</span><span class='line'>          <span class="k">for</span> <span class="o">(</span><span class="n">k2</span> <span class="o">=</span> <span class="n">k</span><span class="o">;</span> <span class="n">k2</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">k</span><span class="o">+</span><span class="n">s3</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">k2</span> <span class="o">&lt;</span> <span class="n">rowAmount2</span><span class="o">;</span> <span class="n">k2</span><span class="o">++){</span>
-</span><span class='line'>            <span class="n">C</span><span class="o">[</span><span class="n">i2</span><span class="o">][</span><span class="n">j2</span><span class="o">]</span> <span class="o">+=</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i2</span><span class="o">][</span><span class="n">k2</span><span class="o">]</span> <span class="err">∗</span> <span class="n">B</span><span class="o">[</span><span class="n">k2</span><span class="o">][</span><span class="n">j2</span><span class="o">]);</span>
-</span><span class='line'>                          <span class="o">....</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">s</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">rowAmount1</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">4</span><span class="o">);</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">colAmount1</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">4</span><span class="o">);</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">rowAmount2</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">4</span><span class="o">);</span>
+<span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">rowAmount1</span> <span class="o">/</span> <span class="n">s</span><span class="o">;</span> <span class="n">i</span><span class="o">+=</span><span class="n">s</span><span class="o">){</span>
+  <span class="k">for</span> <span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">colAmount1</span> <span class="o">/</span> <span class="n">s2</span><span class="o">;</span> <span class="n">j</span><span class="o">+=</span><span class="n">s2</span><span class="o">){</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">rowAmount2</span> <span class="o">/</span><span class="n">s3</span><span class="o">;</span> <span class="n">k</span><span class="o">+=</span><span class="n">s3</span><span class="o">){</span>
+      <span class="k">for</span> <span class="o">(</span><span class="n">i2</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">i2</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="n">s</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">i2</span> <span class="o">&lt;</span> <span class="n">rowAmount1</span><span class="o">;</span> <span class="n">i2</span><span class="o">++){</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">j2</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span> <span class="n">j2</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">j</span><span class="o">+</span><span class="n">s2</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">j2</span> <span class="o">&lt;</span> <span class="n">colAmount1</span><span class="o">;</span> <span class="n">j2</span><span class="o">++){</span>
+          <span class="k">for</span> <span class="o">(</span><span class="n">k2</span> <span class="o">=</span> <span class="n">k</span><span class="o">;</span> <span class="n">k2</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">k</span><span class="o">+</span><span class="n">s3</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">k2</span> <span class="o">&lt;</span> <span class="n">rowAmount2</span><span class="o">;</span> <span class="n">k2</span><span class="o">++){</span>
+            <span class="n">C</span><span class="o">[</span><span class="n">i2</span><span class="o">][</span><span class="n">j2</span><span class="o">]</span> <span class="o">+=</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i2</span><span class="o">][</span><span class="n">k2</span><span class="o">]</span> <span class="err">∗</span> <span class="n">B</span><span class="o">[</span><span class="n">k2</span><span class="o">][</span><span class="n">j2</span><span class="o">]);</span>
+                          <span class="o">....</span></code></pre></div>
 
 
 <p>Although not implemented recursively, tiling shares some similarities to the divide-and-conquer approach in that it aims to refine the problem size through partitioning the problems (matrices) into subproblems (submatrices). The design of the tiling solution quite naturally lends itself to parallelisation. Such is implemented as follows</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">rowAmount1</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">4</span><span class="o">);</span>
-</span><span class='line'><span class="n">s2</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">colAmount1</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">4</span><span class="o">);</span>
-</span><span class='line'><span class="n">s3</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">rowAmount2</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">4</span><span class="o">);</span>
-</span><span class='line'><span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
-</span><span class='line'><span class="k">for</span><span class="o">(</span><span class="n">interval</span> <span class="o">=</span> <span class="mi">10</span><span class="o">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">rowAmount1</span><span class="o">,</span>
-</span><span class='line'>    <span class="n">size</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">rowAmount1</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">10</span><span class="o">);</span>
-</span><span class='line'>    <span class="n">interval</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">end</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="n">interval</span><span class="err">−−</span><span class="o">,</span> <span class="n">end</span> <span class="err">−</span><span class="o">=</span> <span class="n">size</span><span class="o">){</span>
-</span><span class='line'>  <span class="n">to</span> <span class="o">=</span> <span class="n">end</span><span class="o">;</span>
-</span><span class='line'>  <span class="n">from</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">end</span> <span class="err">−</span> <span class="n">size</span><span class="o">);</span>
-</span><span class='line'>  <span class="n">Runnable</span> <span class="n">runnable</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Runnable</span><span class="o">(){</span>
-</span><span class='line'>    <span class="nd">@Override</span>
-</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">from</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">to</span> <span class="o">/</span> <span class="n">s</span><span class="o">;</span> <span class="n">i</span><span class="o">+=</span><span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="k">for</span> <span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">colAmount1</span> <span class="o">/</span> <span class="n">s2</span><span class="o">;</span> <span class="n">j</span><span class="o">+=</span><span class="n">s2</span><span class="o">){</span>
-</span><span class='line'>          <span class="k">for</span> <span class="o">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">rowAmount2</span> <span class="o">/</span><span class="n">s3</span><span class="o">;</span> <span class="n">k</span><span class="o">+=</span><span class="n">s3</span><span class="o">){</span>
-</span><span class='line'>            <span class="k">for</span> <span class="o">(</span><span class="n">i2</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">i2</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="n">s</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">i2</span> <span class="o">&lt;</span> <span class="n">rowAmount1</span><span class="o">;</span> <span class="n">i2</span><span class="o">++){</span>
-</span><span class='line'>              <span class="k">for</span> <span class="o">(</span><span class="n">j2</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span> <span class="n">j2</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">j</span><span class="o">+</span><span class="n">s2</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">j2</span> <span class="o">&lt;</span> <span class="n">colAmount1</span><span class="o">;</span> <span class="n">j2</span><span class="o">++){</span>
-</span><span class='line'>                <span class="k">for</span> <span class="o">(</span><span class="n">k2</span> <span class="o">=</span> <span class="n">k</span><span class="o">;</span> <span class="n">k2</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">k</span><span class="o">+</span><span class="n">s3</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">k2</span> <span class="o">&lt;</span> <span class="n">rowAmount2</span><span class="o">;</span> <span class="n">k2</span><span class="o">++){</span>
-</span><span class='line'>                  <span class="n">C</span><span class="o">[</span><span class="n">i2</span><span class="o">][</span><span class="n">j2</span><span class="o">]</span> <span class="o">+=</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i2</span><span class="o">][</span><span class="n">k2</span><span class="o">]</span> <span class="err">∗</span> <span class="n">B</span><span class="o">[</span><span class="n">k2</span><span class="o">][</span><span class="n">j2</span><span class="o">]);</span>
-</span><span class='line'>                               <span class="o">...</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">s</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">rowAmount1</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">4</span><span class="o">);</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">colAmount1</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">4</span><span class="o">);</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">rowAmount2</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">4</span><span class="o">);</span>
+<span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="mi">10</span><span class="o">);</span>
+<span class="k">for</span><span class="o">(</span><span class="n">interval</span> <span class="o">=</span> <span class="mi">10</span><span class="o">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">rowAmount1</span><span class="o">,</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">rowAmount1</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">10</span><span class="o">);</span>
+    <span class="n">interval</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">end</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="n">interval</span><span class="err">−−</span><span class="o">,</span> <span class="n">end</span> <span class="err">−</span><span class="o">=</span> <span class="n">size</span><span class="o">){</span>
+  <span class="n">to</span> <span class="o">=</span> <span class="n">end</span><span class="o">;</span>
+  <span class="n">from</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">end</span> <span class="err">−</span> <span class="n">size</span><span class="o">);</span>
+  <span class="n">Runnable</span> <span class="n">runnable</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Runnable</span><span class="o">(){</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">from</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">to</span> <span class="o">/</span> <span class="n">s</span><span class="o">;</span> <span class="n">i</span><span class="o">+=</span><span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">colAmount1</span> <span class="o">/</span> <span class="n">s2</span><span class="o">;</span> <span class="n">j</span><span class="o">+=</span><span class="n">s2</span><span class="o">){</span>
+          <span class="k">for</span> <span class="o">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">rowAmount2</span> <span class="o">/</span><span class="n">s3</span><span class="o">;</span> <span class="n">k</span><span class="o">+=</span><span class="n">s3</span><span class="o">){</span>
+            <span class="k">for</span> <span class="o">(</span><span class="n">i2</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">i2</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="n">s</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">i2</span> <span class="o">&lt;</span> <span class="n">rowAmount1</span><span class="o">;</span> <span class="n">i2</span><span class="o">++){</span>
+              <span class="k">for</span> <span class="o">(</span><span class="n">j2</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span> <span class="n">j2</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">j</span><span class="o">+</span><span class="n">s2</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">j2</span> <span class="o">&lt;</span> <span class="n">colAmount1</span><span class="o">;</span> <span class="n">j2</span><span class="o">++){</span>
+                <span class="k">for</span> <span class="o">(</span><span class="n">k2</span> <span class="o">=</span> <span class="n">k</span><span class="o">;</span> <span class="n">k2</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">k</span><span class="o">+</span><span class="n">s3</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">k2</span> <span class="o">&lt;</span> <span class="n">rowAmount2</span><span class="o">;</span> <span class="n">k2</span><span class="o">++){</span>
+                  <span class="n">C</span><span class="o">[</span><span class="n">i2</span><span class="o">][</span><span class="n">j2</span><span class="o">]</span> <span class="o">+=</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i2</span><span class="o">][</span><span class="n">k2</span><span class="o">]</span> <span class="err">∗</span> <span class="n">B</span><span class="o">[</span><span class="n">k2</span><span class="o">][</span><span class="n">j2</span><span class="o">]);</span>
+                               <span class="o">...</span></code></pre></div>
 
 
 <p>It is important to note the <strong>s</strong>, <strong>s2</strong> and <strong>s3</strong> parameters to our tiling algorithm. Above we see that they are derived respectively from a matrix dimension divided by 4. They are then later used to determine the dimensions (size <strong>s2</strong>x<strong>s3</strong>) of the submatrix-submatrix multiply tasks to be ran. In the case of a square MMM the submatrices’ dimensions would be <strong>s</strong>x<strong>s</strong>.</p>
@@ -726,7 +509,7 @@ benchmarks involved.</p>
 
 <p>Once we determine <strong>s &#8804; M/B</strong> we can easily decompose submatrices (tiles) from matrix <strong>B</strong> that respect the target cache size</p>
 
-<p><img src="http:///images/tiled.png" alt="m" /></p>
+<p><img src="/images/tiled.png" alt="m" /></p>
 
 <p>As you would expect the tiling optimisation still results in <strong>Θ(n<sup>3</sup>)</strong> computations. With an optimal <strong>s</strong> value, <strong>Θ(M<sup>&frac12;</sup>)</strong>, we see an improvement in the amount of work done to that of our naive approach. The tall-cache assumption implies that each submatrix and its data will fit in cache, meaning only cold caches misses should occur per submatrix (<strong>Θ(s<sup>2</sup>/B)</strong>).</p>
 
@@ -747,33 +530,33 @@ benchmarks involved.</p>
 </ol>
 
 
-<p><img src="http:///images/i5.png" alt="m" /></p>
+<p><img src="/images/i5.png" alt="m" /></p>
 
-<p><img src="http:///images/i7.png" alt="m" /></p>
+<p><img src="/images/i7.png" alt="m" /></p>
 
 <h2>Dem Results</h2>
 
 <p>Reflecting on the mean (μ) execution-time and according standard deviation (σ) provided by our benchmark runs, the collated results are as follows</p>
 
-<p><img src="http:///images/res.png" alt="m" /></p>
+<p><img src="/images/res.png" alt="m" /></p>
 
 <p>Our data poses several interesting avenues of investigation. However our main concern is exploring the benefits of cache-aware algorithms, so lets just explore the performance differences between both algorithms across runs. The bellow sidebar chart illustrates an obvious difference in our algorithms, at a glance one can see that there is large deviation between the naive and tiled time results.</p>
 
-<p><img src="http:///images/data.png" alt="m" /></p>
+<p><img src="/images/data.png" alt="m" /></p>
 
 <p>This is particularly true across the benchmarks where matrix dimensions are in their thousands. Such is unsurprising given that the naive algorithm is cache-oblivious. When viewing every sidebar related to the tiled results we can see that varying matrix dimensions do not greatly affect performance. Interestingly, we see that an increase in cores only greatly benefits the naive algorithm. It sees around a 55% improvement in execution-time with the assistance of 4 extra cores across all dimension sizes.</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Matrix Multiply: Naive vs Cache-Aware Approaches (Part 1)]]></title>
+    <title type="html"><![CDATA[Matrix Multiply: Naive Vs Cache-Aware Approaches (Part 1)]]></title>
     <link href="http:///blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/"/>
     <updated>2015-06-07T17:12:21+01:00</updated>
     <id>http:///blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1</id>
     <content type="html"><![CDATA[<h2>Why, Why, Why?</h2>
 
 <p>Before undertaking my postgraduate studies I led a quite joyous and sheltered life. Living the high life in the worlds of Ruby, Javascript, Python, Java and all of those sorts. My life got flipped-turned upside down when I began studying subjects like Secure Programming, Concurrent Programming and Formal Methods. For me, the biggest take-aways from these learnings were <a href="http://en.wikipedia.org/wiki/Parallel_algorithm">parallel algorithm design</a> and the <a href="http://en.wikipedia.org/wiki/Locality_of_reference">principle of locality</a>.
-<img src="http:///images/fresh.png" alt="fresh" /></p>
+<img src="/images/fresh.png" alt="fresh" /></p>
 
 <p>Most dense linear algebraic computations rely on the consideration of both spatial and temporal locality. If you are unfamiliar with locality, the former describes the tendency of applications to reference memory addresses that are near other recently accessed addresses and the latter describes the amount of reuse of the same memory locations.</p>
 
@@ -798,56 +581,33 @@ matrix A must equal equal the amount of rows in B.</p>
 
 <p>The most naive algorithm for MMM comes straight from the above definition and mimics computing the product by hand. Assuming the arrays are stored such that rows of the arrays are in consecutive memory locations, i.e. row-major order, then we derive C as follows</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">rowAmount1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-</span><span class='line'>  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">colAmount1</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span>
-</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">rowAmount2</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span>
-</span><span class='line'>          <span class="n">C</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+=</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="err">∗</span> <span class="n">B</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">rowAmount1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">colAmount1</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">rowAmount2</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span>
+            <span class="n">C</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+=</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="err">∗</span> <span class="n">B</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span></code></pre></div>
 
 
 <p>This algorithm is said to be naive because it suffers from poor locality. Elements of B are accessed column-wise, and therefore not in sequential order in memory. While each iteration in j reuses row i of A, that row may have been evicted from the cache by the time the inner-most loop completes. As a result, the algorithm is bandwidth limited and displays poor performance and low efficiency.</p>
 
 <p>As we highlighted before, matrix multiplications have abundant parallel computation. While maintaining the less favourable design of this naive approach, let us introduce a parallelised implementation</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span> <span class="o">;</span>
-</span><span class='line'><span class="k">for</span> <span class="o">(</span><span class="n">interval</span> <span class="o">=</span> <span class="n">numTasks</span><span class="o">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">rowAmount1</span><span class="o">,</span>
-</span><span class='line'>      <span class="n">size</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">rowAmount1</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">10</span><span class="o">);</span>
-</span><span class='line'>      <span class="n">interval</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">end</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="n">interval</span><span class="err">−−</span><span class="o">,</span> <span class="n">end</span> <span class="err">−</span><span class="o">=</span> <span class="n">size</span><span class="o">){</span>
-</span><span class='line'>  <span class="kd">final</span> <span class="kt">int</span> <span class="n">to</span> <span class="o">=</span> <span class="n">end</span><span class="o">;</span>
-</span><span class='line'>  <span class="kd">final</span> <span class="kt">int</span> <span class="n">from</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">end</span> <span class="err">−</span> <span class="n">size</span><span class="o">);</span>
-</span><span class='line'>  <span class="n">Runnable</span> <span class="n">runnable</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Runnable</span><span class="o">(){</span>
-</span><span class='line'>      <span class="nd">@Override</span>
-</span><span class='line'>      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
-</span><span class='line'>          <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">from</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">to</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-</span><span class='line'>              <span class="k">for</span> <span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">colAmount1</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span>
-</span><span class='line'>                  <span class="k">for</span> <span class="o">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">rowAmount2</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span>
-</span><span class='line'>                      <span class="n">C</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+=</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="err">∗</span> <span class="n">B</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>  <span class="o">};</span>
-</span><span class='line'>  <span class="n">executor</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="n">runnable</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">executor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span> <span class="o">;</span>
+<span class="k">for</span> <span class="o">(</span><span class="n">interval</span> <span class="o">=</span> <span class="n">numTasks</span><span class="o">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">rowAmount1</span><span class="o">,</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">ceil</span><span class="o">(</span><span class="n">rowAmount1</span> <span class="err">∗</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mi">10</span><span class="o">);</span>
+        <span class="n">interval</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">end</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="n">interval</span><span class="err">−−</span><span class="o">,</span> <span class="n">end</span> <span class="err">−</span><span class="o">=</span> <span class="n">size</span><span class="o">){</span>
+    <span class="kd">final</span> <span class="kt">int</span> <span class="n">to</span> <span class="o">=</span> <span class="n">end</span><span class="o">;</span>
+    <span class="kd">final</span> <span class="kt">int</span> <span class="n">from</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">end</span> <span class="err">−</span> <span class="n">size</span><span class="o">);</span>
+    <span class="n">Runnable</span> <span class="n">runnable</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Runnable</span><span class="o">(){</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
+            <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">from</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">to</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+                <span class="k">for</span> <span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">colAmount1</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span>
+                    <span class="k">for</span> <span class="o">(</span><span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">rowAmount2</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span>
+                        <span class="n">C</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">+=</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="err">∗</span> <span class="n">B</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]);</span>
+        <span class="o">}</span>
+    <span class="o">};</span>
+    <span class="n">executor</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="n">runnable</span><span class="o">);</span>
+<span class="o">}</span></code></pre></div>
 
 
 <p>We must manually divide the work up into tasks and provide each task with its from/to bounds. Each task will run the entire outer loop but for only specific non-overlapping values. Thus there is no synchronisation in this implementation as no mutable data is shared across threads. The input arrays A and B are not mutated. While the contents of output array C are altered, each thread works on different slices.</p>
@@ -860,7 +620,7 @@ matrix A must equal equal the amount of rows in B.</p>
 
 <h2>Until Next Time</h2>
 
-<p><img src="http:///images/will.png" alt="will" />
+<p><img src="/images/will.png" alt="will" />
 Later on we shall investigate some fun stuff like Cache-Awareness and the Tall-Cache Assumption. Of course we&rsquo;ll then develop a cache-aware MMM algorithm using a &ldquo;tiling&rdquo; approach. Finally we will see some pretty benchmark graphs that demonstrate how our algorithms fared across different matrix sizes over a different number of cores.</p>
 ]]></content>
   </entry>
@@ -870,7 +630,7 @@ Later on we shall investigate some fun stuff like Cache-Awareness and the Tall-C
     <link href="http:///blog/2015/05/13/babys-first-sinatra-app/"/>
     <updated>2015-05-13T20:50:05+01:00</updated>
     <id>http:///blog/2015/05/13/babys-first-sinatra-app</id>
-    <content type="html"><![CDATA[<p><img src="http:///images/sorry.png" alt="sorry" /></p>
+    <content type="html"><![CDATA[<p><img src="/images/sorry.png" alt="sorry" /></p>
 
 <h2>I&rsquo;m Totally Sorry</h2>
 
@@ -883,7 +643,7 @@ write a blog post every month, shame on me!</p>
 incredibly useful, original, cutting-edge and technically challenging to develop.
 What else could it be but a <strong>TODO list</strong> of course.</p>
 
-<p><img src="http:///images/bizcat.png" alt="bizcat" />
+<p><img src="/images/bizcat.png" alt="bizcat" />
 From scratch we are going develop a TODO list API with <a href="http://www.sinatrarb.com/">Sinatra</a>. If you are unfamiliar with Sinatra it is simply a small web framework for Ruby, somewhat like Ruby on Rails. As Sinatra is built on top of <a href="http://rack.github.io/">Rack</a> we can then easily deploy our completed app to <a href="https://www.heroku.com/">Heroku</a>.</p>
 
 <p>This tutorial expects that you have some grounding in Ruby and understand basic <a href="http://www.ibm.com/developerworks/library/ws-restful/">RESTful API</a> design. We will be using Ruby 2.1.2 but any Ruby version post-2.0 should be fine.</p>
@@ -894,57 +654,34 @@ From scratch we are going develop a TODO list API with <a href="http://www.sinat
 
 <p>First we need to install the Bundler gem.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>gem install bundler
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>gem install bundler</code></pre></div>
 
 
 <p>We then must define our according <a href="http://bundler.io/man/gemfile.5.html">Gemfile</a>, a Ruby file placed at the root of your directory for describing your gem (package) dependencies.</p>
 
-<figure class='code'><figcaption><span>Gemfile</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/Gemfile'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
-</span><span class='line'><span class="c1"># ruby &#39;2.1.2&#39; # tested with 2.1.2 but other versions should be fine</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;sinatra&#39;</span><span class="p">,</span> <span class="s1">&#39;1.4.2&#39;</span> <span class="c1"># web framework</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;sinatra-contrib&#39;</span><span class="p">,</span> <span class="s1">&#39;1.4.2&#39;</span> <span class="c1"># web framework extensions</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;data_mapper&#39;</span> <span class="c1"># lightweight ORM</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;dm-sqlite-adapter&#39;</span> <span class="c1"># local DB ORM adapter</span>
-</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span> <span class="c1"># local DB</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
-</span><span class='line'> <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span> <span class="c1"># prod DB</span>
-</span><span class='line'> <span class="n">gem</span> <span class="s1">&#39;dm-postgres-adapter&#39;</span> <span class="c1"># prod DB ORM adapter</span>
-</span><span class='line'> <span class="n">gem</span> <span class="s1">&#39;unicorn&#39;</span> <span class="c1"># prod application server</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+<span class="c1"># ruby &#39;2.1.2&#39; # tested with 2.1.2 but other versions should be fine</span>
+
+<span class="n">gem</span> <span class="s1">&#39;sinatra&#39;</span><span class="p">,</span> <span class="s1">&#39;1.4.2&#39;</span> <span class="c1"># web framework</span>
+<span class="n">gem</span> <span class="s1">&#39;sinatra-contrib&#39;</span><span class="p">,</span> <span class="s1">&#39;1.4.2&#39;</span> <span class="c1"># web framework extensions</span>
+
+<span class="n">gem</span> <span class="s1">&#39;data_mapper&#39;</span> <span class="c1"># lightweight ORM</span>
+
+<span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;dm-sqlite-adapter&#39;</span> <span class="c1"># local DB ORM adapter</span>
+  <span class="n">gem</span> <span class="s1">&#39;sqlite3&#39;</span> <span class="c1"># local DB</span>
+<span class="k">end</span>
+
+<span class="n">group</span> <span class="ss">:production</span> <span class="k">do</span>
+ <span class="n">gem</span> <span class="s1">&#39;pg&#39;</span> <span class="c1"># prod DB</span>
+ <span class="n">gem</span> <span class="s1">&#39;dm-postgres-adapter&#39;</span> <span class="c1"># prod DB ORM adapter</span>
+ <span class="n">gem</span> <span class="s1">&#39;unicorn&#39;</span> <span class="c1"># prod application server</span>
+<span class="k">end</span></code></pre></div>
 
 
 <p>Finally we must install our required gems with Bundler.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle install --without production
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>bundle install --without production</code></pre></div>
 
 
 <h2>Say Harro World!</h2>
@@ -955,24 +692,16 @@ one endpoint defined, can be conveniently executed as a <a href="http://en.wikip
 
 <p>Lets simply define one route or endpoint and test it out.</p>
 
-<figure class='code'><figcaption><span>proof.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;sinatra&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="s2">&quot;LOLOLOL! You rock!&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;sinatra&#39;</span>
+
+<span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
+  <span class="s2">&quot;LOLOLOL! You rock!&quot;</span>
+<span class="k">end</span></code></pre></div>
 
 
 <p>Like any other Ruby script, we can execute it with the <code>ruby</code> command.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>ruby proof.rb
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>ruby proof.rb</code></pre></div>
 
 
 <p>As you would expect <code>proof.rb</code> begins to run on a default port and we see the desired response on
@@ -985,19 +714,12 @@ passing a flag argument to the script.</p>
 
 <p>Lets now create our cleverly named main application file, <code>app.rb</code>. We need to then first require our library modules.</p>
 
-<figure class='code'><figcaption><span>app.rb</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Require the bundler gem and then call Bundler.require to load in all gems</span>
-</span><span class='line'><span class="c1"># listed in Gemfile.</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;bundler&#39;</span>
-</span><span class='line'><span class="no">Bundler</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="ss">:development</span><span class="p">)</span> <span class="k">if</span> <span class="n">defined?</span><span class="p">(</span><span class="no">Bundler</span><span class="p">)</span>
-</span><span class='line'><span class="c1"># Reload app.js when changed</span>
-</span><span class='line'><span class="nb">require</span> <span class="s2">&quot;sinatra/reloader&quot;</span> <span class="k">if</span> <span class="n">development?</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Require the bundler gem and then call Bundler.require to load in all gems</span>
+<span class="c1"># listed in Gemfile.</span>
+<span class="nb">require</span> <span class="s1">&#39;bundler&#39;</span>
+<span class="no">Bundler</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="ss">:development</span><span class="p">)</span> <span class="k">if</span> <span class="n">defined?</span><span class="p">(</span><span class="no">Bundler</span><span class="p">)</span>
+<span class="c1"># Reload app.js when changed</span>
+<span class="nb">require</span> <span class="s2">&quot;sinatra/reloader&quot;</span> <span class="k">if</span> <span class="n">development?</span></code></pre></div>
 
 
 <p>Using <code>Bundler.require</code> we tell Bundler to load those modules in the gem groups named development and default, where the latter is all of those gems not contained in the development or production groups.</p>
@@ -1012,68 +734,43 @@ off your defined <code>DataMapper::Resource</code> models, removing the need to 
 
 <p>Now we must create our local <a href="https://www.sqlite.org/">SQLite</a> DB and establish a connection.</p>
 
-<figure class='code'><figcaption><span>app.rb</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># DB init</span>
-</span><span class='line'><span class="no">DataMapper</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="s2">&quot;sqlite3://</span><span class="si">#{</span><span class="no">Dir</span><span class="o">.</span><span class="n">pwd</span><span class="si">}</span><span class="s2">/development.db&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">development?</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># DB init</span>
+<span class="no">DataMapper</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="s2">&quot;sqlite3://</span><span class="si">#{</span><span class="no">Dir</span><span class="o">.</span><span class="n">pwd</span><span class="si">}</span><span class="s2">/development.db&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">development?</span></code></pre></div>
 
 
 <p>With such in place we can now define our naive <code>Task</code> which models a TODO list item. Similar to <a href="http://guides.rubyonrails.org/active_record_basics.html">ActiveRecord</a>, in DataMapper the convention with model names is to use the singular version of the name. Though unlike ActiveRecord, DataMapper does not enforce this.</p>
 
-<figure class='code'><figcaption><span>app.rb</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Models</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">Task</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">DataMapper</span><span class="o">::</span><span class="no">Resource</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">property</span> <span class="ss">:id</span><span class="p">,</span> <span class="no">Serial</span><span class="p">,</span> <span class="ss">key</span><span class="p">:</span> <span class="kp">true</span>
-</span><span class='line'>  <span class="n">property</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">String</span><span class="p">,</span> <span class="ss">required</span><span class="p">:</span> <span class="kp">true</span>
-</span><span class='line'>  <span class="n">property</span> <span class="ss">:completed_at</span><span class="p">,</span> <span class="no">DateTime</span>
-</span><span class='line'>  <span class="n">property</span> <span class="ss">:created_at</span><span class="p">,</span> <span class="no">DateTime</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="c1"># Finalize and migrate</span>
-</span><span class='line'><span class="no">DataMapper</span><span class="o">.</span><span class="n">finalize</span><span class="o">.</span><span class="n">auto_upgrade!</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Models</span>
+<span class="k">class</span> <span class="nc">Task</span>
+  <span class="kp">include</span> <span class="no">DataMapper</span><span class="o">::</span><span class="no">Resource</span>
+
+  <span class="n">property</span> <span class="ss">:id</span><span class="p">,</span> <span class="no">Serial</span><span class="p">,</span> <span class="ss">key</span><span class="p">:</span> <span class="kp">true</span>
+  <span class="n">property</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">String</span><span class="p">,</span> <span class="ss">required</span><span class="p">:</span> <span class="kp">true</span>
+  <span class="n">property</span> <span class="ss">:completed_at</span><span class="p">,</span> <span class="no">DateTime</span>
+  <span class="n">property</span> <span class="ss">:created_at</span><span class="p">,</span> <span class="no">DateTime</span>
+<span class="k">end</span>
+<span class="c1"># Finalize and migrate</span>
+<span class="no">DataMapper</span><span class="o">.</span><span class="n">finalize</span><span class="o">.</span><span class="n">auto_upgrade!</span></code></pre></div>
 
 
 <p>Before using our model we must first <code>finalize</code>. This checks the validity of all of our DataMapper model definitions and initializes all properties associated with relationships. This nicely returns its caller, <code>DataMapper</code>, so we can chain a call to <code>auto_upgrade!</code> which issues the necessary CREATE statement for our task table if it does not already exist.</p>
 
 <p>Now lets verify that our model is in fact persistent and working as expected. We can simply execute script and our DB will be in place. Lets query the current amount of task rows.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>ruby -r ./app.rb -e <span class="s2">&quot;puts Task.all.size&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>ruby -r ./app.rb -e <span class="s2">&quot;puts Task.all.size&quot;</span></code></pre></div>
 
 
 <h2>Gimme Them Endpoints</h2>
 
 <p>In Sinatra we can define endpoints that are a combination of a HTTP verb and the according request path. Which as you can see results in succinct and pretty code ♥</p>
 
-<figure class='code'><figcaption><span>app.rb</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Api</span>
-</span><span class='line'><span class="n">get</span> <span class="s1">&#39;/task/&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">content_type</span> <span class="ss">:json</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="vi">@tasks</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="ss">order</span><span class="p">:</span> <span class="ss">:created_at</span><span class="o">.</span><span class="n">desc</span><span class="p">)</span>
-</span><span class='line'>  <span class="vi">@tasks</span><span class="o">.</span><span class="n">to_json</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Api</span>
+<span class="n">get</span> <span class="s1">&#39;/task/&#39;</span> <span class="k">do</span>
+  <span class="n">content_type</span> <span class="ss">:json</span>
+
+  <span class="vi">@tasks</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="ss">order</span><span class="p">:</span> <span class="ss">:created_at</span><span class="o">.</span><span class="n">desc</span><span class="p">)</span>
+  <span class="vi">@tasks</span><span class="o">.</span><span class="n">to_json</span>
+<span class="k">end</span></code></pre></div>
 
 
 <p>Upon a defined endpoint being accessed, a <code>before</code> code block is ran if defined. This is a simple before-request hook, we do not avail of it for our endpoints. Upon its successful termination, the user-defined block on that endpoint will be executed.</p>
@@ -1082,90 +779,50 @@ off your defined <code>DataMapper::Resource</code> models, removing the need to 
 
 <p>Now we can define our remaining endpoints for POST, GET,PUT and DELETE.</p>
 
-<figure class='code'><figcaption><span>app.rb</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">post</span> <span class="s1">&#39;/task/&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">content_type</span> <span class="ss">:json</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">permit_params</span><span class="p">)</span>
-</span><span class='line'>  <span class="vi">@task</span><span class="o">.</span><span class="n">save</span> <span class="p">?</span> <span class="vi">@task</span><span class="o">.</span><span class="n">to_json</span> <span class="p">:</span> <span class="n">halt</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">put</span> <span class="s1">&#39;/task/:id&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">content_type</span> <span class="ss">:json</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">].</span><span class="n">to_i</span><span class="p">)</span>
-</span><span class='line'>  <span class="vi">@task</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">permit_params</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="vi">@task</span> <span class="o">&amp;&amp;</span> <span class="vi">@task</span><span class="o">.</span><span class="n">save</span> <span class="p">?</span> <span class="vi">@task</span><span class="o">.</span><span class="n">to_json</span> <span class="p">:</span> <span class="n">halt</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">get</span> <span class="s1">&#39;/task/:id&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">content_type</span> <span class="ss">:json</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">].</span><span class="n">to_i</span><span class="p">)</span>
-</span><span class='line'>  <span class="vi">@task</span> <span class="p">?</span> <span class="vi">@task</span><span class="o">.</span><span class="n">to_json</span> <span class="p">:</span> <span class="n">halt</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">delete</span> <span class="s1">&#39;/task/:id&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">content_type</span> <span class="ss">:json</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">].</span><span class="n">to_i</span><span class="p">)</span>
-</span><span class='line'>  <span class="vi">@task</span> <span class="o">&amp;&amp;</span> <span class="vi">@task</span><span class="o">.</span><span class="n">destroy</span> <span class="p">?</span> <span class="p">{</span> <span class="ss">success</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span> <span class="p">}</span><span class="o">.</span><span class="n">to_json</span> <span class="p">:</span> <span class="n">halt</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">permit_params</span>
-</span><span class='line'>  <span class="n">params</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="o">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;completed_at&quot;</span><span class="o">].</span><span class="n">include?</span> <span class="n">k</span> <span class="p">}</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">post</span> <span class="s1">&#39;/task/&#39;</span> <span class="k">do</span>
+  <span class="n">content_type</span> <span class="ss">:json</span>
+
+  <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">permit_params</span><span class="p">)</span>
+  <span class="vi">@task</span><span class="o">.</span><span class="n">save</span> <span class="p">?</span> <span class="vi">@task</span><span class="o">.</span><span class="n">to_json</span> <span class="p">:</span> <span class="n">halt</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">put</span> <span class="s1">&#39;/task/:id&#39;</span> <span class="k">do</span>
+  <span class="n">content_type</span> <span class="ss">:json</span>
+
+  <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">].</span><span class="n">to_i</span><span class="p">)</span>
+  <span class="vi">@task</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">permit_params</span><span class="p">)</span>
+
+  <span class="vi">@task</span> <span class="o">&amp;&amp;</span> <span class="vi">@task</span><span class="o">.</span><span class="n">save</span> <span class="p">?</span> <span class="vi">@task</span><span class="o">.</span><span class="n">to_json</span> <span class="p">:</span> <span class="n">halt</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">get</span> <span class="s1">&#39;/task/:id&#39;</span> <span class="k">do</span>
+  <span class="n">content_type</span> <span class="ss">:json</span>
+
+  <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">].</span><span class="n">to_i</span><span class="p">)</span>
+  <span class="vi">@task</span> <span class="p">?</span> <span class="vi">@task</span><span class="o">.</span><span class="n">to_json</span> <span class="p">:</span> <span class="n">halt</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">delete</span> <span class="s1">&#39;/task/:id&#39;</span> <span class="k">do</span>
+  <span class="n">content_type</span> <span class="ss">:json</span>
+
+  <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">].</span><span class="n">to_i</span><span class="p">)</span>
+  <span class="vi">@task</span> <span class="o">&amp;&amp;</span> <span class="vi">@task</span><span class="o">.</span><span class="n">destroy</span> <span class="p">?</span> <span class="p">{</span> <span class="ss">success</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span> <span class="p">}</span><span class="o">.</span><span class="n">to_json</span> <span class="p">:</span> <span class="n">halt</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">permit_params</span>
+  <span class="n">params</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">|</span> <span class="o">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;completed_at&quot;</span><span class="o">].</span><span class="n">include?</span> <span class="n">k</span> <span class="p">}</span>
+<span class="k">end</span></code></pre></div>
 
 
 <h2>Data, Not Enough Data</h2>
 
 <p>Before we deploy to Heroku it would be nice to have a prepopulated API in place, so lets just seed two tasks.</p>
 
-<figure class='code'><figcaption><span>app.rb</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Seed</span>
-</span><span class='line'><span class="k">if</span> <span class="no">Task</span><span class="o">.</span><span class="n">count</span> <span class="o">==</span> <span class="mi">0</span>
-</span><span class='line'>  <span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Test Task One&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Test Task Two&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Seed</span>
+<span class="k">if</span> <span class="no">Task</span><span class="o">.</span><span class="n">count</span> <span class="o">==</span> <span class="mi">0</span>
+  <span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Test Task One&quot;</span><span class="p">)</span>
+  <span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Test Task Two&quot;</span><span class="p">)</span>
+<span class="k">end</span></code></pre></div>
 
 
 <p>Again, we can verify this by executing <code>curl http://localhost:4567/task/</code> and see our listed tasks.</p>
@@ -1175,51 +832,38 @@ off your defined <code>DataMapper::Resource</code> models, removing the need to 
 <p>Lets put this thing of beauty out there! The usual tweaks are required for our Heroku deploy. We need to parameterize
 what gems are required and what DataMapper connection we wish to use per environment.</p>
 
-<figure class='code'><figcaption><span>app.rb</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/app.rb'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Bundler</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;RACK_ENV&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="ss">:development</span><span class="p">)</span> <span class="k">if</span> <span class="n">defined?</span><span class="p">(</span><span class="no">Bundler</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">development?</span>
-</span><span class='line'>  <span class="no">DataMapper</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;DATABASE_URL&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="s2">&quot;sqlite3://</span><span class="si">#{</span><span class="no">Dir</span><span class="o">.</span><span class="n">pwd</span><span class="si">}</span><span class="s2">/development.db&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="k">elsif</span> <span class="n">production?</span>
-</span><span class='line'>  <span class="no">DataMapper</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;DATABASE_URL&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="s1">&#39;postgres://localhost/sinatra-todos&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Bundler</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;RACK_ENV&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="ss">:development</span><span class="p">)</span> <span class="k">if</span> <span class="n">defined?</span><span class="p">(</span><span class="no">Bundler</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">development?</span>
+  <span class="no">DataMapper</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;DATABASE_URL&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="s2">&quot;sqlite3://</span><span class="si">#{</span><span class="no">Dir</span><span class="o">.</span><span class="n">pwd</span><span class="si">}</span><span class="s2">/development.db&quot;</span><span class="p">)</span>
+<span class="k">elsif</span> <span class="n">production?</span>
+  <span class="no">DataMapper</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="ss">:default</span><span class="p">,</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;DATABASE_URL&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="s1">&#39;postgres://localhost/sinatra-todos&#39;</span><span class="p">)</span>
+<span class="k">end</span></code></pre></div>
 
 
 <p>We then need to create a <a href="https://devcenter.heroku.com/articles/rack">rakeup file</a> named <code>config.ru</code> to instruct Heroku how to run our Rack app.</p>
 
-<figure class='code'><figcaption><span>config.ru</span><a href='https://github.com/full-of-foo/sinatra-todos/blob/82f72f39982570b6d0df4ee234b440f50816e5ff/config.ru'>Source Code</a></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;./app&#39;</span>
-</span><span class='line'><span class="n">run</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Application</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;./app&#39;</span>
+<span class="n">run</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Application</span></code></pre></div>
 
 
 <p>Finally, we must setup a repository, add a <a href="https://devcenter.heroku.com/articles/git">Heroku remote</a> and push our work to deploy the app.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git init <span class="o">&amp;&amp;</span> git add --all <span class="o">&amp;&amp;</span> git commit -m <span class="s2">&quot;initial&quot;</span>
-</span><span class='line'>heroku create
-</span><span class='line'>git push heroku master
-</span></code></pre></td></tr></table></div></figure>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">git init <span class="o">&amp;&amp;</span> git add --all <span class="o">&amp;&amp;</span> git commit -m <span class="s2">&quot;initial&quot;</span>
+heroku create
+git push heroku master</code></pre></div>
+
+
 
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[It-has-begun]]></title>
+    <title type="html"><![CDATA[it-has-begun]]></title>
     <link href="http:///blog/2014/08/04/it-has-begun/"/>
     <updated>2014-08-04T19:54:57+01:00</updated>
     <id>http:///blog/2014/08/04/it-has-begun</id>
-    <content type="html"><![CDATA[<p><img class="right" src="http:///images/coming.jpg" width="280" height="280"></p>
+    <content type="html"><![CDATA[<p><img class="right" src="/images/coming.jpg" width="280" height="280"  ></p>
 
 <p>Ah yes, after much procrastination I have finally gotten around to my first blog post. I now faithfully
 vow to post at least one blog entry per month ♥</p>
