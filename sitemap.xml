@@ -24,16 +24,16 @@
 <loc>http:///categories/</loc>
 </url>
 <url>
-<loc>http:///blog/</loc>
+<loc>http:///blog/archives/</loc>
 </url>
 <url>
-<loc>http:///blog/archives/</loc>
+<loc>http:///</loc>
 </url>
 <url>
 <loc>http:///archives/</loc>
 </url>
 <url>
-<loc>http:///</loc>
+<loc>http:///blog/</loc>
 </url>
 <url>
 <loc>http:///posts/</loc>
@@ -43,6 +43,6 @@
 </url>
 <url>
 <loc>http:///images/07359265.pdf</loc>
-<lastmod>2017-03-19T19:58:02+00:00</lastmod>
+<lastmod>2020-04-14T18:39:26+01:00</lastmod>
 </url>
 </urlset>
