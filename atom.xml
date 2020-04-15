@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[]]></title>
-  <link href="http:///atom.xml" rel="self"/>
-  <link href="http:///"/>
-  <updated>2020-04-15T22:09:37+01:00</updated>
-  <id>http:///</id>
+  <title><![CDATA[Anthony Troy | useless tech ramblings]]></title>
+  <link href="https:///atom.xml" rel="self"/>
+  <link href="https:///"/>
+  <updated>2020-04-15T22:21:08+01:00</updated>
+  <id>https:///</id>
   <author>
     <name><![CDATA[Anthony Troy]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Mutation Testing is Awesome: PIT for the JVM]]></title>
-    <link href="http:///blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm/"/>
+    <link href="https:///blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm/"/>
     <updated>2017-03-12T12:17:39+00:00</updated>
-    <id>http:///blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm</id>
+    <id>https:///blog/2017/03/12/mutation-testing-is-awesome-pit-for-the-jvm</id>
     <content type="html"><![CDATA[<p><img src="/images/dil.jpg" alt="dil" /></p>
 
 <p>Nowadays its not all that popular to be a testing enthusiast or fanatic.</p>
@@ -410,9 +410,9 @@ So what is this tellings us about our tests? It means for each test run against 
   
   <entry>
     <title type="html"><![CDATA[Matrix Multiply: Naive Vs Cache-Aware Approaches (Part 2)]]></title>
-    <link href="http:///blog/2015/08/24/matrix-multiply-naive-vs-cache-aware-approaches-part-2/"/>
+    <link href="https:///blog/2015/08/24/matrix-multiply-naive-vs-cache-aware-approaches-part-2/"/>
     <updated>2015-08-24T19:56:46+01:00</updated>
-    <id>http:///blog/2015/08/24/matrix-multiply-naive-vs-cache-aware-approaches-part-2</id>
+    <id>https:///blog/2015/08/24/matrix-multiply-naive-vs-cache-aware-approaches-part-2</id>
     <content type="html"><![CDATA[<h2>Matrix Multiplication Feels Bad</h2>
 
 <p>In our <a href="/blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/">last post</a>
@@ -550,9 +550,9 @@ benchmarks involved.</p>
   
   <entry>
     <title type="html"><![CDATA[Matrix Multiply: Naive Vs Cache-Aware Approaches (Part 1)]]></title>
-    <link href="http:///blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/"/>
+    <link href="https:///blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1/"/>
     <updated>2015-06-07T17:12:21+01:00</updated>
-    <id>http:///blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1</id>
+    <id>https:///blog/2015/06/07/matrix-multiply-naive-vs-cache-aware-approaches-1</id>
     <content type="html"><![CDATA[<h2>Why, Why, Why?</h2>
 
 <p>Before undertaking my postgraduate studies I led a quite joyous and sheltered life. Living the high life in the worlds of Ruby, Javascript, Python, Java and all of those sorts. My life got flipped-turned upside down when I began studying subjects like Secure Programming, Concurrent Programming and Formal Methods. For me, the biggest take-aways from these learnings were <a href="http://en.wikipedia.org/wiki/Parallel_algorithm">parallel algorithm design</a> and the <a href="http://en.wikipedia.org/wiki/Locality_of_reference">principle of locality</a>.
@@ -627,9 +627,9 @@ Later on we shall investigate some fun stuff like Cache-Awareness and the Tall-C
   
   <entry>
     <title type="html"><![CDATA[Baby's First Sinatra App]]></title>
-    <link href="http:///blog/2015/05/13/babys-first-sinatra-app/"/>
+    <link href="https:///blog/2015/05/13/babys-first-sinatra-app/"/>
     <updated>2015-05-13T20:50:05+01:00</updated>
-    <id>http:///blog/2015/05/13/babys-first-sinatra-app</id>
+    <id>https:///blog/2015/05/13/babys-first-sinatra-app</id>
     <content type="html"><![CDATA[<p><img src="/images/sorry.png" alt="sorry" /></p>
 
 <h2>I&rsquo;m Totally Sorry</h2>
@@ -860,9 +860,9 @@ git push heroku master</code></pre></div>
   
   <entry>
     <title type="html"><![CDATA[it-has-begun]]></title>
-    <link href="http:///blog/2014/08/04/it-has-begun/"/>
+    <link href="https:///blog/2014/08/04/it-has-begun/"/>
     <updated>2014-08-04T19:54:57+01:00</updated>
-    <id>http:///blog/2014/08/04/it-has-begun</id>
+    <id>https:///blog/2014/08/04/it-has-begun</id>
     <content type="html"><![CDATA[<p><img class="right" src="/images/coming.jpg" width="280" height="280"  ></p>
 
 <p>Ah yes, after much procrastination I have finally gotten around to my first blog post. I now faithfully
